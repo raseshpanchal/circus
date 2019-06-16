@@ -1,4 +1,25 @@
-body{
-  margin:0;
-  padding:0;
+#mainNav{
+    background-color: #2bf1ca;
 }
+.navbar-brand{
+    font-family: robotoblack;
+}
+.masthead{
+    background-color: gray;
+
+    height: 600px;
+}
+.text{
+    color: white;
+    font-size: 30px;
+    font-family: monospace;
+}
+#form1{
+    position: fixed;
+    padding-top: 100px;
+}
+.btn{
+    background-color: #2bf1ca;
+}
+
+
