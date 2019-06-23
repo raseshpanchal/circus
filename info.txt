@@ -1,1 +1,52 @@
-xyz
+::WEB-ADMIN FLOW::
+
+Freelancers
+- New Registration
+- Active Freelancer
+- Blocked Freelancer
+
+Freelancer Profiles
+- New Profiles
+- Active Profile
+- Blocked Profile
+
+Recruiters
+- New Registration
+- Active Recruiters
+- Blocked Recruiters
+
+Service Requests
+- New Request
+- Past Request
+
+User Reviews
+- New Reviews
+- Active Reviews
+- Blocked Reviews
+
+Banner Management
+- Home Page
+- Listing Page
+- Profile Page
+- User Registration Page
+
+Categories
+- Main Categories
+- Sub Categories
+
+System Settings
+- System Users
+- User Rights
+
+Website Controls
+- Themes
+- Customize Theme
+- Home Page SEO
+- Listing Page SEO
+- Profile Page SEO
+- Manage About Us
+- Manage FAQs
+- Manage Terms of Services
+- Manage Privacy Policy
+- Bottom Links
+- Social Network
