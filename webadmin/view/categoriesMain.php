@@ -65,7 +65,7 @@ include("../../config/connection.php");
         <tbody style="color:#666" id="table">
             <?php
             $i=1;
-            $query_1=mysqli_query($link, "SELECT * FROM category_master ORDER BY ID DESC");
+            $query_1=mysqli_query($link, "SELECT * FROM categories ORDER BY ID DESC");
             while($view_1=mysqli_fetch_array($query_1))
             {
                 $newID=$view_1['ID'];

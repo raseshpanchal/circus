@@ -17,5 +17,5 @@ else
 }
 
 //Update Values in DB
-$query_1=mysqli_query($link, "UPDATE category_master SET Category='$myTitle', Publish='$myPublish' WHERE ID='$newID'");
+$query_1=mysqli_query($link, "UPDATE categories SET Category='$myTitle', Publish='$myPublish' WHERE ID='$newID'");
 ?>

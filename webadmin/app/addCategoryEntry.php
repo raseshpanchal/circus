@@ -15,13 +15,13 @@ else
 }
 
 //Check the existing entry
-$query=mysqli_query($link, "SELECT * FROM category_master WHERE Category='$myTitle'");
+$query=mysqli_query($link, "SELECT * FROM categories WHERE Category='$myTitle'");
 $test_rows=mysqli_num_rows($query);
 
 if($test_rows==0)
 {
     //Insert Values in DB
-    $query_1=mysqli_query($link, "INSERT INTO category_master SET Category='$myTitle', Publish='$myPublish'");
+    $query_1=mysqli_query($link, "INSERT INTO categories SET Category='$myTitle', Publish='$myPublish'");
     if($query_1)
     {
         echo '1';
