@@ -57,6 +57,9 @@ include("../../config/connection.php");
             <tr style="background-color:#d9592d; color:#FFF; border-top:solid 1px #d9592d">
                 <th width="40" align="center">Sr.</th>
                 <th>Category Name</th>
+                <th width="40" align="center">Sub</th>
+                <th width="40" align="center">Total</th>
+                <th width="40" align="center">Seq</th>
                 <th width="40" align="center">Edit</th>
                 <th width="40" align="center">Del</th>
             </tr>
@@ -71,12 +74,20 @@ include("../../config/connection.php");
                 $newID=$view_1['ID'];
                 $newCategory=urldecode($view_1['Category']);
                 $newPublish=$view_1['Publish'];
+                //Fetch Total Number of Sub-Categpries
+                $query_2=mysqli_query($link, "SELECT * FROM subcategories WHERE CatID='$newID'");
+                $totalSubCat=mysqli_num_rows($query_2);
             ?>
              <tr <?php echo 'id="td'.$newID.'"'; ?>>
                 <td id="1_<?php echo $newID ?>" width="40" align="center"><?php echo $i; ?></td>
                 <td id="2_<?php echo $newID ?>">
                     <?php echo $newCategory; ?>
                 </td>
+                <td id="3_<?php echo $newID ?>" width="40" align="center">
+                    <a href="app/addSubCategory?ID=<?php echo $newID; ?>" class="addSubCategory"><img src="images/add-yellow.png" border="0" /></a>
+                </td>
+                <td width="40" align="center"><?php echo $totalSubCat; ?></td>
+                <td width="40" align="center"><a href="app/seqSubCategory?ID=<?php echo $newID; ?>" class="btnSeq"><img src="images/lines.png" border="0" /></a></td>
                 <td width="40" align="center">
                     <a href="app/editCategory?ID=<?php echo $newID; ?>" class="btnEdit">
                         <img src="images/edit.gif" border="0" />
@@ -105,6 +116,20 @@ $(document).ready(function(){
     $("#btnAdd").click(function(){
         addForm('app/addCategory');
         $('html, body').animate({scrollTop : 0},800);
+    });
+
+    //This is SubCategory
+    $('.addSubCategory').click(function(){
+        addForm($(this).attr("href"));
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+
+    //This is Sequence function
+    $('.btnSeq').click(function(){
+        addForm($(this).attr("href"));
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
     });
 
     //This is Edit function
