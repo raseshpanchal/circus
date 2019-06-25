@@ -1,3 +1,10 @@
+<?php
+session_start();
+include("config/connection.php");
+$query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY RAND() LIMIT 1");
+$view_mainCat=mysqli_fetch_array($query_mainCat);
+$newCategory=$view_mainCat['Category'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +43,7 @@
 
 
     <div class="container-fluid homeSlide">
-        <h1 style="margin-left:-50px">FIND A BEST <span id="showPost">DESIGNER</span> IN YOUR CITY</h1>
+        <h1 style="margin-left:-50px">FIND A BEST <?=strtoupper($newCategory)?> IN YOUR CITY</h1>
 
         <form>
         <div class="row">
@@ -70,6 +77,53 @@
 
     </div>
 
+    <div class="container">
+        <div class="row" style="padding-top:50px; padding-bottom:50px;">
+            <?php
+            $query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY Category ASC");
+            while($view_mainCat=mysqli_fetch_array($query_mainCat))
+            {
+                $newCategory=$view_mainCat['Category'];
+                ?>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory"><?=$newCategory?></div>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
+
+    <!--Why Wheresert Starts-->
+    <div class="container-fluid whyWheresert">
+        <?php
+        include_once('whyWheresert.php');
+        ?>
+    </div>
+    <!--Why Wheresert Ends-->
+
+    <!--Download App Starts-->
+    <div class="container-fluid downloadApp">
+        <?php
+        include_once('downloadApp.php');
+        ?>
+    </div>
+    <!--Download App Ends-->
+
+    <!--Survey Info Starts-->
+    <div class="container-fluid" style="border-top:solid 2px #CCC;">
+        <?php
+        include_once('survey.php');
+        ?>
+    </div>
+    <!--Survey Info Ends-->
+
+    <!--Survey Numbers Starts-->
+    <div class="container-fluid" style="border-top:solid 2px #CCC; padding-top:20px; padding-bottom:20px;">
+        <?php
+        include_once('surveyNumbers.php');
+        ?>
+    </div>
+    <!--Survey Numbers Ends-->
+
     <?php include_once('footer-01.php') ?>
     <?php include_once('footer-02.php') ?>
 
@@ -83,7 +137,7 @@
         $(document).ready(function(){
             $('#btnFind').click(function(){
                 var lookingFor = $('#txt_search').val();
-                $('#showPost').text(lookingFor);
+                //$('#showPost').text(lookingFor);
             });
         });
     </script>
