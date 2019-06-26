@@ -2,11 +2,11 @@
 if(!isset($_SESSION))
 {
     session_start();
-    
+
     //Fetch User Info
-    if($_SESSION['pkcwebuser'])
+    if($_SESSION['whrwebuser'])
     {
-        $myEmail=$_SESSION['pkcwebuser'];
+        $myEmail=$_SESSION['whrwebuser'];
         $query_user=mysqli_query($link, "SELECT * FROM registrations WHERE Email='$myEmail'");
         $view_user=mysqli_fetch_array($query_user);
         $userID=$view_user['ID'];

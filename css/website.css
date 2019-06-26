@@ -9,6 +9,8 @@ body{
     color: #0F0F0F;
     height: 100%;
     background-color: #ebebeb;
+    margin: 0px;
+    padding: 0px;
 }
 
 .logoFont{
@@ -31,6 +33,10 @@ body{
     font-family: robotoblack;
 }
 
+#navbarCollapse ul li a{
+    color: #333;
+}
+
 .homeSlide{
     height: 440px;
     margin-top: 60px;
@@ -44,6 +50,22 @@ body{
 .homeSlide h1{
     font-family: roboto_condensedlight;
     font-size: 22pt;
+    color: #FFF;
+}
+
+.homeSlideMobile{
+    height: 440px;
+    margin-top: 60px;
+    background-image:url(../images/homeSlide.jpg);
+    background-size: cover;
+    background-position: center bottom;
+    text-align: center;
+    padding-top: 120px;
+}
+
+.homeSlideMobile h1{
+    font-family: roboto_condensedlight;
+    font-size: 16pt;
     color: #FFF;
 }
 
@@ -142,6 +164,20 @@ h3{
 
 .survey p{
     font-size: 10pt;
+}
+
+.surveyMobile{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: solid 1px #000;
+    padding-bottom: 10px;
+}
+
+.surveyMobile h6{
+    border-bottom: solid 1px #CCC;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .btnWhereSert

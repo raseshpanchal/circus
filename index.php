@@ -1,20 +1,22 @@
 <?php
-session_start();
-include("config/connection.php");
-$query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY RAND() LIMIT 1");
-$view_mainCat=mysqli_fetch_array($query_mainCat);
-$newCategory=$view_mainCat['Category'];
+    //error_reporting(0);
+    session_start();
+    include_once("config/connection.php");
+    include_once('userInfo.php');
+    include_once('pageInfo.php');
+
+    $query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY RAND() LIMIT 1");
+    $view_mainCat=mysqli_fetch_array($query_mainCat);
+    $newCategory=$view_mainCat['Category'];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WHERESERT</title>
+    <title><?=$newPageTitle?></title>
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/website.css">
+    <meta name="description" content="<?=$newPageDesc?>">
+    <meta name="keywords" content="<?=$newPageKeywords?>">
+    <?php include_once('scripts/headTags.php') ?>
 </head>
 <body>
 
@@ -25,39 +27,58 @@ $newCategory=$view_mainCat['Category'];
     <!--Top Menu Ends-->
 
 
-    <div class="container-fluid homeSlide">
-        <h1 style="margin-left:-50px">FIND A BEST <?=strtoupper($newCategory)?> IN YOUR CITY</h1>
-
+    <div class="container-fluid homeSlide d-none d-sm-block">
         <form>
-        <div class="row">
-            <div class="col-lg-3">
-
-            </div>
-            <div class="col-lg-6">
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-3" style="padding:0px">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h1>FIND A BEST <?=strtoupper($newCategory)?> IN YOUR CITY</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="padding:0px">
                         <select class="form-control">
                             <option value="Dubai">Search in Dubai</option>
                             <option value="Abu Dhabi">Search in Abu Dhabi</option>
                             <option value="Sharjah">Search in Sharjah</option>
                         </select>
-
                     </div>
-                    <div class="col-lg-6" style="padding-right:0px">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="padding-left:8px; padding-right:8px;">
                         <input type="text" name="txt_search" id="txt_search" class="form-control" placeholder="Search for a Talent / Services / Professional">
                     </div>
-                    <div class="col-lg-3" style="margin-left:-20px">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="padding:0px; text-align:left">
                         <button type="button" class="btn btn-info" id="btnFind">FIND IT NOW</button>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container-fluid homeSlideMobile d-block d-sm-none">
+        <form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <h1>FIND A BEST TALENT IN YOUR CITY</h1>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <select class="form-control">
+                            <option value="Dubai">Search in Dubai</option>
+                            <option value="Abu Dhabi">Search in Abu Dhabi</option>
+                            <option value="Sharjah">Search in Sharjah</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-xs-12" style="margin-top:10px; margin-bottom:10px;">
+                        <input type="text" name="txt_search" id="txt_search" class="form-control" placeholder="Search for a Talent / Services / Professional">
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <button type="button" class="btn btn-info" id="btnFind" style="width:100%">FIND IT NOW</button>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-
-            </div>
-
-        </div>
         </form>
-
     </div>
 
     <div class="container">
