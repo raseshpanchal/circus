@@ -32,7 +32,7 @@ else
 {
     $newFullName=ucwords(strtolower($newName));
     //Insert Values Into DB
-    $query_2=mysqli_query($link, "INSERT INTO freelancer_registration SET FullName='$newFullName', Mobile='$newMobile', EmailID='$newEmail', DOB='$newDOB', Gender='$newGender', Password='$newPass', CreateDate=now(), CreateTime=now(), PaidPhoto='No', PaidBanners='No', PaidListing='No', Status='New'");
+    $query_2=mysqli_query($link, "INSERT INTO freelancer_registration SET FullName='$newFullName', Mobile='$newMobile', EmailID='$newEmail', DOB='$newDOB', Gender='$newGender', Password='$newPass', CreateDate=now(), CreateTime=now(), PaidPhoto='No', PaidBanners='No', PaidListing='No', Status='No'");
     if($query_2)
     {
         echo 'regiSuccess';
