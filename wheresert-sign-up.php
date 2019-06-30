@@ -17,6 +17,11 @@
     <meta name="description" content="<?=$newPageDesc?>">
     <meta name="keywords" content="<?=$newPageKeywords?>">
     <?php include_once('scripts/headTags.php') ?>
+    <style>
+        .row{
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -43,78 +48,123 @@
             <div class="col-lg-6">
                 <form name="myFormReg" id="myFormReg" method="POST">
 
-                    <h3 style="border-bottom:dotted 1px #333; padding-bottom:15px; margin-bottom:15px">Get Sign-up!</h3>
-
-                    <div class="form-check-inline" style="margin-bottom:10px;">
-                        <label class="form-check-label">
-                            I am &nbsp;&nbsp;
-                            <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Freelancer" checked> Freelancer / Small Business
-                        </label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Recruiter"> Recruiter / Hirer
-                        </label>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3 style="border-bottom:dotted 1px #333; padding-bottom:15px; margin-bottom:15px">Get Sign-up!</h3>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txt_name" name="txt_name" placeholder="Full Name*">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Valid Email ID*">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txt_mobile" name="txt_mobile" placeholder="Mobile Number*">
-                    </div>
-                    <div class="form-check-inline" style="margin-bottom:10px;">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" id="txt_gender" name="txt_gender" value="Male" checked> Male
-                        </label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" id="txt_gender" name="txt_gender" value="Female"> Female
-                        </label>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-check-inline" style="margin-bottom:10px;">
+                                <label class="form-check-label">
+                                    I am &nbsp;&nbsp;
+                                    <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Freelancer" checked> Freelancer / Small Business
+                                </label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Recruiter"> Recruiter / Hirer
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txt_dob" name="txt_dob" placeholder="Date of Birth (dd/mm/yyyy)*">
-                    </div>
-                    <!--
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txt_address" name="txt_address" placeholder="Your Address*">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txt_city" name="txt_city" placeholder="City Name*">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txt_state" name="txt_state" placeholder="State Name*">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txt_country" name="txt_country" placeholder="Country Name*">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="5" id="txt_desc" name="txt_desc" placeholder="Description*"></textarea>
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="txt_fname" name="txt_fname" placeholder="First Name*">
+                        </div>
+
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="txt_lname" name="txt_lname" placeholder="Last Name*">
+                        </div>
                     </div>
 
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox"> <span style="font-size:9pt">I understand and agree to Service, including the Terms of Service and Privacy Policy.</span>
-                        </label>
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Valid Email ID*">
+                        </div>
                     </div>
-                    -->
-                    <button class="btn btnWhereSert btnRegi" style="float:right">Get Register Now!</button>
-                    <br/>
-                    <span id="regiStatus"></span>
+
+                    <div class="row">
+
+                        <div class="col-lg-2" style="padding-right:0px">
+                            <input type="text" class="form-control" list="codeList" id="txt_code" name="txt_code" placeholder="Code*" value="+971">
+                            <datalist id="codeList">
+                            <?php
+                            //Fetch Country Code
+                            $query_code=mysqli_query($link, "SELECT * FROM countries ORDER BY CountryName ASC");
+                            while($view_code=mysqli_fetch_array($query_code))
+                            {
+                                $newPhoneCode=trim($view_code['PhoneCode']);
+                                ?>
+                                    <option value="<?='+'.$newPhoneCode?>">
+                                <?php
+                            }
+                            ?>
+                            </datalist>
+                        </div>
+
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="txt_mobile" name="txt_mobile" placeholder="Mobile Number*">
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="txt_dob" name="txt_dob" placeholder="Date of Birth (dd/mm/yyyy)*">
+                        </div>
+
+                        <div class="col-lg-6" style="padding-top:7px">
+                            <div class="form-check-inline" style="margin-bottom:10px;">
+                                <label class="form-check-label">
+                                    Gender&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" class="form-check-input" id="txt_gender" name="txt_gender" value="Male" checked> Male
+                                </label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" id="txt_gender" name="txt_gender" value="Female"> Female
+                                </label>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row">
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <button class="btn btnWhereSert btnRegi" style="float:right">Get Register Now!</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <span id="regiStatus"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <label class="form-label">
+                            <span style="font-size:11pt">Already Member! <a href="wheresert-sign-in">Click Here!</a></span>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <span style="font-size:11pt">Registration Problem? <a href="registrationProblem">Click Here!</a></span>
+                            </label>
+                        </div>
+                    </div>
+
                 </form>
-
-
-
-                <div style="margin-top:60px;">
-                    <label class="form-label">
-                    <span style="font-size:11pt">Already Member! <a href="wheresert-sign-in">Click Here!</a></span>
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <span style="font-size:11pt">Registration Problem? <a href="registrationProblem">Click Here!</a></span>
-                    </label>
-                </div>
 
             </div>
 
@@ -170,7 +220,7 @@
             $('.btnRegi').click(function(){
                 var userType = $("input[name='txt_userType']:checked").val();
                 $('.btnRegi').attr("disabled", true);
-                var myName=$('#txt_name').val();
+                var myName=$('#txt_fname').val();
                 var myEmail=$('#txt_email').val();
                 var myMobile=$('#txt_mobile').val();
 
@@ -256,6 +306,9 @@
                 }
                 return false;
             });
+
+
+        //MAIN DOC ENDS
         });
 
         //Function Email Validation
