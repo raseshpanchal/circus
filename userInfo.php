@@ -3,11 +3,23 @@ if(!isset($_SESSION))
 {
     session_start();
 
-    //Fetch User Info
-    if($_SESSION['whrwebuser'])
+    //Fetch Freelancer Info
+    if($_SESSION['whrsrtfruser'])
     {
-        $myEmail=$_SESSION['whrwebuser'];
-        $query_user=mysqli_query($link, "SELECT * FROM registrations WHERE Email='$myEmail'");
+        $myEmail=$_SESSION['whrsrtfruser'];
+        $query_user=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE EmailID='$myEmail'");
+        $view_user=mysqli_fetch_array($query_user);
+        $userID=$view_user['ID'];
+        $userFirstName=$view_user['FirstName'];
+        $userLastName=$view_user['LastName'];
+        $userFullName=$userFirstName.' '.$userLastName;
+    }
+
+    //Fetch Recruiter Info
+    if($_SESSION['whrsrtrcuser'])
+    {
+        $myEmail=$_SESSION['whrsrtrcuser'];
+        $query_user=mysqli_query($link, "SELECT * FROM recruiter_registration WHERE EmailID='$myEmail'");
         $view_user=mysqli_fetch_array($query_user);
         $userID=$view_user['ID'];
         $userFirstName=$view_user['FirstName'];

@@ -9,15 +9,40 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="wheresert-sign-blog">Blog</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="wheresert-sign-up">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="wheresert-sign-in">Sign In</a>
-            </li>
+            <?php
+            error_reporting(0);
+            if($myEmail)
+            {
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger">Welcome <?=$userFullName?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="myAccount">My Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="wheresert-blog">Blog</a>
+                </li>
+                <?php
+            }
+            else
+            {
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="wheresert-blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="wheresert-sign-up">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="wheresert-sign-in">Sign In</a>
+                </li>
+                <?php
+            }
+            ?>
         </ul>
     </div>
 </nav>

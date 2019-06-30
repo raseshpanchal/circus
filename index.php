@@ -1,6 +1,6 @@
 <?php
-    //error_reporting(0);
-    session_start();
+    error_reporting(0);
+    //session_start();
     include_once("config/connection.php");
     include_once('userInfo.php');
     include_once('pageInfo.php');
