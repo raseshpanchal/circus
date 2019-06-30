@@ -2,9 +2,13 @@
 //error_reporting(0);
 include_once("../config/connection.php");
 
-$newName=$_POST['txt_name'];
+$newFirstName=$_POST['txt_fname'];
+$newLastName=$_POST['txt_lfname'];
+$newFullName=$newFirstName.' '.$newLastName;
 $newEmail=$_POST['txt_email'];
+$newCode=$_POST['txt_code'];
 $newMobile=$_POST['txt_mobile'];
+$callingNumbar=$newCode.$newMobile;
 $newGender=$_POST['txt_gender'];
 $newDOB=$_POST['txt_dob'];
 
@@ -32,7 +36,7 @@ else
 {
     $newFullName=ucwords(strtolower($newName));
     //Insert Values Into DB
-    $query_2=mysqli_query($link, "INSERT INTO freelancer_registration SET FullName='$newFullName', Mobile='$newMobile', EmailID='$newEmail', DOB='$newDOB', Gender='$newGender', Password='$newPass', CreateDate=now(), CreateTime=now(), PaidPhoto='No', PaidBanners='No', PaidListing='No', Status='No'");
+    $query_2=mysqli_query($link, "INSERT INTO freelancer_registration SET FirstName='$newFirstName', LastName='$newLastName', Mobile='$callingNumbar', EmailID='$newEmail', DOB='$newDOB', Gender='$newGender', Password='$newPass', CreateDate=now(), CreateTime=now(), PaidPhoto='No', PaidBanners='No', PaidListing='No', Status='No'");
     if($query_2)
     {
         echo 'regiSuccess';
@@ -60,7 +64,7 @@ else
         $message .= 'Password: '.$newPass.'<br/><br/>';
         $message .= 'You can change your password after your first login.<br/><br/>';
         $message .= 'Please do not reply this message, as no recipient has been designated.<br/>';
-        $message .= 'Replying this message will not confirm our registration.<br/><br/>';
+        $message .= 'Replying this message will not confirm your registration.<br/><br/>';
         $message .= 'Yours Sincerely,<br/>WhereSert Team<br/><br/>';
         $message .= '</p>';
         $message .= '</body></html>';
