@@ -1,9 +1,9 @@
 <?php
-session_start();
-include("config/connection.php");
-$query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY RAND() LIMIT 1");
-$view_mainCat=mysqli_fetch_array($query_mainCat);
-$newCategory=$view_mainCat['Category'];
+    error_reporting(0);
+    //session_start();
+    include_once("config/connection.php");
+    include_once('userInfo.php');
+    include_once('pageInfo.php');
 ?>
 <!DOCTYPE html>
 <html>

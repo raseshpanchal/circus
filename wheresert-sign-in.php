@@ -171,7 +171,7 @@
                                     $('#loginStatus').html('<span style="color:green">Account Athenticated. Please wait...</span>').fadeIn(300);
                                     $('#login_user').val('');
                                     $('#login_pass').val('');
-                                    window.location.href='./';
+                                    window.location.href='myAccount';
                                 }
                             });
                             return false;

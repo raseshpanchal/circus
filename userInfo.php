@@ -13,6 +13,14 @@ if(!isset($_SESSION))
         $userFirstName=$view_user['FirstName'];
         $userLastName=$view_user['LastName'];
         $userFullName=$userFirstName.' '.$userLastName;
+        $userDOB=$view_user['DOB'];
+        $userMobile=$view_user['Mobile'];
+        $userGender=$view_user['Gender'];
+        $userAddress=$view_user['Address'];
+        $userCityID=$view_user['CityID'];
+        $userStateID=$view_user['StateID'];
+        $userCountryID=$view_user['CountryID'];
+        $userZipCode=$view_user['ZipCode'];
     }
 
     //Fetch Recruiter Info
@@ -25,6 +33,14 @@ if(!isset($_SESSION))
         $userFirstName=$view_user['FirstName'];
         $userLastName=$view_user['LastName'];
         $userFullName=$userFirstName.' '.$userLastName;
+        $userDOB=$view_user['DOB'];
+        $userMobile=$view_user['Mobile'];
+        $userGender=$view_user['Gender'];
+        $userAddress=$view_user['Address'];
+        $userCityID=$view_user['CityID'];
+        $userStateID=$view_user['StateID'];
+        $userCountryID=$view_user['CountryID'];
+        $userZipCode=$view_user['ZipCode'];
     }
 }
 ?>
