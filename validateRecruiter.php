@@ -98,14 +98,22 @@
     <?php include_once('footer-02.php') ?>
 
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <?php include_once('scripts/bottomScripts.php') ?>
 
     <script>
         $(document).ready(function(){
 
         });
     </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit()
+        {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,ar,hi'}, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
