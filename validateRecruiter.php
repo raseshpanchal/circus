@@ -10,7 +10,9 @@
     //Find User Details
     $query_user=mysqli_query($link, "SELECT * FROM recruiter_registration WHERE EmailID='$newEmail'");
     $view_user=mysqli_fetch_array($query_user);
-    $newFullName=$view_user['FullName'];
+    $newFirstName=$view_user['FirstName'];
+    $newLastName=$view_user['LastName'];
+    $newFullName=$newFirstName.' '.$newLastName;
 
 ?>
 <!DOCTYPE html>
