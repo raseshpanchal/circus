@@ -1,20 +1,18 @@
 <?php
-session_start();
-include("config/connection.php");
-$query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY RAND() LIMIT 1");
-$view_mainCat=mysqli_fetch_array($query_mainCat);
-$newCategory=$view_mainCat['Category'];
+    error_reporting(0);
+    session_start();
+    include_once("config/connection.php");
+    include_once('userInfo.php');
+    include_once('pageInfo.php');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WHERESERT</title>
+    <title><?=$newPageTitle?></title>
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/website.css">
+    <meta name="description" content="<?=$newPageDesc?>">
+    <meta name="keywords" content="<?=$newPageKeywords?>">
+    <?php include_once('scripts/headTags.php') ?>
 </head>
 <body>
 
@@ -106,17 +104,22 @@ $newCategory=$view_mainCat['Category'];
     <?php include_once('footer-01.php') ?>
     <?php include_once('footer-02.php') ?>
 
-
-
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <?php include_once('scripts/bottomScripts.php') ?>
 
     <script>
         $(document).ready(function(){
 
         });
     </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit()
+        {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>

@@ -6,15 +6,14 @@
     include_once('pageInfo.php');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-    <title>WHERESERT</title>
+    <title><?=$newPageTitle?></title>
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="<?=$newPageDesc?>">
+    <meta name="keywords" content="<?=$newPageKeywords?>">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/website.css">
+    <?php include_once('scripts/headTags.php') ?>
     <style>
 
         body{
@@ -256,7 +255,7 @@
 
                                 <h5 class="card-title"><?=$userFullName?> <small>Administrator</small></h5>
                                 <p class="card-text" style="border:0px">Profile description</p>
-                                <a href="#" class="btn btn-info" style="float:right">Edit Profile</a>
+                                <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                             </div>
                         </div>
                     </div>
@@ -301,20 +300,20 @@
                                           </tbody>
                                         </table>
 
-                                        <a href="#" class="btn btn-info" style="float:right">Edit Description</a>
+                                        <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
 
                                     </div>
                                     <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
                                         Services
-                                        <a href="#" class="btn btn-info" style="float:right">Edit Services</a>
+                                        <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                                     </div>
                                     <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="skills-tab">
                                         Skills
-                                        <a href="#" class="btn btn-info" style="float:right">Edit Skills</a>
+                                        <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                                     </div>
                                     <div class="tab-pane fade" id="languages" role="tabpanel" aria-labelledby="languages-tab">
                                         Languages
-                                        <a href="#" class="btn btn-info" style="float:right">Edit Languages</a>
+                                        <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                                     </div>
                                 </div>
                             </div>
@@ -417,7 +416,7 @@
                                 <h6 class="card-title">Gender</h6>
                                 <p class="card-text"><?=$userGender?></p>
 
-                                <a href="#" class="btn btn-info" style="float:right">Edit Contact Info</a>
+                                <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                             </div>
                         </div>
                     </div>
@@ -450,17 +449,22 @@
     <?php include_once('footer-01.php') ?>
     <?php include_once('footer-02.php') ?>
 
-
-
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <?php include_once('scripts/bottomScripts.php') ?>
 
     <script>
         $(document).ready(function(){
 
         });
     </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit()
+        {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>

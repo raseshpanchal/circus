@@ -10,7 +10,7 @@
     $newCategory=$view_mainCat['Category'];
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
     <title><?=$newPageTitle?></title>
     <meta charset="UTF-8">
@@ -32,23 +32,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h1>FIND A BEST <?=strtoupper($newCategory)?> IN YOUR CITY</h1>
+                        <h1>BEST <?=strtoupper($newCategory)?> IN CITY</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col"></div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="padding:0px">
                         <select class="form-control">
-                            <option value="Dubai">Search in Dubai</option>
-                            <option value="Abu Dhabi">Search in Abu Dhabi</option>
-                            <option value="Sharjah">Search in Sharjah</option>
+                            <option value="Dubai">Dubai</option>
+                            <option value="Abu Dhabi">Abu Dhabi</option>
+                            <option value="Sharjah">Sharjah</option>
                         </select>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="padding-left:8px; padding-right:8px;">
                         <input type="text" name="txt_search" id="txt_search" class="form-control" placeholder="Search for a Talent / Services / Professional">
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="padding:0px; text-align:left">
-                        <button type="button" class="btn btn-info" id="btnFind">FIND IT NOW</button>
+                        <button type="button" class="btn btn-info" id="btnFind">CLICK</button>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -131,9 +131,7 @@
     <?php include_once('footer-01.php') ?>
     <?php include_once('footer-02.php') ?>
 
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <?php include_once('scripts/bottomScripts.php') ?>
 
     <script>
         $(document).ready(function(){
@@ -143,6 +141,15 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit()
+        {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
