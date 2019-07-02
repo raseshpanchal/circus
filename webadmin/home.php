@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+if (!isset($_SESSION)) { session_start(); }
 include_once("checkUserSession.php");
 include_once("../config/connection.php");
 //Find UID
@@ -567,11 +568,11 @@ $newUserType=$view_1['UserType'];
         closeForm();
         $("#middleArea").load("view/dashboard");
 
-        //Function for New Orders
-        $('#newOrders').click(function(){
-            $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading New Orders...<br/><br/><img src="images/preloader_clock.gif" /></div>');
+        //Function for Freelancers Ragistration
+        $('#freelancersAll').click(function(){
+            $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Freelancers Ragistrations...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
-            $("#middleArea").load("view/newOrders");
+            $("#middleArea").load("view/freelancersAll");
         });
 
         //Function for New Users
