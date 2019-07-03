@@ -5,10 +5,12 @@ $newID=$_GET['ID'];
 //Fetch Records
 $query_1=mysqli_query($link, "SELECT * FROM recruiter_registration WHERE ID='$newID'");
 $view_1=mysqli_fetch_array($query_1);
-$newFullName=$view_1['FullName'];
+$newFirstName=$view_1['FirstName'];
+$newLastName=$view_1['LastName'];
 $newEmailID=$view_1['EmailID'];
 $newMobile=$view_1['Mobile'];
 $newDOB=$view_1['DOB'];
+$newGender=$view_1['Gender'];
 $newDescription=$view_1['Description'];
 $newStatus=$view_1['Status'];
 ?>
@@ -32,13 +34,15 @@ $(document).ready(function(){
    //Function for Counting Table Rows
     var i=$('#middleArea .table tbody tr').length;
     $("#btnSave").click(function(){
-        var myName = $("#txt_name").val();
+        var myFirstName = $("#txt_firstname").val();
+        var myLastName = $("#txt_lastname").val();
         var myEmail = $("#txt_email").val();
         var myMobile = $("#txt_mobile").val();
-        var myDOB = $("#txt_dob").val();
+        var myDob = $("#txt_dob").val();
         var myDescription = $("#txt_dec").val();
+        var myGender = $("input[name='radio_gender']:checked").val();
         var myStatus = $("input[name='radio_status']:checked").val();
-         if(myStatus=='Pending')
+         if(myStatus=='New')
         {
             var myShow = '<img src="images/bullet_gray.png" border="0" />';
         }
@@ -57,12 +61,14 @@ $(document).ready(function(){
 
             //Show Updated Table Row
             $("#1_<?php echo $newID ?>").css('background-color','#a3d3d1');
-            $("#2_<?php echo $newID ?>").html(myName);
-            $("#3_<?php echo $newID ?>").html(myEmail);
-            $("#4_<?php echo $newID ?>").html(myMobile);
-            $("#5_<?php echo $newID ?>").html(myDescription);
-            $("#6_<?php echo $newID ?>").html(myShow);
- 
+             $("#2_<?php echo $newID ?>").html(myFirstName);
+            $("#3_<?php echo $newID ?>").html(myLastName);
+            $("#4_<?php echo $newID ?>").html(myEmail);
+            $("#5_<?php echo $newID ?>").html(myMobile);
+            $("#6_<?php echo $newID ?>").html(myDescription);
+            $("#7_<?php echo $newID ?>").html(myGender);
+            $("#8_<?php echo $newID ?>").html(myShow);
+            
             //Additional Actions
             $('.success_alert').fadeIn(300);
             $(".success_alert").delay(1500).fadeOut(300);
@@ -87,7 +93,13 @@ $(document).ready(function(){
 <form name="myForm" id="myForm" method="POST">
 <div class="row" style="padding:15px; padding-top:25px;">
     <div class="col-xs-12">
-        <input type="text" class="form-control form-require" id="txt_name" name="txt_name" placeholder="Full Name*" value="<?php echo $newFullName ?>" />
+        <input type="text" class="form-control form-require" id="txt_firstname" name="txt_firstname" value="<?php echo $newFirstName ?>" />
+    </div>
+</div>
+   
+<div class="row" style="padding:15px">
+    <div class="col-xs-12">
+        <input type="email" class="form-control form-require" id="txt_lastname" name="txt_lastname" value="<?php echo $newLastName ?>" />
     </div>
 </div>
 <div class="row" style="padding:15px">
@@ -110,10 +122,25 @@ $(document).ready(function(){
         <textarea class="form-control form-require" id="txt_dec" name="txt_dec" placeholder="Description*" ><?php echo $newDescription ?></textarea>
     </div>
 </div>
+
+<div class="row" style="padding:15px;">
+    <div class="col-xs-4">
+        <input type="text" class="form-control form-require" id="txt_gender" name="txt_gender"  placeholder="Gender*" Disabled required />
+    </div>
+    <div class="col-xs-8">
+        <label>
+            <input type="radio"  <?php if($newGender=='Male') echo 'checked="checked"' ?> id="radio_gender" name="radio_gender" value="Male"> Male&nbsp;&nbsp;&nbsp;
+        </label>
+        <label>
+            <input type="radio"  <?php if($newGender=='Female') echo 'checked="checked"' ?> id="radio_gender" name="radio_gender" value="Female"> Female
+        </label>
+    </div>
+</div>
+
 <div class="row" style="padding:15px">
     <div class="col-xs-8">
         <label>
-            <input type="radio" id="radio_status" name="radio_status" value="Pending" <?php if($newStatus=='Pending') echo 'checked="checked"' ?>> Pending&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="radio_status" name="radio_status" value="New" <?php if($newStatus=='New') echo 'checked="checked"' ?>> New&nbsp;&nbsp;&nbsp;
         </label>
         <label>
             <input type="radio" id="radio_status" name="radio_status" value="Active" <?php if($newStatus=='Active') echo 'checked="checked"' ?>> Active&nbsp;&nbsp;&nbsp;

@@ -1,4 +1,4 @@
-function validFreelancer()
+function validRecruiter()
 {
 	var myform = document.getElementById("myForm");
 

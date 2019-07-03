@@ -26,8 +26,9 @@ $newUID=$view_1['ID'];
         <thead>
             <tr style="background-color:#d9592d; color:#FFF; border-top:solid 1px #d9592d">
                 <th width="40" align="center">Sr.</th>
-                <th>Freelancer Name</th>
-                <th width="250" style="text-align:center">Email</th>
+                <th>First Name</th>
+                <th width="150" style="text-align:center">LastName</th>
+                <th width="200" style="text-align:center">Email</th>
                 <th width="200" style="text-align:center">Mobile</th>
                 <th width="300" style="text-align:center">Description</th>
                 <th width="40" style="text-align:center">Status</th>
@@ -43,14 +44,15 @@ $newUID=$view_1['ID'];
 			while($view_1=mysqli_fetch_array($query_1))
 			{
 				$newID=$view_1['ID'];
-				$newFullName=$view_1['FullName'];
+				$newFirstName=$view_1['FirstName'];
+				$newLastName=$view_1['LastName'];
 				$newEmailID=$view_1['EmailID'];
 				$newMobile=$view_1['Mobile'];
 				$newDOB=$view_1['DOB'];
 				$newDescription=$view_1['Description'];
 				$newStatus=$view_1['Status'];
 
-                if($newStatus=='Pending')
+                if($newStatus=='New')
                 {
                     $showImage = '<img src="images/bullet_gray.png" border="0" />';
                 }
@@ -65,11 +67,12 @@ $newUID=$view_1['ID'];
 			?>
              <tr <?php echo 'id="td'.$newID.'"'; ?>>
                 <td id="1_<?php echo $newID ?>" width="40" align="center"><?php echo $i; ?></td>
-                <td id="2_<?php echo $newID ?>"><?php echo $newFullName; ?></td>
-                <td id="3_<?php echo $newID ?>" width="250" align="center"><?php echo $newEmailID; ?></td>
-                <td id="4_<?php echo $newID ?>" width="200" align="center"><?php echo $newMobile; ?></td>
-                <td id="5_<?php echo $newID ?>" width="300" align="center"><?php echo $newDescription; ?></td>
-                <td id="6_<?php echo $newID ?>" width="40" align="center"><?php echo $showImage; ?></td>
+                <td id="2_<?php echo $newID ?>"><?php echo $newFirstName; ?></td>
+                <td id="3_<?php echo $newID ?>" width="150" align="center"><?php echo $newLastName; ?></td>
+                <td id="4_<?php echo $newID ?>" width="200" align="center"><?php echo $newEmailID; ?></td>
+                <td id="5_<?php echo $newID ?>" width="200" align="center"><?php echo $newMobile; ?></td>
+                <td id="6_<?php echo $newID ?>" width="300" align="center"><?php echo $newDescription; ?></td>
+                <td id="7_<?php echo $newID ?>" width="40" align="center"><?php echo $showImage; ?></td>
                 
                 
                 <td width="40" align="center"><a href="app/editFreelancer?ID=<?php echo $newID; ?>" class="btnEdit"><img src="images/edit.gif" border="0" /></a></td>

@@ -24,14 +24,16 @@ $(document).ready(function(){
     $("#btnSave").click(function(){
  
         
-        var myName = $("#txt_name").val();
+        var myFirstName = $("#txt_firstname").val();
+        var myLastName = $("#txt_lastname").val();
         var myEmail = $("#txt_email").val();
         var myMobile = $("#txt_mobile").val();
-        var myDOB = $("#txt_dob").val();
+        var myDob = $("#txt_dob").val();
         var myDescription = $("#txt_dec").val();
+        var myGender = $("input[name='radio_gender']:checked").val();
         var myStatus = $("input[name='radio_status']:checked").val();
         
-         if(myStatus=='Pending')
+         if(myStatus=='New')
         {
             var myShow = '<img src="images/bullet_gray.png" border="0" />';
         }
@@ -51,7 +53,8 @@ $(document).ready(function(){
             //Show Added Table Row
             html = '<tr>';
             html += '<td align="center"><img src="images/mark-yes.png" width="16" height="16" /></td>';
-            html += '<td>'+myName+'</td>';
+            html += '<td>'+myFirstName+'</td>';
+            html += '<td align="center">'+myLastName+'</td>';
             html += '<td align="center">'+myEmail+'</td>';
             html += '<td align="center">'+myMobile+'</td>';
             html += '<td align="center">'+myDescription+'</td>';
@@ -72,7 +75,9 @@ $(document).ready(function(){
          });
         return false;
     });
-
+    
+    $("#txt_dob").datepicker({dateFormat: 'dd/mm/yy'});
+    
     //Function for Cancel
     $("#btnCancel").click(function(){
         closeForm();
@@ -95,9 +100,16 @@ $(document).ready(function(){
 
 <div class="row" style="padding:15px; padding-top:25px;">
     <div class="col-xs-12">
-        <input type="text" class="form-control form-require" id="txt_name" name="txt_name" placeholder="Full Name*" required />
+        <input type="text" class="form-control form-require" id="txt_firstname" name="txt_firstname" placeholder="First Name*" required />
     </div>
 </div>
+   
+<div class="row" style="padding:15px">
+    <div class="col-xs-12">
+        <input type="email" class="form-control form-require" id="txt_lastname" name="txt_lastname" placeholder="Last Name*" required />
+    </div>
+</div>
+    
     
 <div class="row" style="padding:15px">
     <div class="col-xs-12">
@@ -122,12 +134,26 @@ $(document).ready(function(){
         <textarea class="form-control form-require" id="txt_dec" name="txt_dec" placeholder="Description*" required></textarea>
     </div>
 </div>
+   
+<div class="row" style="padding:15px;">
+    <div class="col-xs-4">
+        <input type="text" class="form-control form-require" id="txt_gender" name="txt_gender"  placeholder="Gender*" Disabled required />
+    </div>
+    <div class="col-xs-8">
+        <label>
+            <input type="radio" id="radio_gender" name="radio_gender" value="Male" checked="checked"> Male&nbsp;&nbsp;&nbsp;
+        </label>
+        <label>
+            <input type="radio" id="radio_gender" name="radio_gender" value="Female"> Female
+        </label>
+    </div>
+</div>
     
 <div class="row" style="padding:15px">
     <div class="col-xs-8">
      
         <label>
-            <input type="radio" id="radio_status" name="radio_status" value="Pending" checked="checked"> Pending&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="radio_status" name="radio_status" value="New" checked="checked"> New&nbsp;&nbsp;&nbsp;
         </label>
         <label>
             <input type="radio" id="radio_status" name="radio_status" value="Active"> Active&nbsp;&nbsp;&nbsp;
@@ -145,7 +171,7 @@ $(document).ready(function(){
 <div class="row" style="padding:15px">
     <div class="col-xs-12">
         <button type="button" class="btn btn-primary" style="padding:6px; width:100px;" id="btnCancel">Close</button>
-        <button type="submit" class="btn btn-danger" style="padding:6px; width:100px;" id="btnSave" onMouseDown="validVendor()">Save</button>
+        <button type="submit" class="btn btn-danger" style="padding:6px; width:100px;" id="btnSave" onMouseDown="validFreelancer()">Save</button>
     </div>
 </div>
 

@@ -5,10 +5,12 @@ $newID=$_GET['ID'];
 //Fetch Records
 $query_1=mysqli_query($link, "SELECT * FROM recruiter_registration WHERE ID='$newID'");
 $view_1=mysqli_fetch_array($query_1);
-$newFullName=$view_1['FullName'];
+$newFirstName=$view_1['FirstName'];
+$newLastName=$view_1['LastName'];
 $newEmailID=$view_1['EmailID'];
 $newMobile=$view_1['Mobile'];
 $newDOB=$view_1['DOB'];
+$newGender=$view_1['Gender'];
 $newDescription=$view_1['Description'];
 $newStatus=$view_1['Status'];
 ?>
@@ -60,7 +62,13 @@ $(document).ready(function(){
 <form name="myForm" id="myForm" method="POST">
 <div class="row" style="padding:15px; padding-top:25px;">
     <div class="col-xs-12">
-        <input type="text" class="form-control form-require" id="txt_name" name="txt_name" placeholder="Full Name*" value="<?php echo $newFullName ?>" readonly="readonly" />
+        <input type="text" class="form-control form-require" id="txt_firstname" name="txt_firstname" value="<?php echo $newFirstName ?>" disabled />
+    </div>
+</div>
+   
+<div class="row" style="padding:15px">
+    <div class="col-xs-12">
+        <input type="email" class="form-control form-require" id="txt_lastname" name="txt_lastname" value="<?php echo $newLastName ?>" disabled />
     </div>
 </div>
 <div class="row" style="padding:15px">
@@ -86,7 +94,7 @@ $(document).ready(function(){
 <div class="row" style="padding:15px">
     <div class="col-xs-8">
         <label>
-            <input type="radio" id="radio_status" name="radio_status" value="Pending" <?php if($newStatus=='Pending') echo 'checked="checked"' ?> disabled="disabled" > Pending&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="radio_status" name="radio_status" value="New" <?php if($newStatus=='New') echo 'checked="checked"' ?> disabled="disabled" > New&nbsp;&nbsp;&nbsp;
         </label>
         <label>
             <input type="radio" id="radio_status" name="radio_status" value="Active" <?php if($newStatus=='Active') echo 'checked="checked"' ?> disabled="disabled" > Active&nbsp;&nbsp;&nbsp;
