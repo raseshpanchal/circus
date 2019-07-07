@@ -432,7 +432,7 @@ $newUserType=$view_1['UserType'];
                     {
                     ?>
                     <li>
-                        <a href="#">System Settings</a>
+                        <a href="#">Blogs</a>
                         <ul>
                             <?php
                             if($newUserType=='Super')
@@ -472,8 +472,56 @@ $newUserType=$view_1['UserType'];
                     </li>
                     <?php
                     }
+                    //Section 8 Access
+                    $query_main_8=mysqli_query($link, "SELECT * FROM user_rights_level_1 WHERE UID='$newUID' AND SID='9'");
+                    $view_main_8=mysqli_fetch_array($query_main_8);
+                    $newAccess_8=$view_main_8['Access'];
+                    if($newAccess_8=='Yes' || $newUserType=='Super')
+                    {
+                    ?>
+                    <li>
+                        <a href="#">System Settings</a>
+                        <ul>
+                            <?php
+                            if($newUserType=='Super')
+                            {
+                                //Sub Section 8 Super Access
+                                $query_sub_8=mysqli_query($link, "SELECT * FROM rights_master_level_2 WHERE MainSID='9' ORDER BY ID ASC");
+                                while($view_sub_8=mysqli_fetch_array($query_sub_8))
+                                {
+                                    $newSectionTitle=$view_sub_8['SectionTitle'];
+                                    $newURL=$view_sub_8['URL'];
+                                    ?>
+                                    <li><a href="#" id="<?php echo $newURL; ?>"><?php echo $newSectionTitle; ?></a></li>
+                                    <?php
+                                }
+                                //////////////////
+                            }
+                            else
+                            {
+                                //Sub Section 8 Admin Access
+                                $query_sub_8=mysqli_query($link, "SELECT * FROM user_rights_level_2 WHERE UID='$newUID' AND SID='9' AND Access='Yes'");
+                                while($view_sub_8=mysqli_fetch_array($query_sub_8))
+                                {
+                                    $newSSID=$view_sub_8['SSID'];
+                                    //Fetch Sub Section Details
+                                    $query_sub_sec_8=mysqli_query($link, "SELECT * FROM rights_master_level_2 WHERE ID='$newSSID'");
+                                    $view_sub_sec_8=mysqli_fetch_array($query_sub_sec_8);
+                                    $newSectionTitle=$view_sub_sec_8['SectionTitle'];
+                                    $newURL=$view_sub_sec_8['URL'];
+                                    ?>
+                                    <li><a href="#" id="<?php echo $newURL; ?>"><?php echo $newSectionTitle; ?></a></li>
+                                    <?php
+                                }
+                                /////////////////
+                            }
+                            ?>
+                        </ul>
+                    </li>
+                    <?php
+                    }
                     //Section 9 Access
-                    $query_main_9=mysqli_query($link, "SELECT * FROM user_rights_level_1 WHERE UID='$newUID' AND SID='9'");
+                    $query_main_9=mysqli_query($link, "SELECT * FROM user_rights_level_1 WHERE UID='$newUID' AND SID='10'");
                     $view_main_9=mysqli_fetch_array($query_main_9);
                     $newAccess_9=$view_main_9['Access'];
                     if($newAccess_9=='Yes' || $newUserType=='Super')
@@ -486,7 +534,7 @@ $newUserType=$view_1['UserType'];
                             if($newUserType=='Super')
                             {
                                 //Sub Section 9 Super Access
-                                $query_sub_9=mysqli_query($link, "SELECT * FROM rights_master_level_2 WHERE MainSID='9' ORDER BY ID ASC");
+                                $query_sub_9=mysqli_query($link, "SELECT * FROM rights_master_level_2 WHERE MainSID='10' ORDER BY ID ASC");
                                 while($view_sub_9=mysqli_fetch_array($query_sub_9))
                                 {
                                     $newSectionTitle=$view_sub_9['SectionTitle'];
@@ -500,7 +548,7 @@ $newUserType=$view_1['UserType'];
                             else
                             {
                                 //Sub Section 9 Admin Access
-                                $query_sub_9=mysqli_query($link, "SELECT * FROM user_rights_level_2 WHERE UID='$newUID' AND SID='9' AND Access='Yes'");
+                                $query_sub_9=mysqli_query($link, "SELECT * FROM user_rights_level_2 WHERE UID='$newUID' AND SID='10' AND Access='Yes'");
                                 while($view_sub_9=mysqli_fetch_array($query_sub_9))
                                 {
                                     $newSSID=$view_sub_9['SSID'];
@@ -806,9 +854,34 @@ $newUserType=$view_1['UserType'];
 
 
 
-
-
         //////LEVEL-EIGHT GOODS RETURN////////////
+        //Function for Goods Return
+        $('#blogAll').click(function(){
+            $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading All Blog...<br/><br/><img src="images/preloader_clock.gif" /></div>');
+            closeForm();
+            $("#middleArea").load("view/blogAll");
+        });
+
+        //Function for Customer-wise Goods Return
+        $('#blogComments').click(function(){
+            $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Blog Comments...<br/><br/><img src="images/preloader_clock.gif" /></div>');
+            closeForm();
+            $("#middleArea").load("view/blogComments");
+        });
+
+        //Function for Customer-wise Goods Return
+        $('#blogAuthour').click(function(){
+            $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Blog Authour...<br/><br/><img src="images/preloader_clock.gif" /></div>');
+            closeForm();
+            $("#middleArea").load("view/blogAuthour");
+        });
+
+
+
+
+
+
+        //////LEVEL-NINE GOODS RETURN////////////
         //Function for Goods Return
         $('#systemUsers').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading System Users...<br/><br/><img src="images/preloader_clock.gif" /></div>');
@@ -827,7 +900,7 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-NINE GOODS REPLACEMENT////////////
+        //////LEVEL-TEN GOODS REPLACEMENT////////////
         //Function for Goods Replacement
         $('#themes').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Themes...<br/><br/><img src="images/preloader_clock.gif" /></div>');
