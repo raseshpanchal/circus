@@ -308,11 +308,83 @@
                                         <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                                     </div>
                                     <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="skills-tab">
-                                        Skills
+                                        <!--Skills List Starts-->
+                                        <div class="container" style="margin-bottom:20px;">
+                                            <?php
+                                            $query_mainCat=mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY Category ASC");
+                                            while($view_mainCat=mysqli_fetch_array($query_mainCat))
+                                            {
+                                                $newCatID=$view_mainCat['ID'];
+                                                $newCategory=$view_mainCat['Category'];
+                                                ?>
+                                                <h6 style="border-bottom:dotted 1px #CCC; padding-bottom:10px; margin-top:10px; margin-bottom:10px;" class="text-info"><?=$newCategory?></h6>
+                                                <div class="row">
+                                                <?php
+                                                $query_skills=mysqli_query($link, "SELECT * FROM subcategories WHERE Publish='Yes' AND CatID='$newCatID' ORDER BY SubCategory ASC");
+                                                while($view_skills=mysqli_fetch_array($query_skills))
+                                                {
+                                                    $newSubCatID=$view_skills['ID'];
+                                                    $newSubCategory=$view_skills['SubCategory'];
+                                                    //Fetch User's Skills
+                                                    $query_userSkill=mysqli_query($link, "SELECT * FROM freelancer_skills WHERE FreelancerID='$userID' AND SkillID='$newSubCatID'");
+                                                    $view_userSkill=mysqli_fetch_array($query_userSkill);
+                                                    $mySkillID=$view_userSkill['SkillID'];
+                                                ?>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="font-size:10pt; padding-right:0px; margin-bottom:5px">
+                                                        <input type="checkbox" id="checkboxvar[]"
+                                                        <?php
+                                                        if($newSubCatID==$mySkillID)
+                                                        {
+                                                            echo 'checked="checked"';
+                                                        }
+                                                        ?>
+                                                               name="checkboxvar[]" value="<?=$newSubCatID?>" />
+                                                        <?=$newSubCategory?>
+                                                    </div>
+                                                <?php
+                                                }
+                                                ?>
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                        <!--Skills List Ends-->
+
                                         <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                                     </div>
                                     <div class="tab-pane fade" id="languages" role="tabpanel" aria-labelledby="languages-tab">
-                                        Languages
+                                        <!--Language List Starts-->
+                                        <div class="container" style="margin-bottom:20px;">
+                                            <div class="row">
+                                                <?php
+                                                $query_language=mysqli_query($link, "SELECT * FROM language_master WHERE Publish='Yes' ORDER BY Language ASC");
+                                                while($view_language=mysqli_fetch_array($query_language))
+                                                {
+                                                    $newLanguageID=$view_language['ID'];
+                                                    $newLanguage=$view_language['Language'];
+                                                    //Fetch User's Skills
+                                                    $query_userLang=mysqli_query($link, "SELECT * FROM freelancer_languages WHERE FreelancerID='$userID' AND LanguageID='$newLanguageID'");
+                                                    $view_userLang=mysqli_fetch_array($query_userLang);
+                                                    $myLanguageID=$view_userLang['LanguageID'];
+                                                ?>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="font-size:10pt; padding-right:0px; margin-bottom:5px">
+                                                        <input type="checkbox" id="checkboxvar[]"
+                                                        <?php
+                                                        if($newLanguageID==$myLanguageID)
+                                                        {
+                                                            echo 'checked="checked"';
+                                                        }
+                                                        ?>
+                                                               name="checkboxvar[]" value="<?=$newLanguageID?>" />
+                                                        <?=$newLanguage?>
+                                                    </div>
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <!--Language List Ends-->
                                         <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                                     </div>
                                 </div>

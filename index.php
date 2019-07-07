@@ -87,9 +87,10 @@
             $query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY Category ASC");
             while($view_mainCat=mysqli_fetch_array($query_mainCat))
             {
+                $newCatID=$view_mainCat['ID'];
                 $newCategory=$view_mainCat['Category'];
                 ?>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory"><?=$newCategory?></div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" catID="<?=myEncode($newCatID)?>"><?=$newCategory?></div>
                 <?php
             }
             ?>
@@ -139,6 +140,13 @@
                 var lookingFor = $('#txt_search').val();
                 //$('#showPost').text(lookingFor);
             });
+
+            //Category Function
+            $('.mainCategory').click(function(){
+                var catName=$(this).attr('catID');
+                window.location.href="category?ID="+catName;
+            });
+
         });
     </script>
 
