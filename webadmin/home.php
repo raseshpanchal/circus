@@ -684,22 +684,22 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-ONE PRODUCTS DETAILS////////////
-        //Function for Products
+        //////LEVEL-ONE FREELANCERS////////////
+        //Function for Freelancer Registrations
         $('#freelancerNewRegistration').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading New Registrations...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/freelancerNewRegistration");
         });
 
-        //Function for Product Parameters
+        //Function for Active Freelancers
         $('#freelancerActive').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Active Registration...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/freelancerActive");
         });
 
-        //Function for Product Keywords
+        //Function for Blocked Freelancers
         $('#freelanceBlocked').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Blocked Registrations...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -709,22 +709,22 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-TWO HOME PAGE MANAGEMENT////////////
-        //Function for Home Categories
+        //////LEVEL-TWO FREELANCERS PROFILE////////////
+        //Function for New Profiles
         $('#freelancerProfiles').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Freelancer Profiles...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/freelancerProfiles");
         });
 
-        //Function for Home Category Products
+        //Function for Active Profiles
         $('#freelancerActiveProfile').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Active Profile...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/freelancerActiveProfile");
         });
 
-        //Function for Sliding Banners
+        //Function for Blocked Profiles
         $('#freelancerBlockedProfile').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Blocked Profile...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -734,22 +734,22 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-THREE ORDERS////////////
-        //Function for New Orders
+        //////LEVEL-THREE RECRUITERS////////////
+        //Function for Recruiter Registratons
         $('#recruiterNewRegistration').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Recruiters Registrations...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/recruiterNewRegistration");
         });
 
-        //Function for Customer-wise New Orders
+        //Function for Active Recruiters
         $('#recruiterActive').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Active Recruiters...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/recruiterActive");
         });
 
-        //Function for Vendor-wise New Orders
+        //Function for Blocked Recruiters
         $('#recruiterBlocked').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Blocked Recruiters...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -759,15 +759,15 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-FOUR SHIPMENTS////////////
-        //Function for Under Shipment Orders
+        //////LEVEL-FOUR SERVICES REQUEST////////////
+        //Function for New Requests
         $('#servicesNewRequest').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading New Service Request...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/servicesNewRequest");
         });
 
-        //Function for Customer-wise Under Shipment Orders
+        //Function for Post Requests
         $('#servicesPastRequest').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Past Service Request...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -778,22 +778,22 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-FIVE DELIVERIES////////////
-        //Function for Delivered Orders
+        //////LEVEL-FIVE REVIEWS////////////
+        //Function for New Reviews
         $('#reviewsNew').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Latest Reviews...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/reviewsNew");
         });
 
-        //Function for Customer-wise Delivered Orders
+        //Function for Active Reviews
         $('#reviewsActive').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Active Reviews...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/reviewsActive");
         });
 
-        //Function for Vendor-wise Delivered Orders
+        //Function for Blocked Reviews
         $('#reviewsBlocked').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Blocked Reviews...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -803,29 +803,29 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-SIX PENDING ORDERS////////////
-        //Function for Pending Orders
+        //////LEVEL-SIX BANNERS////////////
+        //Function for Home Banners
         $('#bannerHomePage').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Home Page Banners...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/bannerHomePage");
         });
 
-        //Function for Customer-wise Pending Orders
+        //Function for Listing Page Banners
         $('#bannerListingPage').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Listing Page Banners...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/bannerListingPage");
         });
 
-        //Function for Vendor-wise Pending Orders
+        //Function for Profile Page Banners
         $('#bannerProfilePage').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Profile Page Banners...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/bannerProfilePage");
         });
 
-        //Function for Vendor-wise Pending Orders
+        //Function for Registration Page Banners
         $('#bannerRegistrationPage').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Registration Page Banners...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -836,15 +836,15 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-SEVEN CANCELLED ORDERS////////////
-        //Function for Cancelled Orders
+        //////LEVEL-SEVEN CATEGORIES////////////
+        //Function for Main Categories
         $('#categoriesMain').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Main Categories...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/categoriesMain");
         });
 
-        //Function for Customer-wise Cancelled Orders
+        //Function for Sub-Categories
         $('#categoriesSub').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Sub Categories...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -854,22 +854,22 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-EIGHT GOODS RETURN////////////
-        //Function for Goods Return
+        //////LEVEL-EIGHT BLOGS////////////
+        //Function for All Blogs
         $('#blogAll').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading All Blog...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/blogAll");
         });
 
-        //Function for Customer-wise Goods Return
+        //Function for Blog Comments
         $('#blogComments').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Blog Comments...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/blogComments");
         });
 
-        //Function for Customer-wise Goods Return
+        //Function for Blog Authours
         $('#blogAuthour').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Blog Authour...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -879,17 +879,22 @@ $newUserType=$view_1['UserType'];
 
 
 
+        //////LEVEL-NINE SYSTEM SETTINGS////////////
+        //Function for Languages
+        $('#languages').click(function(){
+            $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Languages...<br/><br/><img src="images/preloader_clock.gif" /></div>');
+            closeForm();
+            $("#middleArea").load("view/languages");
+        });
 
-
-        //////LEVEL-NINE GOODS RETURN////////////
-        //Function for Goods Return
+        //Function for System Users
         $('#systemUsers').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading System Users...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/systemUsers");
         });
 
-        //Function for Customer-wise Goods Return
+        //Function for User Rights
         $('#userRights').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading User Rights...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
@@ -900,78 +905,78 @@ $newUserType=$view_1['UserType'];
 
 
 
-        //////LEVEL-TEN GOODS REPLACEMENT////////////
-        //Function for Goods Replacement
+        //////LEVEL-TEN WEBSITE CONTROLS////////////
+        //Function for Themes
         $('#themes').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Themes...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/themes");
         });
 
-        //Function for Customer-wise Goods Replacement
+        //Function for Theme Customization
         $('#themeCustomization').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Customize Theme...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/themeCustomization");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for SEO Home Page
         $('#seoHomePage').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading SEO Home Page...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/seoHomePage");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for SEO Listing Page
         $('#seoListingPage').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading SEO Listing Page...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/seoListingPage");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for SEO Profile Page
         $('#seoProfilePage').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading SEO Profile Page...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/seoProfilePage");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for Manage About Us
         $('#manageAboutUs').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Manage About Us...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/manageAboutUs");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for Manage FAQs
         $('#manageFaqs').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Manage Faqs...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/manageFaqs");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for Manage Terms of Services
         $('#manageTermsOfServices').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Manage Terms Of Services...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/manageTermsOfServices");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for Manage Privacy Policy
         $('#managePrivacyPolicy').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Manage Privacy Policy...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/managePrivacyPolicy");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for Manage Bottom Links
         $('#manageBottomLinks').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Manage Bottom Links...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
             $("#middleArea").load("view/manageBottomLinks");
         });
 
-        //Function for Vendor-wise Goods Replacement
+        //Function for Manage Social Network
         $('#manageSocialNetwork').click(function(){
             $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading Manage Social Network...<br/><br/><img src="images/preloader_clock.gif" /></div>');
             closeForm();
