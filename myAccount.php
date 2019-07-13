@@ -269,30 +269,10 @@
                             <div class="card-body">
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-
-                                        <table class="table profile__table">
-                                          <tbody>
-                                            <tr>
-                                              <th><strong>Location</strong></th>
-                                              <td>India</td>
-                                            </tr>
-                                            <tr>
-                                              <th><strong>Company name</strong></th>
-                                              <td>WhereSert.com</td>
-                                            </tr>
-                                            <tr>
-                                              <th><strong>Position</strong></th>
-                                              <td>Front-end developer</td>
-                                            </tr>
-                                          </tbody>
-                                        </table>
-
-                                        <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
-
+                                        Load Description...
                                     </div>
                                     <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
-                                        Services
-                                        <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
+                                        Load Services...
                                     </div>
                                     <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="skills-tab">
                                         <!--Skills List Starts-->
@@ -500,6 +480,12 @@
 
             //Load Contact Information
             $('#contactInfo').load('contactInfoShow');
+
+            //Load Description
+            $('#description').load('descShow');
+
+            //Load Services
+            $('#services').load('servShow');
 
         });
     </script>
