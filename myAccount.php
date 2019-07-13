@@ -243,21 +243,8 @@
             <div class="col-lg-9 col-md-9">
 
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="card-header text-white bg-dark">
-                            Basic Information
-                            </div>
-                            <div class="card-body">
-                                <div class="profile__avatar">
-                                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
-                                </div>
-
-                                <h5 class="card-title"><?=$userFullName?> <small>Administrator</small></h5>
-                                <p class="card-text" style="border:0px">Profile description</p>
-                                <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
-                            </div>
-                        </div>
+                    <div class="col-lg-12 col-md-12" id="basicInfo">
+                        Load Basic Information
                     </div>
 
                     <div class="col-lg-12 col-md-12" style="margin-top:40px">
@@ -471,26 +458,8 @@
             <div class="col-lg-3 col-md-3">
 
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="card-header bg-light">
-                            Contact Infomation
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-title">Registered Email ID</h6>
-                                <p class="card-text"><?=$myEmail?></p>
-                                <h6 class="card-title">Registered Mobile Number</h6>
-                                <p class="card-text"><?=$userMobile?></p>
-                                <h6 class="card-title">Registered Address</h6>
-                                <p class="card-text"><?=$userAddress?></p>
-                                <h6 class="card-title">Date of Birth</h6>
-                                <p class="card-text"><?=$userDOB?></p>
-                                <h6 class="card-title">Gender</h6>
-                                <p class="card-text"><?=$userGender?></p>
-
-                                <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
-                            </div>
-                        </div>
+                    <div class="col-lg-12 col-md-12" id="contactInfo">
+                        Load Contact Info...
                     </div>
                 </div>
 
@@ -525,6 +494,12 @@
 
     <script>
         $(document).ready(function(){
+
+            //Load Basic Information
+            $('#basicInfo').load('basicInfoShow');
+
+            //Load Contact Information
+            $('#contactInfo').load('contactInfoShow');
 
         });
     </script>

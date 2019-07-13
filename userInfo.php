@@ -16,6 +16,9 @@ if(!isset($_SESSION))
         $userDOB=$view_user['DOB'];
         $userMobile=$view_user['Mobile'];
         $userGender=$view_user['Gender'];
+        $userDescription=$view_user['Description'];
+        $userBusinessTitle=$view_user['BusinessTitle'];
+        $userProfessional=$view_user['Professional'];
         $userAddress=$view_user['Address'];
         $userCityID=$view_user['CityID'];
         $userStateID=$view_user['StateID'];
