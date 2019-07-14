@@ -52,6 +52,10 @@
         $('.btnAdd').click(function(){
             $('#services').load('servAddForm');
         });
+        
+        $('.btnEdit').click(function(){
+        $('#services').load('servEditForm');
+        });
 
     });
 </script>
