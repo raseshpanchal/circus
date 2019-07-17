@@ -25,8 +25,12 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <a href="#" class="btn btn-default btnSave" style="float:right">Save</a>
-            <a href="#" class="btn btn-default btnCancel" style="float:right">Cancel</a>
+            <a href="#" class="btn btn-default btnSave" style="float:right">
+                <img src="images/save.png" style="margin-top:-5px" />
+            </a>
+            <a href="#" class="btn btn-default btnCancel" style="float:right; margin-right:10px">
+                <img src="images/arrowBack.png" style="margin-top:-5px" />
+            </a>
         </div>
     </div>
 </form>
@@ -64,6 +68,7 @@
         //Cancel Button
         $('.btnCancel').click(function(){
             $('#services').load('servShow');
+            return false;
         });
 
     });

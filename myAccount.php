@@ -224,6 +224,13 @@
             padding-bottom: 5px;
             border-bottom: dotted 1px #333;
         }
+
+        .btn-default{
+            border: solid 1px #898989;
+            padding: 5px !important;
+            min-height: 25px !important;
+            min-width: 25px !important;
+        }
     </style>
 </head>
 <body>
@@ -251,11 +258,9 @@
                         <div class="card">
                             <div class="card-header bg-light">
                                 <ul class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
+
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="services" aria-selected="false">Services</a>
+                                        <a class="nav-link active" id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="services" aria-selected="false">Services</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="skills-tab" data-toggle="tab" href="#skills" role="tab" aria-controls="skills" aria-selected="false">Skills</a>
@@ -263,97 +268,67 @@
                                     <li class="nav-item">
                                         <a class="nav-link" id="languages-tab" data-toggle="tab" href="#languages" role="tab" aria-controls="languages" aria-selected="false">Languages</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="photos" aria-selected="false">Photos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="audio-tab" data-toggle="tab" href="#audio" role="tab" aria-controls="audio" aria-selected="false">Audio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="video-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Videos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pdf-tab" data-toggle="tab" href="#pdfs" role="tab" aria-controls="pdfs" aria-selected="false">PDFs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="link-tab" data-toggle="tab" href="#links" role="tab" aria-controls="links" aria-selected="false">Web Links</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="social-tab" data-toggle="tab" href="#social" role="tab" aria-controls="social" aria-selected="true">Social Media</a>
+                                    </li>
+
                                 </ul>
 
                             </div>
                             <div class="card-body">
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                        Load Description...
-                                    </div>
-                                    <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
+
+                                    <div class="tab-pane fade show active" id="services" role="tabpanel" aria-labelledby="services-tab">
                                         Load Services...
                                     </div>
                                     <div class="tab-pane fade" id="skills" role="tabpanel" aria-labelledby="skills-tab">
-                                        <!--Skills List Starts-->
-                                        <div class="container" style="margin-bottom:20px;">
-                                            <?php
-                                            $query_mainCat=mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY Category ASC");
-                                            while($view_mainCat=mysqli_fetch_array($query_mainCat))
-                                            {
-                                                $newCatID=$view_mainCat['ID'];
-                                                $newCategory=$view_mainCat['Category'];
-                                                ?>
-                                                <h6 style="border-bottom:dotted 1px #CCC; padding-bottom:10px; margin-top:10px; margin-bottom:10px;" class="text-info"><?=$newCategory?></h6>
-                                                <div class="row">
-                                                <?php
-                                                $query_skills=mysqli_query($link, "SELECT * FROM subcategories WHERE Publish='Yes' AND CatID='$newCatID' ORDER BY SubCategory ASC");
-                                                while($view_skills=mysqli_fetch_array($query_skills))
-                                                {
-                                                    $newSubCatID=$view_skills['ID'];
-                                                    $newSubCategory=$view_skills['SubCategory'];
-                                                    //Fetch User's Skills
-                                                    $query_userSkill=mysqli_query($link, "SELECT * FROM freelancer_skills WHERE FreelancerID='$userID' AND SkillID='$newSubCatID'");
-                                                    $view_userSkill=mysqli_fetch_array($query_userSkill);
-                                                    $mySkillID=$view_userSkill['SkillID'];
-                                                ?>
-                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="font-size:10pt; padding-right:0px; margin-bottom:5px">
-                                                        <input type="checkbox" id="checkboxvar[]"
-                                                        <?php
-                                                        if($newSubCatID==$mySkillID)
-                                                        {
-                                                            echo 'checked="checked"';
-                                                        }
-                                                        ?>
-                                                               name="checkboxvar[]" value="<?=$newSubCatID?>" />
-                                                        <?=$newSubCategory?>
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
-                                                </div>
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
-                                        <!--Skills List Ends-->
-
-                                        <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
+                                        Load Skills...
                                     </div>
                                     <div class="tab-pane fade" id="languages" role="tabpanel" aria-labelledby="languages-tab">
-                                        <!--Language List Starts-->
-                                        <div class="container" style="margin-bottom:20px;">
-                                            <div class="row">
-                                                <?php
-                                                $query_language=mysqli_query($link, "SELECT * FROM language_master WHERE Publish='Yes' ORDER BY Language ASC");
-                                                while($view_language=mysqli_fetch_array($query_language))
-                                                {
-                                                    $newLanguageID=$view_language['ID'];
-                                                    $newLanguage=$view_language['Language'];
-                                                    //Fetch User's Skills
-                                                    $query_userLang=mysqli_query($link, "SELECT * FROM freelancer_languages WHERE FreelancerID='$userID' AND LanguageID='$newLanguageID'");
-                                                    $view_userLang=mysqli_fetch_array($query_userLang);
-                                                    $myLanguageID=$view_userLang['LanguageID'];
-                                                ?>
-                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="font-size:10pt; padding-right:0px; margin-bottom:5px">
-                                                        <input type="checkbox" id="checkboxvar[]"
-                                                        <?php
-                                                        if($newLanguageID==$myLanguageID)
-                                                        {
-                                                            echo 'checked="checked"';
-                                                        }
-                                                        ?>
-                                                               name="checkboxvar[]" value="<?=$newLanguageID?>" />
-                                                        <?=$newLanguage?>
-                                                    </div>
-                                                <?php
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <!--Language List Ends-->
+                                        Load Languages...
                                         <a href="#" class="btn btn-info" style="float:right">Make Changes</a>
                                     </div>
+
+                                    <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photo-tab">
+                                        Load Photos...
+                                    </div>
+
+                                    <div class="tab-pane fade" id="audio" role="tabpanel" aria-labelledby="audio-tab">
+                                        Load Audio...
+                                    </div>
+
+                                    <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="video-tab">
+                                        Load Videos...
+                                    </div>
+
+                                    <div class="tab-pane fade" id="pdfs" role="tabpanel" aria-labelledby="pdf-tab">
+                                        Load PDFs...
+                                    </div>
+
+                                    <div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="link-tab">
+                                        Load Links...
+                                    </div>
+
+                                    <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
+                                        Load Social Media...
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -482,10 +457,76 @@
             $('#contactInfo').load('contactInfoShow');
 
             //Load Description
-            $('#description').load('descShow');
+            //$('#description').load('descShow');
 
             //Load Services
             $('#services').load('servShow');
+
+            //Load Skills
+            $('#skills').load('skillsShow');
+
+            //Load Languages
+            $('#languages').load('languagesShow');
+
+            //Load Photos
+            $('#photos').load('photoShow');
+
+            //Load Audio
+            $('#audio').load('audioShow');
+
+            //Load Video
+            $('#videos').load('videoShow');
+
+            //Load PDFs
+            $('#pdfs').load('pdfShow');
+
+            //Load Links
+            $('#links').load('linksShow');
+
+            //Load Social Media
+            $('#social').load('socialMediaShow');
+
+            //Common Class to load multiple views
+            $('.nav-link').click(function(){
+                //alert('123');
+                //return false;
+                //Load Basic Information
+                $('#basicInfo').load('basicInfoShow');
+
+                //Load Contact Information
+                $('#contactInfo').load('contactInfoShow');
+
+                //Load Description
+                //$('#description').load('descShow');
+
+                //Load Services
+                $('#services').load('servShow');
+
+                //Load Skills
+                $('#skills').load('skillsShow');
+
+                //Load Languages
+                $('#languages').load('languagesShow');
+
+                //Load Photos
+                $('#photos').load('photoShow');
+
+                //Load Audio
+                $('#audio').load('audioShow');
+
+                //Load Video
+                $('#videos').load('videoShow');
+
+                //Load PDFs
+                $('#pdfs').load('pdfShow');
+
+                //Load Links
+                $('#links').load('linksShow');
+
+                //Load Social Media
+                $('#social').load('socialMediaShow');
+
+            })
 
         });
     </script>

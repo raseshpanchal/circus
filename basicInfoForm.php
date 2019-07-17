@@ -38,10 +38,20 @@
             </div>
 
             <div class="row" style="margin-bottom:10px">
+                <div class="col-lg-12">
+                    <textarea class="form-control" rows="10" id="txt_desc" name="txt_desc" style="margin-bottom:10px"><?=$userDescription?></textarea>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px">
                 <div class="col-lg-12" style="text-align:right">
-                    <a href="#" class="btn btn-danger btnCancel" >Cancel</a>
+                    <a href="#" class="btn btn-default btnCancel" >
+                        <img src="images/arrowBack.png" style="margin-top:-5px" />
+                    </a>
                     &nbsp;&nbsp;
-                    <a href="#" class="btn btn-dark btnSave">Save Changes</a>
+                    <a href="#" class="btn btn-default btnSave">
+                        <img src="images/save.png" style="margin-top:-5px" />
+                    </a>
                 </div>
             </div>
 
@@ -84,6 +94,7 @@
         //Cancel Button
         $('.btnCancel').click(function(){
             $('#basicInfo').load('basicInfoShow');
+            return false;
         });
 
     });

@@ -8,13 +8,17 @@
 <div class="card">
     <form name="myForm" id="myForm" method="POST">
         <div class="card-header bg-info">
-        Edit Description
+        <span style="color:white">Edit Description</span>
         </div>
         <div class="card-body">
             <textarea class="form-control" rows="8" id="txt_desc" name="txt_desc" style="margin-bottom:10px"><?=$userDescription?></textarea>
 
-            <a href="#" class="btn btn-dark btnDesc" style="float:right">Make Changes</a>
-            <a href="#" class="btn btn-danger btnCancel" style="float:right; margin-right:10px">Cancel</a>
+            <a href="#" class="btn btn-default btnDesc" style="float:right">
+                <img src="images/save.png" style="margin-top:-5px" />
+            </a>
+            <a href="#" class="btn btn-default btnCancel" style="float:right; margin-right:10px">
+                <img src="images/arrowBack.png" style="margin-top:-5px" />
+            </a>
 
         </div>
     </form>
@@ -51,6 +55,7 @@
         //Cancel Button
         $('.btnCancel').click(function(){
             $('#description').load('descShow');
+            return false;
         });
 
     });

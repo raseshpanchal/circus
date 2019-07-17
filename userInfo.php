@@ -20,9 +20,9 @@ if(!isset($_SESSION))
         $userBusinessTitle=$view_user['BusinessTitle'];
         $userProfessional=$view_user['Professional'];
         $userAddress=$view_user['Address'];
-        $userCityID=$view_user['CityID'];
-        $userStateID=$view_user['StateID'];
-        $userCountryID=$view_user['CountryID'];
+        $userCity=$view_user['City'];
+        $userState=$view_user['State'];
+        $userCountry=$view_user['Country'];
         $userZipCode=$view_user['ZipCode'];
     }
 

@@ -38,9 +38,22 @@
             $query_subCat = mysqli_query($link, "SELECT * FROM subcategories WHERE Publish='Yes' AND CatID='$newCatID' ORDER BY SubCategory ASC");
             while($view_subCat=mysqli_fetch_array($query_subCat))
             {
+                $newSubCatID=$view_subCat['ID'];
                 $newSubCategory=$view_subCat['SubCategory'];
+                //Find Total Registration Skills-wise
+                $query_skills=mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillID='$newSubCatID'");
+                $view_skills=mysqli_num_rows($query_skills);
                 ?>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory"><?=$newSubCategory?></div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" skillID="<?=myEncode($newSubCatID)?>">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <?=$newSubCategory?>
+                        </div>
+                        <div class="col-lg-12" style="height:50px; text-align:right; padding-top:22px">
+                            <span style="font-size:9pt"><?=$view_skills?></span>
+                        </div>
+                    </div>
+                </div>
                 <?php
             }
             ?>
@@ -70,6 +83,11 @@
 
     <script>
         $(document).ready(function(){
+
+            $('.mainCategory').click(function(){
+                var myID=$(this).attr('SkillID');
+                window.location.href="profileList?ID="+myID;
+            });
 
         });
     </script>

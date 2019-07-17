@@ -18,6 +18,11 @@
     <meta name="description" content="<?=$newPageDesc?>">
     <meta name="keywords" content="<?=$newPageKeywords?>">
     <?php include_once('scripts/headTags.php') ?>
+    <style>
+        .btn-default{
+            border:solid 1px #898989;
+        }
+    </style>
 </head>
 <body>
 
@@ -33,14 +38,36 @@
     </div>
 
     <div class="container">
-        <div class="row" style="padding-top:50px; padding-bottom:50px;">
+        <div class="row" style="padding-top:50px; padding-bottom:50px; margin-bottom:50px">
             <?php
-            $query_mainCat = mysqli_query($link, "SELECT * FROM subcategories WHERE Publish='Yes' ORDER BY SubCategory ASC");
-            while($view_mainCat=mysqli_fetch_array($query_mainCat))
+            $query_skills = mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillID='$newSubCatID'");
+            while($view_skills=mysqli_fetch_array($query_skills))
             {
-                $newCategory=$view_mainCat['Category'];
+                $newFreelancerID=$view_skills['FreelancerID'];
+                //Find User Details
+                $query_user=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE ID='$newFreelancerID'");
+                $view_user=mysqli_fetch_array($query_user);
+                $newFirstName=$view_user['FirstName'];
+                $newLastName=$view_user['LastName'];
+                $newProfession=$view_user['Professional'];
+                $newCity=$view_user['City'];
+                $newState=$view_user['State'];
+                $newCountry=$view_user['Country'];
                 ?>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory"><?=$newCategory?></div>
+                <div class="col-lg-3">
+                    <div class="card" style="width:100%; height:200px; background-image:url('userPhotos/1563278377_RajeshPanchal.jpg'); background-size:cover; background-position:center center; margin-bottom:150px;">
+
+                      <div class="card-body" style="margin-top:200px; background-color:#FFF">
+                        <h5 class="card-title"><?=$newFirstName.' '.$newLastName?></h5>
+                        <p class="card-text"><?=$newProfession?></p>
+                        <p style="font-size:9pt; border-top:dotted 1px #898989; padding-top:7px">
+                            <img src="images/mapLocation.png"/> <?=$newCity.' / '.$newState.' / '.$newCountry?>
+                        </p>
+                        <a href="#" class="btn btn-default btn-sm btnProfile" style="float:right" myID="<?=myEncode($newFreelancerID)?>">See Profile</a>
+                      </div>
+                    </div>
+                </div>
+
                 <?php
             }
             ?>
@@ -70,6 +97,11 @@
 
     <script>
         $(document).ready(function(){
+
+            $('.btnProfile').click(function(){
+                var myID=$(this).attr('myID');
+                 window.location.href="profileDetails?ID="+myID;
+            });
 
         });
     </script>

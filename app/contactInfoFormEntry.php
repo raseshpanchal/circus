@@ -4,11 +4,16 @@ include_once("../config/connection.php");
 include_once('../userInfo.php');
 
 $newMobile=$_POST['txt_mobile'];
-$newAddress=$_POST['txt_address'];
 $newDOB=$_POST['txt_dob'];
 $newGender=$_POST['txt_gender'];
+$newAddress=$_POST['txt_address'];
+$newCity=$_POST['txt_city'];
+$newState=$_POST['txt_state'];
+$newZip=$_POST['txt_zip'];
+$newCountry=$_POST['txt_country'];
 
-$query_1=mysqli_query($link, "UPDATE freelancer_registration SET Mobile='$newMobile', Address='$newAddress', DOB='$newDOB', Gender='$newGender' WHERE EmailID='$myEmail'");
+
+$query_1=mysqli_query($link, "UPDATE freelancer_registration SET Mobile='$newMobile', Address='$newAddress', DOB='$newDOB', Gender='$newGender', City='$newCity', State='$newState', Country='$newCountry', ZipCode='$newZip' WHERE EmailID='$myEmail'");
 
 if($query_1)
 {

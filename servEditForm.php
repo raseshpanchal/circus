@@ -4,48 +4,48 @@
     include_once("config/connection.php");
     include_once('userInfo.php');
     include_once('pageInfo.php');
+    //Get Records
+    $newServID=$_GET['ID'];
+
+    $query_service=mysqli_query($link, "SELECT * FROM freelancer_services WHERE ID='$newServID'");
+    $view_service=mysqli_fetch_array($query_service);
+    $serviceID=$view_service['ID'];
+    $serviceTitle=$view_service['Title'];
+    $serviceCurrency=$view_service['Currency'];
+    $servicePrice=$view_service['Price'];
+    $serviceDescription=urldecode($view_service['Description']);
+
 ?>
-
-<?php
-    $query_service=mysqli_query($link, "SELECT * FROM freelancer_services WHERE FreelancerID='$userID'");
-    while($view_service=mysqli_fetch_array($query_service))
-    {
-        $serviceID=$view_service['ID'];
-        $serviceTitle=$view_service['Title'];
-        $serviceCurrency=$view_service['Currency'];
-        $servicePrice=$view_service['Price'];
-        $serviceDescription=urldecode($view_service['Description']);
-        ?>
-
-
 <form name="myForm" id="myForm" method="POST">
     <div class="row">
         <div class="col-lg-8">
-            <input type="text" class="form-control" id="txt_title" name="txt_title" value="<?=$serviceTitle?>" placeholder="Enter Title*">
+            <input type="hidden" class="form-control" value="<?=$serviceID?>" id="txt_ID" name="txt_ID" >
+            <input type="text" class="form-control" value="<?=$serviceTitle?>" id="txt_title" name="txt_title" placeholder="Enter Title*">
         </div>
         <div class="col-lg-2">
-            <input type="text" class="form-control" value="AED" id="txt_currency" name="txt_currency" value="<?=$serviceCurrency?>" placeholder="Enter Currency*">
+            <input type="text" class="form-control" value="<?=$serviceCurrency?>" id="txt_currency" name="txt_currency" placeholder="Enter Currency*">
         </div>
         <div class="col-lg-2">
-            <input type="text" class="form-control" id="txt_price" name="txt_price" value="<?= $servicePrice?>" placeholder="Enter Price*">
+            <input type="text" class="form-control" value="<?=$servicePrice?>" id="txt_price" name="txt_price" placeholder="Enter Price*">
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <textarea class="form-control" rows="8" id="txt_desc" name="txt_desc" placeholder="Enter Description*" style="margin-top:10px; margin-bottom:10px"><?= $serviceDescription ?></textarea>
+            <textarea class="form-control" rows="8" id="txt_desc" name="txt_desc" placeholder="Enter Description*" style="margin-top:10px; margin-bottom:10px"><?=$serviceDescription?></textarea>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-12">
-            <a href="#" class="btn btn-default btnSave" style="float:right">Save</a>
-            <a href="#" class="btn btn-default btnCancel" style="float:right">Cancel</a>
+            <a href="#" class="btn btn-default btnSave" style="float:right">
+                <img src="images/save.png" style="margin-top:-5px" />
+            </a>
+            <a href="#" class="btn btn-default btnCancel" style="float:right; margin-right:10px">
+                <img src="images/arrowBack.png" style="margin-top:-5px" />
+            </a>
         </div>
     </div>
 </form>
-        <?php
-    }
-?>
 <?php include_once('scripts/bottomScripts.php') ?>
 
 <script>
@@ -60,7 +60,7 @@
 
             if(myTitle!='' && myCurrency!='' && myPrice!='' && myDesc!='')
             {
-                $.post("app/servEditFormEntry?ID=<?php echo $userID ?>",
+                $.post("app/servEditFormEntry?ID",
                 $("#myForm").serialize(),
                 function(data){
                     if(data=='1')
@@ -80,6 +80,7 @@
         //Cancel Button
         $('.btnCancel').click(function(){
             $('#services').load('servShow');
+            return false;
         });
 
     });
