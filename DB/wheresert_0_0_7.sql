@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2019 at 06:55 AM
+-- Generation Time: Aug 02, 2019 at 07:37 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -48931,6 +48931,28 @@ INSERT INTO `rights_master_level_2` (`ID`, `MainSID`, `SectionTitle`, `URL`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `search_city`
+--
+
+CREATE TABLE `search_city` (
+  `ID` int(11) NOT NULL,
+  `CityName` varchar(50) NOT NULL,
+  `Publish` varchar(3) NOT NULL,
+  `DefaultCity` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `search_city`
+--
+
+INSERT INTO `search_city` (`ID`, `CityName`, `Publish`, `DefaultCity`) VALUES
+(1, 'Dubai', 'Yes', 'Yes'),
+(2, 'Abu Dhabi', 'Yes', 'No'),
+(3, 'Sharjah', 'Yes', 'No');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `socialmedia_master`
 --
 
@@ -53482,6 +53504,12 @@ ALTER TABLE `rights_master_level_2`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `search_city`
+--
+ALTER TABLE `search_city`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `socialmedia_master`
 --
 ALTER TABLE `socialmedia_master`
@@ -53700,6 +53728,12 @@ ALTER TABLE `rights_master_level_1`
 --
 ALTER TABLE `rights_master_level_2`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `search_city`
+--
+ALTER TABLE `search_city`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `socialmedia_master`
