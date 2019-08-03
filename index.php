@@ -8,6 +8,14 @@
     $query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY RAND() LIMIT 1");
     $view_mainCat=mysqli_fetch_array($query_mainCat);
     $newCategory=$view_mainCat['Category'];
+
+    //Fetch SearchCity
+    $query_serCity = mysqli_query($link, "SELECT * FROM search_city WHERE Publish='Yes' ORDER BY ASC");
+    $view_serCity = mysqli_fetch_array($query_serCity);
+    $newCityName = $view_serCity['CityName'];
+    $newDefaultCity = $view_serCity['DefaultCity']; 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -38,10 +46,26 @@
                 <div class="row">
                     <div class="col"></div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="padding:0px">
-                        <select class="form-control">
-                            <option value="Dubai">Dubai</option>
-                            <option value="Abu Dhabi">Abu Dhabi</option>
-                            <option value="Sharjah">Sharjah</option>
+                        <select class="form-control" name="select_search" id="select_search">
+<!--                            <option value="Dubai">Dubai</option>-->
+                            <?php
+                            $query_serCity = mysqli_query($link, "SELECT * FROM search_city WHERE Publish='Yes' ORDER BY CityName ASC");
+                            while($view_serCity=mysqli_fetch_array($query_serCity))
+                            {
+                                $newCityID=$view_serCity['ID'];
+                                $newCityName=$view_serCity['CityName'];
+                                $newDefaultCity=$view_serCity['DefaultCity'];
+                                ?>
+                            <option value="<?=$newCityName?>"
+                                    <?php
+                                        if($newDefaultCity=='Yes')
+                                        {
+                                            echo 'selected';
+                                        }
+                                    ?>><?=$newCityName?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="padding-left:8px; padding-right:8px;">
@@ -65,9 +89,25 @@
                     </div>
                     <div class="col-sm-12 col-xs-12">
                         <select class="form-control">
-                            <option value="Dubai">Search in Dubai</option>
-                            <option value="Abu Dhabi">Search in Abu Dhabi</option>
-                            <option value="Sharjah">Search in Sharjah</option>
+<!--                            <option value="Dubai">Search in Dubai</option>-->
+                        <?php
+                            $query_serCity = mysqli_query($link, "SELECT * FROM search_city WHERE Publish='Yes' ORDER BY CityName ASC");
+                            while($view_serCity=mysqli_fetch_array($query_serCity))
+                            {
+                                $newCityID=$view_serCity['ID'];
+                                $newCityName=$view_serCity['CityName'];
+                                $newDefaultCity=$view_serCity['DefaultCity'];
+                                ?>
+                            <option value="<?=$newCityName?>"
+                                    <?php
+                                        if($newDefaultCity=='Yes')
+                                        {
+                                            echo 'selected';
+                                        }
+                                    ?>>Search in <?=$newCityName?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="col-sm-12 col-xs-12" style="margin-top:10px; margin-bottom:10px;">
@@ -137,8 +177,9 @@
     <script>
         $(document).ready(function(){
             $('#btnFind').click(function(){
+                var cityName = $("#select_search option:selected").text();
                 var lookingFor = $('#txt_search').val();
-                //$('#showPost').text(lookingFor);
+                window.location.href="searchList?CN="+cityName+"&LF="+lookingFor;
             });
 
             //Category Function
