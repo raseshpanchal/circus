@@ -3,7 +3,7 @@
 include_once("../config/connection.php");
 
 $newFirstName=$_POST['txt_fname'];
-$newLastName=$_POST['txt_lfname'];
+$newLastName=$_POST['txt_lname'];
 $newFullName=$newFirstName.' '.$newLastName;
 $newEmail=$_POST['txt_email'];
 $newCode=$_POST['txt_code'];
@@ -39,8 +39,7 @@ else
     $query_2=mysqli_query($link, "INSERT INTO freelancer_registration SET FirstName='$newFirstName', LastName='$newLastName', Mobile='$callingNumbar', EmailID='$newEmail', DOB='$newDOB', Gender='$newGender', Password='$newPass', CreateDate=now(), CreateTime=now(), PaidPhoto='No', PaidBanners='No', PaidListing='No', Status='No'");
     if($query_2)
     {
-        echo 'regiSuccess';
-        /*
+        //echo 'regiSuccess';
         //Code for Sending e-mail to User
         $to=$newEmail;
         $from = "WhereSert";
@@ -77,7 +76,6 @@ else
             //Alert for Front End Page
             echo 'regiSuccess';
         }
-        */
     }
 }
 ?>
