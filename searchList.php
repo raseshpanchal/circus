@@ -9,10 +9,6 @@
     $newLF=$_GET['LF'];
     $query_find=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE City='$newCN' AND Professional='$newLF'");
     $num_profile=mysqli_num_rows($query_find);
-    /*
-    $view_find=mysqli_fetch_array($query_find);
-    $newSubCategory=$view_find['SubCategory'];
-    */
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,18 +34,18 @@
 
 
     <div class="container-fluid innerSlide">
-        <h1 style="margin-left:-50px"><?=$newLF?></h1>
+        <h1 style="margin-left:-50px">Result for <?=$newLF?> in <?=$newCN?> city</h1>
     </div>
 
     <div class="container">
-        
-        <div class="row" style="padding-top:50px; padding-bottom:50px; margin-bottom:50px">
+
+        <div class="row" style="padding-bottom:5px; margin-top:10px; margin-bottom:5px; border-bottom:dotted 1px #333">
             <div class="col-lg-12">
                 Total <?=$num_profile?> result found
-            </div>    
+            </div>
         </div>
-        
-        <div class="row" style="padding-top:50px; padding-bottom:50px; margin-bottom:50px">
+
+        <div class="row" style="padding-top:5px; padding-bottom:50px; margin-bottom:50px">
             <?php
             //Find Profile Details
             $query_user=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE City='$newCN' AND Professional='$newLF'");
@@ -62,7 +58,7 @@
                 $newCity=$view_user['City'];
                 $newState=$view_user['State'];
                 $newCountry=$view_user['Country'];
-                
+
                 ?>
                 <div class="col-lg-3">
                     <div class="card" style="width:100%; height:200px; background-image:url('userPhotos/1563278377_RajeshPanchal.jpg'); background-size:cover; background-position:center center; margin-bottom:150px;">
@@ -112,7 +108,7 @@
                 var myID = $(this).attr('myID');
                 window.location.href="profileDetails?ID="+myID;
             });
-            
+
             /*
             $('.btnProfile').click(function(){
                 var myID=$(this).attr('myID');
