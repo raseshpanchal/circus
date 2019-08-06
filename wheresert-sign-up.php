@@ -58,12 +58,11 @@
                         <div class="col-lg-12">
                             <div class="form-check-inline" style="margin-bottom:10px;">
                                 <label class="form-check-label">
-                                    I am &nbsp;&nbsp;
-                                    <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Freelancer" checked> Freelancer / Small Business
+                                    <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Freelancer" checked> I need help
                                 </label>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Recruiter"> Recruiter / Hirer
+                                    <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Recruiter"> I can help
                                 </label>
                             </div>
                         </div>
@@ -82,45 +81,24 @@
 
                     <div class="row">
 
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Valid Email ID*">
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-lg-2" style="padding-right:0px">
-                            <input type="text" class="form-control" list="codeList" id="txt_code" name="txt_code" placeholder="Code*" value="+971">
-                            <datalist id="codeList">
-                            <?php
-                            //Fetch Country Code
-                            $query_code=mysqli_query($link, "SELECT * FROM countries ORDER BY CountryName ASC");
-                            while($view_code=mysqli_fetch_array($query_code))
-                            {
-                                $newPhoneCode=trim($view_code['PhoneCode']);
-                                ?>
-                                    <option value="<?='+'.$newPhoneCode?>">
-                                <?php
-                            }
-                            ?>
-                            </datalist>
+                        <div class="col-lg-6">
+                            <label class="form-check-label">
+                                Gender
+                            </label>
                         </div>
 
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="txt_mobile" name="txt_mobile" placeholder="Mobile Number*">
+                        <div class="col-lg-6">
+                            <label class="form-check-label">
+                                Date of Birth
+                            </label>
                         </div>
                     </div>
 
                     <div class="row">
 
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="txt_dob" name="txt_dob" placeholder="Date of Birth (dd/mm/yyyy)*">
-                        </div>
-
-                        <div class="col-lg-6" style="padding-top:7px">
-                            <div class="form-check-inline" style="margin-bottom:10px;">
+                            <div class="form-check-inline" style="margin-top:10px;">
                                 <label class="form-check-label">
-                                    Gender&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="radio" class="form-check-input" id="txt_gender" name="txt_gender" value="Male" checked> Male
                                 </label>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -130,20 +108,94 @@
                             </div>
                         </div>
 
-
-
-                    </div>
-
-                    <div class="row">
-
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-lg-12">
-                            <button class="btn btnWhereSert btnRegi" style="float:right">Get Register Now!</button>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-4" style="padding-right:0">
+                                    <select class="form-control">
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                        <option>05</option>
+                                        <option>06</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4" style="padding-left:0; padding-right:0">
+                                    <select class="form-control">
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                        <option>Jun</option>
+                                        <option>Jul</option>
+                                        <option>Aug</option>
+                                        <option>Sep</option>
+                                        <option>Oct</option>
+                                        <option>Nov</option>
+                                        <option>Dec</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4" style="padding-left:0">
+                                    <select class="form-control">
+                                        <option>1905</option>
+                                        <option selected>1994</option>
+                                        <option>1904</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="row">
+
+                                <div class="col-lg-4" style="padding-right:0px;">
+                                    <input type="text" class="form-control" list="codeList" id="txt_code" name="txt_code" placeholder="Code*" value="+971">
+                                    <datalist id="codeList">
+                                    <?php
+                                    //Fetch Country Code
+                                    $query_code=mysqli_query($link, "SELECT * FROM countries ORDER BY CountryName ASC");
+                                    while($view_code=mysqli_fetch_array($query_code))
+                                    {
+                                        $newPhoneCode=trim($view_code['PhoneCode']);
+                                        ?>
+                                            <option value="<?='+'.$newPhoneCode?>">
+                                        <?php
+                                    }
+                                    ?>
+                                    </datalist>
+                                </div>
+
+                                <div class="col-lg-8" style="padding-left:2px">
+                                    <input type="text" class="form-control" id="txt_mobile" name="txt_mobile" placeholder="Mobile Number*">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Email ID (Optional)">
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <label class="form-label">
+                            <span style="font-size:11pt">Already Member! <a href="wheresert-sign-in">Click Here!</a></span>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <span style="font-size:11pt">Registration Problem? <a href="registrationProblem">Click Here!</a></span>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <button class="btn btnWhereSert btnRegi" style="float:right">Register Now!</button>
+                        </div>
+
                     </div>
 
                     <div class="row">
@@ -153,16 +205,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-
-                        <div class="col-lg-12">
-                            <label class="form-label">
-                            <span style="font-size:11pt">Already Member! <a href="wheresert-sign-in">Click Here!</a></span>
-                            &nbsp;&nbsp;|&nbsp;&nbsp;
-                            <span style="font-size:11pt">Registration Problem? <a href="registrationProblem">Click Here!</a></span>
-                            </label>
-                        </div>
-                    </div>
 
                 </form>
 
