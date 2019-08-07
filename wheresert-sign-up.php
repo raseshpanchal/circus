@@ -78,25 +78,22 @@
                             <input type="text" class="form-control" id="txt_lname" name="txt_lname" placeholder="Last Name*">
                         </div>
                     </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Email ID (Optional)">
+                        </div>
+                    </div>
 
                     <div class="row">
+                        <div class="col-lg-6">
+                        <input type="text" class="form-control" id="txt_dob" name="txt_dob" placeholder="Date of Birth" required*>
+                        </div>
 
                         <div class="col-lg-6">
                             <label class="form-check-label">
                                 Gender
                             </label>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <label class="form-check-label">
-                                Date of Birth
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-lg-6">
                             <div class="form-check-inline" style="margin-top:10px;">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" id="txt_gender" name="txt_gender" value="Male" checked> Male
@@ -105,44 +102,6 @@
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" id="txt_gender" name="txt_gender" value="Female"> Female
                                 </label>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="row">
-                                <div class="col-lg-4" style="padding-right:0">
-                                    <select class="form-control">
-                                        <option>01</option>
-                                        <option>02</option>
-                                        <option>03</option>
-                                        <option>04</option>
-                                        <option>05</option>
-                                        <option>06</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-4" style="padding-left:0; padding-right:0">
-                                    <select class="form-control">
-                                        <option>Jan</option>
-                                        <option>Feb</option>
-                                        <option>Mar</option>
-                                        <option>Apr</option>
-                                        <option>May</option>
-                                        <option>Jun</option>
-                                        <option>Jul</option>
-                                        <option>Aug</option>
-                                        <option>Sep</option>
-                                        <option>Oct</option>
-                                        <option>Nov</option>
-                                        <option>Dec</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-4" style="padding-left:0">
-                                    <select class="form-control">
-                                        <option>1905</option>
-                                        <option selected>1994</option>
-                                        <option>1904</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -176,12 +135,9 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Email ID (Optional)">
+                            <input type="password" class="form-control" id="txt_pass" name="txt_pass" placeholder="Enter New Password">
                         </div>
-
                     </div>
-
-
 
                     <div class="row">
                         <div class="col-lg-9">
@@ -207,13 +163,20 @@
 
 
                 </form>
+                <div>
+                    <h3>or</h3>
+                    <button class="loginBtn loginBtn--facebook">
+                      Login with Facebook
+                    </button>
+
+                    <button class="loginBtn loginBtn--google">
+                      Login with Google
+                    </button>
+                </div>
 
             </div>
 
             <div class="col"></div>
-
-
-
         </div>
     </div>
 
@@ -253,6 +216,8 @@
     <?php include_once('footer-02.php') ?>
 
     <?php include_once('scripts/bottomScripts.php') ?>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -262,6 +227,7 @@
                 var myName=$('#txt_fname').val();
                 var myEmail=$('#txt_email').val();
                 var myMobile=$('#txt_mobile').val();
+                var myPass=$('#txt_pass').val();
 
                 if(userType=='Freelancer')
                 {
@@ -278,6 +244,7 @@
                             $.post("app/freelancerRegiEntry",
                             $("#myFormReg").serialize(),
                             function(data){
+                                
                                 if(data=='emailError')
                                 {
                                     $('#regiStatus').text('This Email ID is already registered!');
@@ -290,6 +257,7 @@
                                     $('#txt_email').val('');
                                     $('#txt_mobile').val('');
                                     $('#txt_dob').val('');
+                                    $('#txt_pass').val('');
                                     $('#regiStatus').html('<br/><br/>Registration has been submitted successfully!<br/>Please visit your email inbox to activate your registration.');
                                 }
                             });
@@ -330,6 +298,7 @@
                                     $('#txt_email').val('');
                                     $('#txt_mobile').val('');
                                     $('#txt_dob').val('');
+                                    $('#txt_pass').val('');
                                     $('#regiStatus').html('<br/><br/>Registration has been submitted successfully!<br/>Please visit your email inbox to activate your registration.');
                                 }
                             });
@@ -345,10 +314,12 @@
                 }
                 return false;
             });
-
-
+            
+        $("#txt_dob").datepicker({dateFormat: 'dd/mm/yy'});
+            
         //MAIN DOC ENDS
         });
+
 
         //Function Email Validation
         function validateEmail(myEmailID)

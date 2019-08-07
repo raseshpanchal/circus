@@ -5,9 +5,9 @@
     include_once('userInfo.php');
     include_once('pageInfo.php');
 
-    $query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY RAND() LIMIT 1");
+    $query_mainCat = mysqli_query($link, "SELECT * FROM main_categories WHERE Publish='Yes' ORDER BY ID");
     $view_mainCat=mysqli_fetch_array($query_mainCat);
-    $newCategory=$view_mainCat['Category'];
+    $newCategory=$view_mainCat['MainCat'];
 
     //Fetch SearchCity
     $query_serCity = mysqli_query($link, "SELECT * FROM search_city WHERE Publish='Yes' ORDER BY ASC");
@@ -124,13 +124,13 @@
     <div class="container">
         <div class="row" style="padding-top:50px; padding-bottom:50px;">
             <?php
-            $query_mainCat = mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY Category ASC");
+            $query_mainCat = mysqli_query($link, "SELECT * FROM main_categories WHERE Publish='Yes' ORDER BY ID ASC");
             while($view_mainCat=mysqli_fetch_array($query_mainCat))
             {
-                $newCatID=$view_mainCat['ID'];
-                $newCategory=$view_mainCat['Category'];
+                $newMainCatID=$view_mainCat['ID'];
+                $newMainCategory=$view_mainCat['MainCat'];
                 ?>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" catID="<?=myEncode($newCatID)?>"><?=$newCategory?></div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mainCategory" mainCatID="<?=myEncode($newMainCatID)?>"><?=$newMainCategory?></div>
                 <?php
             }
             ?>
@@ -184,8 +184,8 @@
 
             //Category Function
             $('.mainCategory').click(function(){
-                var catName=$(this).attr('catID');
-                window.location.href="category?ID="+catName;
+                var mainCatName=$(this).attr('mainCatID');
+                window.location.href="maincategory?ID="+mainCatName;
             });
 
         });

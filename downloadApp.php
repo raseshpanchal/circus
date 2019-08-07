@@ -10,6 +10,7 @@
             <p align="center" class="d-block d-sm-none" style="text-align:center; padding-top:20px; padding-bottom:20px">
             <img src="images/appStoreLogo.png" />
             </p>
+            <h1>Coming Soon...</h1>
         </div>
         <div class="col-lg-6" style="text-align:center">
             <img src="images/phone-with-hand.png" />
