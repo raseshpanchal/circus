@@ -41,7 +41,7 @@ include("../../config/connection.php");
   <tr>
     <td>Main Categories</td>
     <td width="200" id="searchArea"><input type="text" id="search" placeholder="Search" style="color:#fff; height:35px; margin-top:-3px; border:0px; padding-left:5px; width:200px; background-color:#666" /></td>
-    <td width="75"><button type="submit" class="btn btn-success myBtn" id="btnAdd">Add</button></td>
+<!--    <td width="75"><button type="submit" class="btn btn-success myBtn" id="btnAdd">Add</button></td>-->
     <td width="75"><button type="submit" class="btn btn-warning myBtn" id="btnRefresh">Refresh</button></td>
     <!--
     <td width="75"><button type="submit" class="btn btn-primary myBtn" id="btnExport">Export</button></td>
@@ -57,7 +57,7 @@ include("../../config/connection.php");
             <tr style="background-color:#d9592d; color:#FFF; border-top:solid 1px #d9592d">
                 <th width="40" align="center">Sr.</th>
                 <th>Category Name</th>
-                <th width="40" align="center">Category</th>
+                <th width="40" align="center">Sub</th>
                 <th width="40" align="center">Total</th>
                 <th width="40" align="center">Seq</th>
                 <th width="40" align="center">Edit</th>
@@ -68,33 +68,33 @@ include("../../config/connection.php");
         <tbody style="color:#666" id="table">
             <?php
             $i=1;
-            $query_1=mysqli_query($link, "SELECT * FROM main_categories ORDER BY ID DESC");
+            $query_1=mysqli_query($link, "SELECT * FROM categories ORDER BY ID DESC");
             while($view_1=mysqli_fetch_array($query_1))
             {
                 $newID=$view_1['ID'];
-                $newMainCategory=urldecode($view_1['MainCat']);
+                $newCategory=urldecode($view_1['Category']);
                 $newPublish=$view_1['Publish'];
                 //Fetch Total Number of Sub-Categpries
-                $query_2=mysqli_query($link, "SELECT * FROM categories WHERE MainCatID='$newID'");
-                $totalCat=mysqli_num_rows($query_2);
+                $query_2=mysqli_query($link, "SELECT * FROM subcategories WHERE CatID='$newID'");
+                $totalSubCat=mysqli_num_rows($query_2);
             ?>
              <tr <?php echo 'id="td'.$newID.'"'; ?>>
                 <td id="1_<?php echo $newID ?>" width="40" align="center"><?php echo $i; ?></td>
                 <td id="2_<?php echo $newID ?>">
-                    <?php echo $newMainCategory; ?>
+                    <?php echo $newCategory; ?>
                 </td>
                 <td id="3_<?php echo $newID ?>" width="40" align="center">
-                    <a href="app/addCategory?ID=<?php echo $newID; ?>" class="addCategory"><img src="images/add-yellow.png" border="0" /></a>
+                    <a href="app/addSubCategory?ID=<?php echo $newID; ?>" class="addSubCategory"><img src="images/add-yellow.png" border="0" /></a>
                 </td>
-                <td width="40" align="center"><?php echo $totalCat; ?></td>
-                <td width="40" align="center"><a href="app/seqCategory?ID=<?php echo $newID; ?>" class="btnSeq"><img src="images/lines.png" border="0" /></a></td>
+                <td width="40" align="center"><?php echo $totalSubCat; ?></td>
+                <td width="40" align="center"><a href="app/seqSubCategory?ID=<?php echo $newID; ?>" class="btnSeq"><img src="images/lines.png" border="0" /></a></td>
                 <td width="40" align="center">
-                    <a href="app/editMainCategory?ID=<?php echo $newID; ?>" class="btnEdit">
+                    <a href="app/editCategory?ID=<?php echo $newID; ?>" class="btnEdit">
                         <img src="images/edit.gif" border="0" />
                     </a>
                 </td>
                 <td width="40" align="center">
-                    <a href="app/deleteMainCategory?ID=<?php echo $newID; ?>" class="btnDelete">
+                    <a href="app/deleteCategory?ID=<?php echo $newID; ?>" class="btnDelete">
                         <img src="images/delete.gif" border="0" />
                     </a>
                 </td>
@@ -114,15 +114,15 @@ include("../../config/connection.php");
 $(document).ready(function(){
     //Function for Adding New Event
     $("#btnAdd").click(function(){
-        addForm('app/addMainCategory');
+        addForm('app/addCategory');
         $('html, body').animate({scrollTop : 0},800);
     });
 
-    //This is Category
-    $('.addCategory').click(function(){
+    //This is SubCategory
+    $('.addSubCategory').click(function(){
         addForm($(this).attr("href"));
         $('html, body').animate({scrollTop : 0},800);
-        return false;   
+        return false;
     });
 
     //This is Sequence function
@@ -151,7 +151,7 @@ $(document).ready(function(){
     $("#btnRefresh").click(function(){
         $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading updated data...<br/><br/><img src="images/preloader_clock.gif" /></div>');
         closeForm();
-        $("#middleArea").load("view/categoriesMain");
+        $("#middleArea").load("view/categories");
     });
 
     //////////////////Script For Live Search Starts////////////////////

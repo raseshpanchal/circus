@@ -1,6 +1,5 @@
 <?php
 include("../../config/connection.php");
-$newID=$_GET['ID'];
 
 $myTitle=$_POST['txt_title'];
 
@@ -16,13 +15,13 @@ else
 }
 
 //Check the existing entry
-$query=mysqli_query($link, "SELECT * FROM categories WHERE Category='$myTitle'");
+$query=mysqli_query($link, "SELECT * FROM main_categories WHERE MainCat='$myTitle'");
 $test_rows=mysqli_num_rows($query);
 
 if($test_rows==0)
 {
     //Insert Values in DB
-    $query_1=mysqli_query($link, "INSERT INTO categories SET MyID='0', MainCatID='$newID', Category='$myTitle', Publish='$myPublish'");
+    $query_1=mysqli_query($link, "INSERT INTO main_categories SET MainCat='$myTitle', Publish='$myPublish'");
     if($query_1)
     {
         echo '1';

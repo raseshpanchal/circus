@@ -1,14 +1,6 @@
 <?php
 include("../../config/connection.php");
-$newID=$_GET['ID'];
-//Fetch Records
-$query_1=mysqli_query($link, "SELECT * FROM main_categories WHERE ID='$newID'");
-$view_1=mysqli_fetch_array($query_1);
-$newID=$view_1['ID'];
-$newTitle=ucfirst($view_1['MainCat']);
-$newPublish=$view_1['Publish'];
 ?>
-
 <style>
 .success_alert{
     background-color:#6C3;
@@ -42,7 +34,7 @@ $(document).ready(function(){
         var myTitle = $("#txt_title").val();
 
         //$('#btnSave').attr("disabled", true);
-        $.post("app/addCategoryEntry?ID=<?php echo $newID; ?>",
+        $.post("app/addMainCategoryEntry",
         $("#myForm").serialize(),
         function(data){
             if(data==1)
@@ -51,7 +43,7 @@ $(document).ready(function(){
                 html = '<tr>';
                 html += '<td align="center">'+myShow+'</td>';
                 html += '<td>'+myTitle+'</td>';
-                html += '<td align="center"><img src="images/add-yellow.png" width="16" height="16" /></td>';
+//              html += '<td align="center"><img src="images/add-yellow.png" width="16" height="16" /></td>';
                 html += '<td align="center">0</td>';
                 html += '<td align="center"><img src="images/lines.png" width="16" height="16" /></td>';
                 html += '<td align="center"><img src="images/edit.gif" width="16" height="16" /></td>';
@@ -91,18 +83,12 @@ $(document).ready(function(){
 <div style="background-color:#424a5d; height:37px; border-top:solid 1px #FFF; border-bottom:solid 1px #044636; color:#FFF; padding-left:15px; padding-top:10px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td>Add New Category</td>
+    <td>Add New MainCategory</td>
   </tr>
 </table>
 </div>
 
 <form name="myForm" id="myForm" method="POST">
-<div class="row" style="padding:15px">
-    <div class="col-xs-12">
-        <input type="text" class="form-control form-require" id="txt_cat" name="txt_cat" value="<?php echo $newTitle; ?>" readonly="readonly" />
-    </div>
-</div>
-
 <div class="row" style="padding:15px;">
     <div class="col-xs-12">
         <input type="text" class="form-control form-require" id="txt_title" name="txt_title" required placeholder="Title*" />
@@ -123,7 +109,7 @@ $(document).ready(function(){
 <div class="row" style="padding:15px">
     <div class="col-xs-12">
         <button type="button" class="btn btn-primary" style="padding:6px; width:100px;" id="btnCancel">Close</button>
-        <button type="submit" class="btn btn-danger" style="padding:6px; width:100px;" id="btnSave" onMouseDown="validCategory()">Save</button>
+        <button type="submit" class="btn btn-danger" style="padding:6px; width:100px;" id="btnSave" onMouseDown="validMainCategory()">Save</button>
     </div>
 </div>
 

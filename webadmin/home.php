@@ -843,6 +843,13 @@ $newUserType=$view_1['UserType'];
             closeForm();
             $("#middleArea").load("view/categoriesMain");
         });
+        
+        //Function for  Categories
+        $('#categories').click(function(){
+            $("#middleArea").html('<div style="margin-top:25px; margin-left:25px">Loading  Categories...<br/><br/><img src="images/preloader_clock.gif" /></div>');
+            closeForm();
+            $("#middleArea").load("view/categories");
+        });
 
         //Function for Sub-Categories
         $('#categoriesSub').click(function(){
