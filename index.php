@@ -13,7 +13,7 @@
     $query_serCity = mysqli_query($link, "SELECT * FROM search_city WHERE Publish='Yes' ORDER BY ASC");
     $view_serCity = mysqli_fetch_array($query_serCity);
     $newCityName = $view_serCity['CityName'];
-    $newDefaultCity = $view_serCity['DefaultCity']; 
+    $newDefaultCity = $view_serCity['DefaultCity'];
 
 
 ?>
@@ -130,7 +130,7 @@
                 $newMainCatID=$view_mainCat['ID'];
                 $newMainCategory=$view_mainCat['MainCat'];
                 ?>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mainCategory" mainCatID="<?=myEncode($newMainCatID)?>"><?=$newMainCategory?></div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mainCategory" style="border:solid 1px #333" mainCatID="<?=myEncode($newMainCatID)?>"><?='<h2>'.$newMainCategory.'</h2>'?></div>
                 <?php
             }
             ?>

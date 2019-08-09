@@ -46,7 +46,7 @@
             <div class="col"></div>
 
             <div class="col-lg-6">
-                <form name="myFormReg" id="myFormReg" method="POST">
+                <form name="myFormReg" id="myFormReg" method="POST" autocomplete="off">
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -78,7 +78,7 @@
                             <input type="text" class="form-control" id="txt_lname" name="txt_lname" placeholder="Last Name*">
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-lg-12">
                             <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Email ID (Optional)">
@@ -87,7 +87,7 @@
 
                     <div class="row">
                         <div class="col-lg-6">
-                        <input type="text" class="form-control" id="txt_dob" name="txt_dob" placeholder="Date of Birth" required*>
+                        <input type="text" class="form-control" id="txt_dob" name="txt_dob" placeholder="Date of Birth*" required>
                         </div>
 
                         <div class="col-lg-6">
@@ -163,15 +163,9 @@
 
 
                 </form>
-                <div>
-                    <h3>or</h3>
-                    <button class="loginBtn loginBtn--facebook">
-                      Login with Facebook
-                    </button>
-
-                    <button class="loginBtn loginBtn--google">
-                      Login with Google
-                    </button>
+                <div style="text-align:center">
+                    <h3>------------------------------------------------------------------------------------</h3>
+                    <img src="images/btnSocial.png" />
                 </div>
 
             </div>
@@ -216,8 +210,8 @@
     <?php include_once('footer-02.php') ?>
 
     <?php include_once('scripts/bottomScripts.php') ?>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script>
         $(document).ready(function(){
@@ -244,7 +238,7 @@
                             $.post("app/freelancerRegiEntry",
                             $("#myFormReg").serialize(),
                             function(data){
-                                
+
                                 if(data=='emailError')
                                 {
                                     $('#regiStatus').text('This Email ID is already registered!');
@@ -314,9 +308,9 @@
                 }
                 return false;
             });
-            
+
         $("#txt_dob").datepicker({dateFormat: 'dd/mm/yy'});
-            
+
         //MAIN DOC ENDS
         });
 
