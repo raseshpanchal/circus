@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2019 at 07:31 AM
+-- Generation Time: Aug 12, 2019 at 08:47 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -41,13 +41,13 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`ID`, `MyID`, `MainCatID`, `Category`, `Publish`) VALUES
-(5, 2, 1, 'Programming', 'Yes'),
-(6, 3, 1, 'Architecture', 'Yes'),
-(7, 1, 2, 'Engineering', 'Yes'),
-(8, 2, 3, 'Digital Designers', 'Yes'),
-(9, 1, 3, 'Health & Well Being', 'Yes'),
-(10, 2, 2, 'Child and Pet Care', 'Yes'),
-(11, 1, 1, 'Beauty & Skincare', 'Yes');
+(1, 2, 1, 'Programming', 'Yes'),
+(2, 3, 1, 'Architecture', 'Yes'),
+(3, 1, 2, 'Engineering', 'Yes'),
+(4, 2, 3, 'Digital Designers', 'Yes'),
+(5, 1, 3, 'Health & Well Being', 'Yes'),
+(6, 2, 2, 'Child and Pet Care', 'Yes'),
+(7, 1, 1, 'Beauty & Skincare', 'Yes');
 
 --
 -- Indexes for dumped tables
@@ -67,7 +67,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
