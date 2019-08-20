@@ -131,6 +131,11 @@ h3{
     color: #0F0F0F;
 }
 
+.light {
+/*    border: solid 1px white;*/
+    background-color: white;
+}
+
 .footer_01{
     background-color: #424242;
 }
