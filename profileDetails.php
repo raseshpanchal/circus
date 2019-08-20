@@ -441,13 +441,13 @@
                                 </div>
                                 <div class="col-lg-8">
                                     <label>
-                                        <input type="checkbox" id="check_userpre" name="check_userpre" value="PhoneCall" checked="checked"> Phone Call&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" value="PhoneCall" checked="checked"> Phone Call&nbsp;&nbsp;&nbsp;
                                     </label>
                                     <label>
-                                        <input type="checkbox" id="check_userpre" name="check_userpre" value="SMS/Whatsapp"> SMS/Whatsapp&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" value="SMS/Whatsapp"> SMS/Whatsapp&nbsp;&nbsp;&nbsp;
                                     </label>
                                     <label>
-                                        <input type="checkbox" id="check_userpre" check="check_userpre" value="Email"> Email
+                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" check="check_userpre" value="Email"> Email
                                     </label>
                                 </div>
                             </div>
