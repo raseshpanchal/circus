@@ -7,9 +7,9 @@
             <h5>COMPANY</h5>
             <hr class="light">
             <P>555-555-555</P>
-            <p>d123@gmail.com</p>
-            <p>100 Street Name</p>
-            <p>City, State, 0000000</p>
+            <p>hello@wheresert.com</p>
+            <p>Shaikh Zahid Road</p>
+            <p>Dubai, UAE</p>
         </div>
         <div class="col-md-4">
             <hr class="light">

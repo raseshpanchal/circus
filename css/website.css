@@ -68,13 +68,13 @@ body{
 }
 
 .homeSlide{
-    height: 440px;
+    height: 340px;
     margin-top: 60px;
     background-image:url(../images/homeSlide.jpg);
     background-size: cover;
     background-position: center bottom;
     text-align: center;
-    padding-top: 220px;
+    padding-top: 120px;
 }
 
 .homeSlide h1{
@@ -100,13 +100,13 @@ body{
 }
 
 .innerSlide{
-    height: 220px;
+    height: 120px;
     margin-top: 60px;
     background-image:url(../images/abstract.jpg);
     background-size: cover;
     background-position: center bottom;
     text-align: center;
-    padding-top: 90px;
+    padding-top: 45px;
 }
 
 .innerSlide h1{
@@ -129,11 +129,6 @@ h3{
     font-family: roboto_condensedregular;
     font-size: 14pt;
     color: #0F0F0F;
-}
-
-.light {
-/*    border: solid 1px white;*/
-    background-color: white;
 }
 
 .footer_01{
@@ -167,6 +162,14 @@ h3{
     padding-top: 65px;
     background-image: url(../images/logoSmallGrey.png);
     background-repeat: no-repeat;
+}
+
+.mainSubTitle{
+    position:absolute;
+    bottom:0px;
+    text-align: center;
+    width: 91%;
+    margin-top: 15px;
 }
 
 .mainCategory:hover{
@@ -222,6 +225,70 @@ h3{
     padding-left: 15px;
     padding-right: 15px;
 }
+
+/* Social Media Login Buttons */
+.loginBtn {
+  box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+  margin: 0.2em;
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #FFF;
+}
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+
+/* Facebook */
+.loginBtn--facebook {
+  background-color: #4C69BA;
+  background-image: linear-gradient(#4C69BA, #3B55A0);
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+  text-shadow: 0 -1px 0 #354C8C;
+}
+.loginBtn--facebook:before {
+  border-right: #364e92 1px solid;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+}
+.loginBtn--facebook:hover,
+.loginBtn--facebook:focus {
+  background-color: #5B7BD5;
+  background-image: linear-gradient(#5B7BD5, #4864B1);
+}
+
+
+/* Google */
+.loginBtn--google {
+  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  background: #DD4B39;
+}
+.loginBtn--google:before {
+  border-right: #BB3F30 1px solid;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+}
+.loginBtn--google:hover,
+.loginBtn--google:focus {
+  background: #E74B37;
+}
+
 /*
 .text{
     color: white;

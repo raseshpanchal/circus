@@ -4,7 +4,6 @@
     include_once("config/connection.php");
     include_once('userInfo.php');
     include_once('pageInfo.php');
-
     //Fetch Profile Details
     $newID=myDecode($_GET['ID']);
     $query_user=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE ID='$newID'");
@@ -20,7 +19,6 @@
     $newState=$view_user['State'];
     $newCountry=$view_user['Country'];
     $newZipCode=$view_user['ZipCode'];
-
     //Fetch Profile Pic
     $query_pic=mysqli_query($link, "SELECT * FROM freelancer_upload_images WHERE FreelancerID='$newID'");
     $view_pic=mysqli_fetch_array($query_pic);
@@ -40,12 +38,10 @@
 
     <?php include_once('scripts/headTags.php') ?>
     <style>
-
         body{
     margin-top:20px;
     background:#f5f5f5;
 }
-
     .panel {
   box-shadow: none;
 }
@@ -65,13 +61,11 @@
 .panel-footer {
   border-top: 0;
 }
-
 .panel-default > .panel-heading {
     color: #333333;
     background-color: transparent;
     border-color: rgba(0, 0, 0, 0.07);
 }
-
 /**
  * Profile
  */
@@ -240,7 +234,6 @@
   font-weight: 500;
   color: #999999;
 }
-
     /*NEW CSS*/
         .card-title{
             color: #379783;
@@ -249,7 +242,6 @@
             padding-bottom: 5px;
             border-bottom: dotted 1px #333;
         }
-
         .btn-default{
             border: solid 1px #898989;
             padding: 5px !important;
@@ -592,7 +584,6 @@
                 var myContactLoc = $('#txt_location').val();
                 var myContactNumber = $('#txt_number').val();
                 var myUserPrefrence = $("input[name='check_userpre']:checked").val();
-
                 if (validateEmail(myContactEmail) != '') {
                     if (myContactNumber.length < 10) {
                         $('#contStatus').text('Incorrect Mobile Number');
@@ -622,10 +613,8 @@
                     $('#txt_email').val('');
                     $('.btnSubmit').attr("disabled", false);
                 }
-
             });
         });
-
         //Function Email Validation
         function validateEmail(myEmailID) {
             var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
