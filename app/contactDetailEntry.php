@@ -6,7 +6,9 @@ $newContactName=$_POST['txt_name'];
 $newContactEmail=$_POST['txt_email'];
 $newContactLocation=$_POST['txt_location'];
 $newContactNumber=$_POST['txt_number'];
-$newContactPrefrence=$_POST['check_userpre'];
+//$newContactPrefrence=$_POST['check_userpre'];
+
+$newContactPrefrence = implode(',',  $_POST['check_userpre']);
 
 //Check Existing Record of Email ID
 $query_1=mysqli_query($link, "SELECT * FROM contact_me WHERE Email='$newContactEmail'");
@@ -17,7 +19,7 @@ if($view_email!=0)
 }
 else
 {
-$query_2=mysqli_query($link, "INSERT INTO contact_me SET Name='$newContactName', Email='$newContactEmail', City='$newContactLocation', Number='$newContactNumber', ContactPrefrence='$newContactPrefrence'");
+$query_2=mysqli_query($link, "INSERT INTO contact_me SET Name='$newContactName', Email='$newContactEmail', City='$newContactLocation', Number='$newContactNumber', ContactPrefrence=('" . $newContactPrefrence . "')");
 
 if($query_2)
 {
