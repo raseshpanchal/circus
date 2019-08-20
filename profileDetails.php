@@ -29,8 +29,11 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-    <title><?=$newPageTitle?></title>
+    <title>
+        <?=$newPageTitle?>
+    </title>
     <meta charset="UTF-8">
     <meta name="description" content="<?=$newPageDesc?>">
     <meta name="keywords" content="<?=$newPageKeywords?>">
@@ -256,53 +259,58 @@
     </style>
 </head>
 
-    <body>
+<body>
 
-        <!--Top Menu Starts-->
-        <?php
+    <!--Top Menu Starts-->
+    <?php
         include_once('topMenu.php');
         ?>
-        <!--Top Menu Ends-->
+    <!--Top Menu Ends-->
 
-        <div class="container" style="margin-top:50px">
+    <div class="container" style="margin-top:50px">
 
-            <div class="row" style="padding-top:50px; padding-bottom:50px;">
-                <div class="col-lg-9 col-md-9">
-                    <div class="card" style="margin-bottom:30px">
-                        <div class="card-header text-white bg-dark">
+        <div class="row" style="padding-top:50px; padding-bottom:50px;">
+            <div class="col-lg-9 col-md-9">
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
                         Basic Information
-                        </div>
-                        <div class="card-body">
-                            <div class="profile__avatar">
-                              <img src="userPhotos/<?=$newProfilePic?>" alt="...">
-                            </div>
-
-                            <h5 class="card-title"><?=$userFullName?>&nbsp;<small><i>( <?=$newProfession?> )</i></small></h5>
-                            <p class="card-text" style="border:0px; border-bottom:dotted 1px #CCC">
-                                <?=$newBusinessTitle?>
-                            </p>
-                            <p style="border:0px; font-size:10pt; padding:0px; margin-top:-8px">
-                                <img src="images/mapLocation.png"/> <?=$newCity.', '.$newState.', '.$newCountry?>
-                            </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="profile__avatar">
+                            <img src="userPhotos/<?=$newProfilePic?>" alt="...">
                         </div>
 
+                        <h5 class="card-title">
+                            <?=$userFullName?>&nbsp;<small><i>(
+                                    <?=$newProfession?> )</i></small></h5>
+                        <p class="card-text" style="border:0px; border-bottom:dotted 1px #CCC">
+                            <?=$newBusinessTitle?>
+                        </p>
+                        <p style="border:0px; font-size:10pt; padding:0px; margin-top:-8px">
+                            <img src="images/mapLocation.png" />
+                            <?=$newCity.', '.$newState.', '.$newCountry?>
+                        </p>
                     </div>
 
-                    <div class="card" style="margin-bottom:30px">
-                        <div class="card-header text-white bg-dark">
+                </div>
+
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
                         Profile
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text" style="border:0px"><?=$newDescription?></p>
-                        </div>
                     </div>
+                    <div class="card-body">
+                        <p class="card-text" style="border:0px">
+                            <?=$newDescription?>
+                        </p>
+                    </div>
+                </div>
 
-                    <div class="card" style="margin-bottom:30px">
-                        <div class="card-header text-white bg-dark">
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
                         Services
-                        </div>
-                        <div class="card-body">
-                            <?php
+                    </div>
+                    <div class="card-body">
+                        <?php
                             $query_service=mysqli_query($link, "SELECT * FROM freelancer_services WHERE FreelancerID='$newID'");
                             while($view_service=mysqli_fetch_array($query_service))
                             {
@@ -312,125 +320,181 @@
                                 $servicePrice=$view_service['Price'];
                                 $serviceDescription=urldecode($view_service['Description']);
                             ?>
-                            <div class="row" style="border-bottom:dotted 1px #333; margin-bottom:10px; padding-bottom:10px">
-                                <div class="col-lg-10">
-                                    <b><?=$serviceTitle?></b>
-                                </div>
-                                <div class="col-lg-2" style="text-align:right">
-                                    <?=$serviceCurrency.' '.$servicePrice?>
-                                </div>
+                        <div class="row" style="border-bottom:dotted 1px #333; margin-bottom:10px; padding-bottom:10px">
+                            <div class="col-lg-10">
+                                <b>
+                                    <?=$serviceTitle?></b>
                             </div>
-                            <div class="row" style="margin-bottom:30px; padding-bottom:10px; border-bottom:solid 1px #CCC">
-                                <div class="col-lg-12">
-                                    <?=$serviceDescription?>
-                                </div>
+                            <div class="col-lg-2" style="text-align:right">
+                                <?=$serviceCurrency.' '.$servicePrice?>
                             </div>
-                            <?php
+                        </div>
+                        <div class="row" style="margin-bottom:30px; padding-bottom:10px; border-bottom:solid 1px #CCC">
+                            <div class="col-lg-12">
+                                <?=$serviceDescription?>
+                            </div>
+                        </div>
+                        <?php
                             }
                             ?>
 
-                        </div>
                     </div>
+                </div>
 
 
-                    <!--Review Starts-->
-                    <div class="card">
-                        <div class="card-header text-white bg-dark">
+                <!--Review Starts-->
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
                         Reviews
+                    </div>
+                    <div class="card-body">
+                        <button id="OpenDialog" name="btnreview">Write a Review</button>
+                        <div class="profile__comments">
+                            <div class="profile-comments__item">
+                                <div class="profile-comments__controls">
+                                    <a href="#"><i class="fa fa-share-square-o"></i></a>
+                                    <a href="#"><i class="fa fa-edit"></i></a>
+                                    <a href="#"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                                <div class="profile-comments__avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="...">
+                                </div>
+                                <div class="profile-comments__body">
+                                    <h5 class="profile-comments__sender">
+                                        Leena D'sa <small>2 hours ago</small>
+                                    </h5>
+                                    <div class="profile-comments__content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-comments__item">
+                                <div class="profile-comments__controls">
+                                    <a href="#"><i class="fa fa-share-square-o"></i></a>
+                                    <a href="#"><i class="fa fa-edit"></i></a>
+                                    <a href="#"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                                <div class="profile-comments__avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="...">
+                                </div>
+                                <div class="profile-comments__body">
+                                    <h5 class="profile-comments__sender">
+                                        Ashish Yadav <small>5 hours ago</small>
+                                    </h5>
+                                    <div class="profile-comments__content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-comments__item">
+                                <div class="profile-comments__controls">
+                                    <a href="#"><i class="fa fa-share-square-o"></i></a>
+                                    <a href="#"><i class="fa fa-edit"></i></a>
+                                    <a href="#"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                                <div class="profile-comments__avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
+                                </div>
+                                <div class="profile-comments__body">
+                                    <h5 class="profile-comments__sender">
+                                        Deepak Nishad <small>1 day ago</small>
+                                    </h5>
+                                    <div class="profile-comments__content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
 
-                            <div class="profile__comments">
-                              <div class="profile-comments__item">
-                                <div class="profile-comments__controls">
-                                  <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                  <a href="#"><i class="fa fa-edit"></i></a>
-                                  <a href="#"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                </div>
+                <!--Review Ends-->
+
+                <!--ConctactMe Start-->
+
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
+                        Contact Me
+                    </div>
+                    <div class="card-body">
+                        <form name="myForm" id="myForm" method="POST">
+                            <div class="row" style="padding:5px">
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control form-require" id="txt_name" name="txt_name" placeholder="Full Name*" required />
                                 </div>
-                                <div class="profile-comments__avatar">
-                                  <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="...">
+                                <div class="col-lg-6">
+                                    <input type="email" class="form-control form-require" id="txt_email" name="txt_email" placeholder="Email ID*" required />
                                 </div>
-                                <div class="profile-comments__body">
-                                  <h5 class="profile-comments__sender">
-                                    Leena D'sa <small>2 hours ago</small>
-                                  </h5>
-                                  <div class="profile-comments__content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
-                                  </div>
+                            </div>
+                            <div class="row" style="padding:5px">
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control form-require" id="txt_location" name="txt_location" placeholder="Enter City Name*" required />
                                 </div>
-                              </div>
-                              <div class="profile-comments__item">
-                                <div class="profile-comments__controls">
-                                  <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                  <a href="#"><i class="fa fa-edit"></i></a>
-                                  <a href="#"><i class="fa fa-trash-o"></i></a>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control form-require" id="txt_number" name="txt_number" placeholder="Mobile Number*" required />
                                 </div>
-                                <div class="profile-comments__avatar">
-                                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="...">
-                                </div>
-                                <div class="profile-comments__body">
-                                  <h5 class="profile-comments__sender">
-                                    Ashish Yadav <small>5 hours ago</small>
-                                  </h5>
-                                  <div class="profile-comments__content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="profile-comments__item">
-                                <div class="profile-comments__controls">
-                                  <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                  <a href="#"><i class="fa fa-edit"></i></a>
-                                  <a href="#"><i class="fa fa-trash-o"></i></a>
-                                </div>
-                                <div class="profile-comments__avatar">
-                                  <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
-                                </div>
-                                <div class="profile-comments__body">
-                                  <h5 class="profile-comments__sender">
-                                    Deepak Nishad <small>1 day ago</small>
-                                  </h5>
-                                  <div class="profile-comments__content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
-                                  </div>
-                                </div>
-                              </div>
                             </div>
 
+                            <div class="row" style="padding:5px;">
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control form-require" id="txt_contPrefrence" name="txt_contPrefrence" placeholder="Contact Preference*" Disabled required />
+                                </div>
+                                <div class="col-lg-8">
+                                    <label>
+                                        <input type="checkbox" id="check_userpre" name="check_userpre" value="PhoneCall" checked="checked"> Phone Call&nbsp;&nbsp;&nbsp;
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="check_userpre" name="check_userpre" value="SMS/Whatsapp"> SMS/Whatsapp&nbsp;&nbsp;&nbsp;
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="check_userpre" check="check_userpre" value="Email"> Email
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="btn btnWhereSert btnSubmit" id="btnSubmit">Submit!</button>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <span id="contStatus"></span>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <!--ConctactMe End-->
+
+            </div>
+            <div class="col-lg-3 col-md-3">
+
+                <!--Sample-->
+                <div class="card mb-4">
+                    <div class="social-card-header align-middle text-center bg-facebook">
+                        <i class="fab fa-facebook-square"></i>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="row">
+                            <div class="col border-right">
+                                <i class="far fa-thumbs-up text-facebook"></i>
+                                <span class="text-muted">Like</span>
+                                <div class="font-weight-bold">12K</div>
+                            </div>
+                            <div class="col">
+                                <i class="fas fa-share-alt text-facebook"></i>
+                                <span class="text-muted">Share</span>
+                                <div class="font-weight-bold">10K</div>
+                            </div>
                         </div>
                     </div>
-                    <!--Review Ends-->
-
-                </div>
-                <div class="col-lg-3 col-md-3">
-
-                    <!--Sample-->
-                    <div class="card mb-4">
-                        <div class="social-card-header align-middle text-center bg-facebook">
-                           <i class="fab fa-facebook-square"></i>
-                        </div>
-                        <div class="card-body text-center">
-                           <div class="row">
-                              <div class="col border-right">
-                                 <i class="far fa-thumbs-up text-facebook"></i>
-                                 <span class="text-muted">Like</span>
-                                 <div class="font-weight-bold">12K</div>
-                              </div>
-                              <div class="col">
-                                 <i class="fas fa-share-alt text-facebook"></i>
-                                 <span class="text-muted">Share</span>
-                                 <div class="font-weight-bold">10K</div>
-                              </div>
-                           </div>
-                        </div>
                     <!--Sample-->
                 </div>
-
 
                 <!--Skill Starts-->
                 <div class="card" style="margin-top:30px">
                     <div class="card-header text-white bg-dark">
-                    Skills
+                        Skills
                     </div>
                     <div class="card-body">
                         <?php
@@ -443,7 +507,9 @@
                             $view_subCat=mysqli_fetch_array($query_subCat);
                             $newSubCategory=$view_subCat['SubCategory'];
                         ?>
-                            <p class="card-text" style="padding-bottom:15px"><?=$newSubCategory?></p>
+                        <p class="card-text" style="padding-bottom:15px">
+                            <?=$newSubCategory?>
+                        </p>
                         <?php
                         }
                         ?>
@@ -453,9 +519,9 @@
                 <!--Skill Ends-->
 
                 <!--Language Starts-->
-                <div class="card" style="margin-top:30px">
+                <div class="card">
                     <div class="card-header text-white bg-dark">
-                    Languages
+                        Languages
                     </div>
                     <div class="card-body">
                         <?php
@@ -468,7 +534,9 @@
                             $view_lang=mysqli_fetch_array($query_lang);
                             $newLanguage=$view_lang['Language'];
                         ?>
-                            <p class="card-text" style="padding-bottom:15px"><?=$newLanguage?></p>
+                        <p class="card-text" style="padding-bottom:15px">
+                            <?=$newLanguage?>
+                        </p>
                         <?php
                         }
                         ?>
@@ -481,11 +549,11 @@
                 <!--Social Starts-->
                 <div class="card" style="margin-top:30px">
                     <div class="card-header text-white bg-dark">
-                    Social Media
+                        Social Media
                     </div>
                     <div class="card-body">
                         <div class="row">
-                        <?php
+                            <?php
                         $query_userSocial=mysqli_query($link, "SELECT * FROM freelancer_social_media WHERE FreelancerID='$newID'");
                         while($view_userSocial=mysqli_fetch_array($query_userSocial))
                         {
@@ -500,25 +568,70 @@
 
                             <div class="col-lg-3">
                                 <a href="<?=$newSocialMediaURL?>" target="_blank">
-                                <img src="images/<?=$newMediaLogo?>" />
+                                    <img src="images/<?=$newMediaLogo?>" />
                                 </a>
                             </div>
 
-                        <?php
+                            <?php
                         }
                         ?>
-                            </div>
+                        </div>
                     </div>
                 </div>
                 <!--Social Ends-->
-
-
-
             </div>
-
         </div>
-        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            //Save Info
+            $('.btnSubmit').click(function() {
+                var myContactName = $('#txt_name').val();
+                var myContactEmail = $('#txt_email').val();
+                var myContactLoc = $('#txt_location').val();
+                var myContactNumber = $('#txt_number').val();
+                var myUserPrefrence = $("input[name='check_userpre']:checked").val();
 
-    </body>
+                if (validateEmail(myContactEmail) != '') {
+                    if (myContactNumber.length < 10) {
+                        $('#contStatus').text('Incorrect Mobile Number');
+                        $('#txt_number').val('');
+                        $('.btnSubmit').attr("disabled", false);
+                    } else {
+                        $.post("app/contactDetailEntry",
+                            $("#myForm").serialize(),
+                            function(data){
+                                if (data == 'emailError') {
+                                    $('#contStatus').text('This Email ID is already registered!');
+                                    $('#txt_email').val('');
+                                    $('.btnSubmit').attr("disabled", false);
+                                }
+                                if (data == 'regiSuccess') {
+                                    $('#txt_name').val('');
+                                    $('#txt_email').val('');
+                                    $('#txt_location').val('');
+                                    $('#txt_number').val('');
+                                    $('#contStatus').html('<br/><br/>Your contact detail has been submitted successfully!<br/>We will be contact with you soon.');
+                                }
+                            });
+                        return false;
+                    }
+                } else {
+                    $('#contStatus').text('Please Enter Valid Email ID!');
+                    $('#txt_email').val('');
+                    $('.btnSubmit').attr("disabled", false);
+                }
+
+            });
+        });
+
+        //Function Email Validation
+        function validateEmail(myEmailID) {
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            return re.test(myEmailID);
+        }
+    </script>
+</body>
 
 </html>
