@@ -45,7 +45,7 @@
         <div class="row" style="padding-top:50px; padding-bottom:50px;">
             <?php
             //Check Email Confirmation
-            $query_confirm=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE EmailID='$newEmail' AND Status='No'");
+            $query_confirm=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE EmailID='$newEmail' AND Status='New'");
             $view_confirm=mysqli_num_rows($query_confirm);
 
             if($view_confirm!=0)
