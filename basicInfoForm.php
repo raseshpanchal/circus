@@ -4,6 +4,8 @@
     include_once("config/connection.php");
     include_once('userInfo.php');
     include_once('pageInfo.php');
+
+    echo $_SESSION['whrsrtfruser'];
 ?>
 <div class="card">
     <div class="card-header text-white bg-info">

@@ -29,7 +29,7 @@
     $userFullName=$newFirstName.' '.$newLastName;
     $newProfession=$view_user['Professional'];
     $newBusinessTitle=$view_user['BusinessTitle'];
-    $newDescription=$view_user['Description'];
+    $newDescription=urldecode($view_user['Description']);
     $newAddress=$view_user['Address'];
     $newCity=$view_user['City'];
     $newState=$view_user['State'];
@@ -372,7 +372,7 @@
                 <!--Skill Ends-->
 
                 <!--Language Starts-->
-                <div class="card">
+                <div class="card" style="margin-top:30px">
                     <div class="card-header text-white bg-dark">
                         Languages
                     </div>
@@ -417,7 +417,10 @@
                             $view_social=mysqli_fetch_array($query_social);
                             $newMediaName=$view_social['MediaName'];
                             $newMediaLogo=$view_social['Logo'];
-                        ?>
+
+                            if($newSocialMediaURL!='')
+                            {
+                            ?>
 
                             <div class="col-lg-3">
                                 <a href="<?=$newSocialMediaURL?>" target="_blank">
@@ -426,6 +429,7 @@
                             </div>
 
                             <?php
+                            }
                         }
                         ?>
                         </div>
@@ -452,7 +456,7 @@
                         </p>
                         <p style="border:0px; font-size:10pt; padding:0px; margin-top:-8px">
                             <img src="images/mapLocation.png" />
-                            <?=$newCity.', '.$newState.', '.$newCountry?>
+                            <?=$newCity.', '.$newCountry?>
                         </p>
                     </div>
 

@@ -80,15 +80,25 @@
                 $newCity=$view_user['City'];
                 $newState=$view_user['State'];
                 $newCountry=$view_user['Country'];
+                //Fetch Profile Pic
+                $query_pic=mysqli_query($link, "SELECT * FROM freelancer_upload_images WHERE FreelancerID='$newFreelancerID'");
+                $view_pic=mysqli_fetch_array($query_pic);
+                $newFileName=$view_pic['FileName'];
+
+                if(!$newFileName)
+                {
+                    $newFileName='empty-profile.png';
+                }
+
                 ?>
                 <div class="col-lg-3">
-                    <div class="card" style="width:100%; height:200px; background-image:url('userPhotos/1563278377_RajeshPanchal.jpg'); background-size:cover; background-position:center center; margin-bottom:150px;">
+                    <div class="card" style="width:100%; height:200px; background-image:url('userPhotos/<?=$newFileName?>'); background-size:cover; background-position:center center; margin-bottom:150px;">
 
                       <div class="card-body" style="margin-top:200px; background-color:#FFF">
                         <h5 class="card-title"><?=$newFirstName.' '.$newLastName?></h5>
                         <p class="card-text"><?=$newProfession?></p>
                         <p style="font-size:9pt; border-top:dotted 1px #898989; padding-top:7px">
-                            <img src="images/mapLocation.png"/> <?=$newCity.' / '.$newState.' / '.$newCountry?>
+                            <img src="images/mapLocation.png"/> <?=$newCity.' / '.$newCountry?>
                         </p>
                         <a href="#" class="btn btn-default btn-sm btnProfile" style="float:right" mainID="<?=myEncode($newMainCatID)?>" catID="<?=myEncode($newCatID)?>" skillID="<?=myEncode($newSkillID)?>" myID="<?=myEncode($newFreelancerID)?>">See Profile</a>
                       </div>
