@@ -131,6 +131,25 @@ h3{
     color: #0F0F0F;
 }
 
+.breadcrum{
+    border-bottom: dotted 1px #333;
+    height: 50px;
+    padding-top: 15px;
+    margin-top: 60px;
+}
+
+.breadcrum a{
+    color: #000;
+}
+
+.starChecked {
+  color: yellow;
+}
+
+#starRating *{
+    border: solid 1px red;
+}
+
 .footer_01{
     background-color: #424242;
 }

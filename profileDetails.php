@@ -4,6 +4,22 @@
     include_once("config/connection.php");
     include_once('userInfo.php');
     include_once('pageInfo.php');
+
+    $newMainCatID=myDecode($_GET['MID']);
+    $query_mainCat=mysqli_query($link, "SELECT * FROM main_categories WHERE ID='$newMainCatID'");
+    $view_mainCat=mysqli_fetch_array($query_mainCat);
+    $newMainCategory=$view_mainCat['MainCat'];
+
+    $newCatID=myDecode($_GET['CID']);
+    $query_cat=mysqli_query($link, "SELECT * FROM categories WHERE ID='$newCatID'");
+    $view_cat=mysqli_fetch_array($query_cat);
+    $newCategory=$view_cat['Category'];
+
+    $newSkillID=myDecode($_GET['SID']);
+    $query_subCat=mysqli_query($link, "SELECT * FROM subcategories WHERE ID='$newSkillID'");
+    $view_subCat=mysqli_fetch_array($query_subCat);
+    $newSubCategory=$view_subCat['SubCategory'];
+
     //Fetch Profile Details
     $newID=myDecode($_GET['ID']);
     $query_user=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE ID='$newID'");
@@ -37,6 +53,7 @@
     <meta name="keywords" content="<?=$newPageKeywords?>">
 
     <?php include_once('scripts/headTags.php') ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body{
     margin-top:20px;
@@ -259,229 +276,73 @@
         ?>
     <!--Top Menu Ends-->
 
-    <div class="container" style="margin-top:50px">
-
-        <div class="row" style="padding-top:50px; padding-bottom:50px;">
-            <div class="col-lg-9 col-md-9">
-                <div class="card" style="margin-bottom:30px">
-                    <div class="card-header text-white bg-dark">
-                        Basic Information
-                    </div>
-                    <div class="card-body">
-                        <div class="profile__avatar">
-                            <img src="userPhotos/<?=$newProfilePic?>" alt="...">
-                        </div>
-
-                        <h5 class="card-title">
-                            <?=$userFullName?>&nbsp;<small><i>(
-                                    <?=$newProfession?> )</i></small></h5>
-                        <p class="card-text" style="border:0px; border-bottom:dotted 1px #CCC">
-                            <?=$newBusinessTitle?>
-                        </p>
-                        <p style="border:0px; font-size:10pt; padding:0px; margin-top:-8px">
-                            <img src="images/mapLocation.png" />
-                            <?=$newCity.', '.$newState.', '.$newCountry?>
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="card" style="margin-bottom:30px">
-                    <div class="card-header text-white bg-dark">
-                        Profile
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text" style="border:0px">
-                            <?=$newDescription?>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-bottom:30px">
-                    <div class="card-header text-white bg-dark">
-                        Services
-                    </div>
-                    <div class="card-body">
-                        <?php
-                            $query_service=mysqli_query($link, "SELECT * FROM freelancer_services WHERE FreelancerID='$newID'");
-                            while($view_service=mysqli_fetch_array($query_service))
-                            {
-                                $serviceID=$view_service['ID'];
-                                $serviceTitle=$view_service['Title'];
-                                $serviceCurrency=$view_service['Currency'];
-                                $servicePrice=$view_service['Price'];
-                                $serviceDescription=urldecode($view_service['Description']);
-                            ?>
-                        <div class="row" style="border-bottom:dotted 1px #333; margin-bottom:10px; padding-bottom:10px">
-                            <div class="col-lg-10">
-                                <b>
-                                    <?=$serviceTitle?></b>
-                            </div>
-                            <div class="col-lg-2" style="text-align:right">
-                                <?=$serviceCurrency.' '.$servicePrice?>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-bottom:30px; padding-bottom:10px; border-bottom:solid 1px #CCC">
-                            <div class="col-lg-12">
-                                <?=$serviceDescription?>
-                            </div>
-                        </div>
-                        <?php
-                            }
-                            ?>
-
-                    </div>
-                </div>
-
-
-                <!--Review Starts-->
-                <div class="card" style="margin-bottom:30px">
-                    <div class="card-header text-white bg-dark">
-                        Reviews
-                    </div>
-                    <div class="card-body">
-                        <button id="OpenDialog" name="btnreview">Write a Review</button>
-                        <div class="profile__comments">
-                            <div class="profile-comments__item">
-                                <div class="profile-comments__controls">
-                                    <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                    <a href="#"><i class="fa fa-edit"></i></a>
-                                    <a href="#"><i class="fa fa-trash-o"></i></a>
-                                </div>
-                                <div class="profile-comments__avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="...">
-                                </div>
-                                <div class="profile-comments__body">
-                                    <h5 class="profile-comments__sender">
-                                        Leena D'sa <small>2 hours ago</small>
-                                    </h5>
-                                    <div class="profile-comments__content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="profile-comments__item">
-                                <div class="profile-comments__controls">
-                                    <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                    <a href="#"><i class="fa fa-edit"></i></a>
-                                    <a href="#"><i class="fa fa-trash-o"></i></a>
-                                </div>
-                                <div class="profile-comments__avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="...">
-                                </div>
-                                <div class="profile-comments__body">
-                                    <h5 class="profile-comments__sender">
-                                        Ashish Yadav <small>5 hours ago</small>
-                                    </h5>
-                                    <div class="profile-comments__content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="profile-comments__item">
-                                <div class="profile-comments__controls">
-                                    <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                    <a href="#"><i class="fa fa-edit"></i></a>
-                                    <a href="#"><i class="fa fa-trash-o"></i></a>
-                                </div>
-                                <div class="profile-comments__avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
-                                </div>
-                                <div class="profile-comments__body">
-                                    <h5 class="profile-comments__sender">
-                                        Deepak Nishad <small>1 day ago</small>
-                                    </h5>
-                                    <div class="profile-comments__content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!--Review Ends-->
-
-                <!--ConctactMe Start-->
-
-                <div class="card" style="margin-bottom:30px">
-                    <div class="card-header text-white bg-dark">
-                        Contact Me
-                    </div>
-                    <div class="card-body">
-                        <form name="myForm" id="myForm" method="POST">
-                            <div class="row" style="padding:5px">
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control form-require" id="txt_name" name="txt_name" placeholder="Full Name*" required />
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="email" class="form-control form-require" id="txt_email" name="txt_email" placeholder="Email ID*" required />
-                                </div>
-                            </div>
-                            <div class="row" style="padding:5px">
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control form-require" id="txt_location" name="txt_location" placeholder="Enter City Name*" required />
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control form-require" id="txt_number" name="txt_number" placeholder="Mobile Number*" required />
-                                </div>
-                            </div>
-
-                            <div class="row" style="padding:5px;">
-                                <div class="col-lg-4">
-                                    <input type="text" class="form-control form-require" id="txt_contPrefrence" name="txt_contPrefrence" placeholder="Contact Preference*" Disabled required />
-                                </div>
-                                <div class="col-lg-8">
-                                    <label>
-                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" value="PhoneCall" checked="checked"> Phone Call&nbsp;&nbsp;&nbsp;
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" value="SMS/Whatsapp"> SMS/Whatsapp&nbsp;&nbsp;&nbsp;
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" check="check_userpre" value="Email"> Email
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <button class="btn btnWhereSert btnSubmit" id="btnSubmit">Submit!</button>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <span id="contStatus"></span>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-                <!--ConctactMe End-->
-
+    <!--Breadcrum Starts-->
+    <div class="container breadcrum" style="margin-top:60px">
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="./">
+                <?=$newMainCategory?>
+                </a>
+                &nbsp;&nbsp;/&nbsp;&nbsp;
+                <a href="category?MID=<?=myEncode($newMainCatID)?>&CID=<?=myEncode($newCatID)?>">
+                <?=$newCategory?>
+                </a>
+                &nbsp;&nbsp;/&nbsp;&nbsp;
+                <a href="profileList?MID=<?=myEncode($newMainCatID)?>&CID=<?=myEncode($newCatID)?>&SID=<?=myEncode($newSkillID)?>">
+                <?=$newSubCategory?>
+                </a>
+                &nbsp;&nbsp;/&nbsp;&nbsp;
+                <?=$newFirstName.' '.$newFirstName?>
             </div>
+        </div>
+    </div>
+    <!--Breadcrum Ends-->
+
+    <div class="container">
+
+        <div class="row" style="padding-top:30px; padding-bottom:50px;">
+
             <div class="col-lg-3 col-md-3">
+
+                <!--Rating Starts-->
+                <div class="card">
+                    <div class="card-header text-white bg-dark">
+                        User Rating&nbsp;&nbsp;&nbsp;
+
+                        <span class="fa fa-star starChecked"></span>
+                        <span class="fa fa-star starChecked"></span>
+                        <span class="fa fa-star starChecked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+
+                    </div>
+                </div>
+                <!--Rating Ends-->
 
                 <!--Sample-->
                 <div class="card mb-4">
-                    <div class="social-card-header align-middle text-center bg-facebook">
-                        <i class="fab fa-facebook-square"></i>
-                    </div>
                     <div class="card-body text-center">
                         <div class="row">
                             <div class="col border-right">
-                                <i class="far fa-thumbs-up text-facebook"></i>
                                 <span class="text-muted">Like</span>
-                                <div class="font-weight-bold">12K</div>
+                                <div class="font-weight-bold">0</div>
                             </div>
                             <div class="col">
-                                <i class="fas fa-share-alt text-facebook"></i>
                                 <span class="text-muted">Share</span>
-                                <div class="font-weight-bold">10K</div>
+                                <div class="font-weight-bold">0</div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px">
+                            <div class="col border-right">
+                                <span class="text-muted"><small>Click to Like</small></span>
+                            </div>
+                            <div class="col">
+                                <span class="text-muted"><small>Click to Share</small></span>
                             </div>
                         </div>
                     </div>
-                    <!--Sample-->
                 </div>
+                <!--Sample-->
 
                 <!--Skill Starts-->
                 <div class="card" style="margin-top:30px">
@@ -572,23 +433,184 @@
                 </div>
                 <!--Social Ends-->
             </div>
+
+            <div class="col-lg-9 col-md-9">
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
+                        Basic Information
+                    </div>
+                    <div class="card-body">
+                        <div class="profile__avatar">
+                            <img src="userPhotos/<?=$newProfilePic?>" alt="...">
+                        </div>
+
+                        <h5 class="card-title">
+                            <?=$userFullName?>&nbsp;<small><i>(
+                                    <?=$newProfession?> )</i></small></h5>
+                        <p class="card-text" style="border:0px; border-bottom:dotted 1px #CCC">
+                            <?=$newBusinessTitle?>
+                        </p>
+                        <p style="border:0px; font-size:10pt; padding:0px; margin-top:-8px">
+                            <img src="images/mapLocation.png" />
+                            <?=$newCity.', '.$newState.', '.$newCountry?>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
+                        Profile
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text" style="border:0px">
+                            <?=$newDescription?>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
+                        Services
+                    </div>
+                    <div class="card-body">
+                        <?php
+                            $query_service=mysqli_query($link, "SELECT * FROM freelancer_services WHERE FreelancerID='$newID'");
+                            while($view_service=mysqli_fetch_array($query_service))
+                            {
+                                $serviceID=$view_service['ID'];
+                                $serviceTitle=$view_service['Title'];
+                                $serviceCurrency=$view_service['Currency'];
+                                $servicePrice=$view_service['Price'];
+                                $serviceDescription=urldecode($view_service['Description']);
+                            ?>
+                        <div class="row" style="border-bottom:dotted 1px #333; margin-bottom:10px; padding-bottom:10px">
+                            <div class="col-lg-10">
+                                <b>
+                                    <?=$serviceTitle?></b>
+                            </div>
+                            <div class="col-lg-2" style="text-align:right">
+                                <?=$serviceCurrency.' '.$servicePrice?>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:30px; padding-bottom:10px; border-bottom:solid 1px #CCC">
+                            <div class="col-lg-12">
+                                <?=$serviceDescription?>
+                            </div>
+                        </div>
+                        <?php
+                            }
+                            ?>
+
+                    </div>
+                </div>
+
+
+                <!--Review Starts-->
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
+                        <span style="margin-top:5px;">
+                        Reviews
+                        </span>
+                        <span style="float:right">
+                            <button class="btn btn-sm btn-info btnReview">Write Review</button>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="reviewHolder">
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--Review Ends-->
+
+                <!--ConctactMe Start-->
+
+                <div class="card" style="margin-bottom:30px">
+                    <div class="card-header text-white bg-dark">
+                        Contact Me
+                    </div>
+                    <div class="card-body">
+                        <form name="myForm" id="myForm" method="POST">
+
+                            <div class="row" style="padding:5px">
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control form-require" id="txt_name" name="txt_name" placeholder="Full Name*" required />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control form-require" id="txt_location" name="txt_location" placeholder="Enter City Name*" required />
+                                </div>
+
+                            </div>
+
+                            <div class="row" style="padding:5px">
+                                <div class="col-lg-6">
+                                    <input type="email" class="form-control form-require" id="txt_email" name="txt_email" placeholder="Email ID*" required />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control form-require" id="txt_number" name="txt_number" placeholder="Mobile Number*" required />
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding:5px">
+                                <div class="col-lg-12">
+                                    <textarea class="form-control" id="txt_comment" name="txt_comment" placeholder="Short note..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding:5px;">
+                                <div class="col-lg-8">
+                                    Do you want me to&nbsp;&nbsp;&nbsp;
+                                    <label>
+                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" value="PhoneCall" checked="checked"> Call on Mobile&nbsp;&nbsp;&nbsp;
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" value="SMS/Whatsapp"> SMS/Whatsapp&nbsp;&nbsp;&nbsp;
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="check_userpre" name="check_userpre[]" check="check_userpre" value="Email"> Send an Email
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-4" style="text-align:right">
+                                     <button class="btn btn-sm btn-info" id="btnSend" name="btnSend">Send Inquiry</button>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <span id="contStatus"></span>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <!--ConctactMe End-->
+
+            </div>
+
         </div>
     </div>
     <script src="js/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             //Save Info
-            $('.btnSubmit').click(function() {
+            $('#btnSend').click(function() {
                 var myContactName = $('#txt_name').val();
                 var myContactEmail = $('#txt_email').val();
                 var myContactLoc = $('#txt_location').val();
                 var myContactNumber = $('#txt_number').val();
+                $('#btnSend').attr("disabled", true);
                 var myUserPrefrence = $("input[name='check_userpre']:checked").val();
                 if (validateEmail(myContactEmail) != '') {
                     if (myContactNumber.length < 10) {
                         $('#contStatus').text('Incorrect Mobile Number');
                         $('#txt_number').val('');
-                        $('.btnSubmit').attr("disabled", false);
+                        $('#btnSend').attr("disabled", false);
                     } else {
                         $.post("app/contactDetailEntry",
                             $("#myForm").serialize(),
@@ -596,7 +618,7 @@
                                 if (data == 'emailError') {
                                     $('#contStatus').text('This Email ID is already registered!');
                                     $('#txt_email').val('');
-                                    $('.btnSubmit').attr("disabled", false);
+                                    $('#btnSend').attr("disabled", false);
                                 }
                                 if (data == 'regiSuccess') {
                                     $('#txt_name').val('');
@@ -614,6 +636,21 @@
                     $('.btnSubmit').attr("disabled", false);
                 }
             });
+
+            //Load Reviews
+            $('.reviewHolder').load('reviewShow?ID=<?=$newID?>');
+
+            //Show Write Review
+            $('.btnReview').click(function(){
+                $('.reviewHolder').load('reviewWriteForm?ID=<?=$newID?>');
+                $('.btnReview').attr("disabled", true);
+                return false;
+            });
+
+
+
+
+
         });
         //Function Email Validation
         function validateEmail(myEmailID) {

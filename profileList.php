@@ -5,8 +5,18 @@
     include_once('userInfo.php');
     include_once('pageInfo.php');
 
-    $newSubCatID=myDecode($_GET['ID']);
-    $query_subCat=mysqli_query($link, "SELECT * FROM subcategories WHERE ID='$newSubCatID'");
+    $newMainCatID=myDecode($_GET['MID']);
+    $query_mainCat=mysqli_query($link, "SELECT * FROM main_categories WHERE ID='$newMainCatID'");
+    $view_mainCat=mysqli_fetch_array($query_mainCat);
+    $newMainCategory=$view_mainCat['MainCat'];
+
+    $newCatID=myDecode($_GET['CID']);
+    $query_cat=mysqli_query($link, "SELECT * FROM categories WHERE ID='$newCatID'");
+    $view_cat=mysqli_fetch_array($query_cat);
+    $newCategory=$view_cat['Category'];
+
+    $newSkillID=myDecode($_GET['SID']);
+    $query_subCat=mysqli_query($link, "SELECT * FROM subcategories WHERE ID='$newSkillID'");
     $view_subCat=mysqli_fetch_array($query_subCat);
     $newSubCategory=$view_subCat['SubCategory'];
 ?>
@@ -32,15 +42,32 @@
     ?>
     <!--Top Menu Ends-->
 
-
+    <!--
     <div class="container-fluid innerSlide">
         <h1 style="margin-left:-50px"><?=$newSubCategory?></h1>
     </div>
+    -->
+
+    <div class="container breadcrum">
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="./">
+                <?=$newMainCategory?>
+                </a>
+                &nbsp;&nbsp;/&nbsp;&nbsp;
+                <a href="category?MID=<?=myEncode($newMainCatID)?>&CID=<?=myEncode($newCatID)?>">
+                <?=$newCategory?>
+                </a>
+                &nbsp;&nbsp;/&nbsp;&nbsp;
+                <?=$newSubCategory?>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
-        <div class="row" style="padding-top:50px; padding-bottom:50px; margin-bottom:50px">
+        <div class="row" style="padding-top:20px; padding-bottom:50px; margin-bottom:50px">
             <?php
-            $query_skills = mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillID='$newSubCatID'");
+            $query_skills = mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillID='$newSkillID'");
             while($view_skills=mysqli_fetch_array($query_skills))
             {
                 $newFreelancerID=$view_skills['FreelancerID'];
@@ -63,7 +90,7 @@
                         <p style="font-size:9pt; border-top:dotted 1px #898989; padding-top:7px">
                             <img src="images/mapLocation.png"/> <?=$newCity.' / '.$newState.' / '.$newCountry?>
                         </p>
-                        <a href="#" class="btn btn-default btn-sm btnProfile" style="float:right" myID="<?=myEncode($newFreelancerID)?>">See Profile</a>
+                        <a href="#" class="btn btn-default btn-sm btnProfile" style="float:right" mainID="<?=myEncode($newMainCatID)?>" catID="<?=myEncode($newCatID)?>" skillID="<?=myEncode($newSkillID)?>" myID="<?=myEncode($newFreelancerID)?>">See Profile</a>
                       </div>
                     </div>
                 </div>
@@ -99,8 +126,11 @@
         $(document).ready(function(){
 
             $('.btnProfile').click(function(){
+                var mainID=$(this).attr('mainID');
+                var catID=$(this).attr('catID');
+                var skillID=$(this).attr('skillID');
                 var myID=$(this).attr('myID');
-                 window.location.href="profileDetails?ID="+myID;
+                window.location.href="profileDetails?MID="+mainID+"&CID="+catID+"&SID="+skillID+"&ID="+myID;
             });
 
         });

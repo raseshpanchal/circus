@@ -26,33 +26,36 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="wheresert-blog">Blog</a>
                 </li>
+                <!--
                 <li>
                     <div style="margin-bottom:30px">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
                 </li>
                 <li>
                     <div id="google_translate_element"></div>
                 </li>
-
+                -->
                 <?php
             }
             else
             {
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="wheresert-blog">Blog</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="wheresert-sign-up">Sign Up</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="wheresert-sign-in">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="wheresert-blog">Blog</a>
+                </li>
+                <!--
                 <li>
                     <div style="margin-bottom:30px">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
                 </li>
                 <li>
                     <div id="google_translate_element"></div>
                 </li>
+                -->
                 <?php
             }
             ?>

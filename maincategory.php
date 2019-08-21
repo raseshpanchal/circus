@@ -27,9 +27,19 @@
     ?>
     <!--Top Menu Ends-->
 
-
+    <!--
     <div class="container-fluid innerSlide">
         <h1 style="margin-left:-50px"><?=$newMainCategory?></h1>
+    </div>
+    -->
+    <div class="container breadcrum">
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="./">
+                <?=$newMainCategory?>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -41,7 +51,7 @@
                 $newCatID=$view_cat['ID'];
                 $newCategory=$view_cat['Category'];
                 ?>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" catID="<?=myEncode($newCatID)?>">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" mainID="<?=myEncode($newMainCatID)?>" catID="<?=myEncode($newCatID)?>">
                     <div class="row">
                         <div class="col-lg-12">
                             <?=$newCategory?>
@@ -79,8 +89,9 @@
         $(document).ready(function(){
 
             $('.mainCategory').click(function(){
+                var mainName=$(this).attr('mainID');
                 var catName=$(this).attr('catID');
-                window.location.href="category?ID="+catName;
+                window.location.href="category?MID="+mainName+"&CID="+catName;
             });
 
         });

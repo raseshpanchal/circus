@@ -5,10 +5,15 @@
     include_once('userInfo.php');
     include_once('pageInfo.php');
 
-    $newCatID=myDecode($_GET['ID']);
-    $query_mainCat=mysqli_query($link, "SELECT * FROM categories WHERE ID='$newCatID'");
+    $newMainCatID=myDecode($_GET['MID']);
+    $query_mainCat=mysqli_query($link, "SELECT * FROM main_categories WHERE ID='$newMainCatID'");
     $view_mainCat=mysqli_fetch_array($query_mainCat);
-    $newCategory=$view_mainCat['Category'];
+    $newMainCategory=$view_mainCat['MainCat'];
+
+    $newCatID=myDecode($_GET['CID']);
+    $query_cat=mysqli_query($link, "SELECT * FROM categories WHERE ID='$newCatID'");
+    $view_cat=mysqli_fetch_array($query_cat);
+    $newCategory=$view_cat['Category'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,9 +32,24 @@
     ?>
     <!--Top Menu Ends-->
 
-
+    <!--
     <div class="container-fluid innerSlide">
         <h1 style="margin-left:-50px"><?=$newCategory?></h1>
+    </div>
+    -->
+
+    <div class="container breadcrum">
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="./">
+                <?=$newMainCategory?>
+                </a>
+                &nbsp;&nbsp;/&nbsp;&nbsp;
+                <a href="maincategory?ID=<?=myEncode($newMainCatID)?>">
+                <?=$newCategory?>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -44,7 +64,7 @@
                 $query_skills=mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillID='$newSubCatID'");
                 $view_skills=mysqli_num_rows($query_skills);
                 ?>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" skillID="<?=myEncode($newSubCatID)?>">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" mainCat="<?=myEncode($newMainCatID)?>" subCat="<?=myEncode($newCatID)?>" skillID="<?=myEncode($newSubCatID)?>">
                     <div class="row">
                         <div class="col-lg-12">
                             <?=$newSubCategory?>
@@ -85,8 +105,10 @@
         $(document).ready(function(){
 
             $('.mainCategory').click(function(){
-                var myID=$(this).attr('SkillID');
-                window.location.href="profileList?ID="+myID;
+                var mainCat=$(this).attr('mainCat');
+                var subCat=$(this).attr('subCat');
+                var skillID=$(this).attr('skillID');
+                window.location.href="profileList?MID="+mainCat+"&CID="+subCat+"&SID="+skillID;
             });
 
         });
