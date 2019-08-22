@@ -64,7 +64,7 @@
                 $query_skills=mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillID='$newSubCatID'");
                 $view_skills=mysqli_num_rows($query_skills);
                 ?>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" mainCat="<?=myEncode($newMainCatID)?>" subCat="<?=myEncode($newCatID)?>" skillID="<?=myEncode($newSubCatID)?>">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" mainCat="<?=myEncode($newMainCatID)?>" subCat="<?=myEncode($newCatID)?>" skillID="<?=myEncode($newSubCatID)?>" style="padding-top:65px">
                     <div class="row">
                         <div class="col-lg-12">
                             <?=$newSubCategory?>
