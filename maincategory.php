@@ -50,10 +50,13 @@
             {
                 $newCatID=$view_cat['ID'];
                 $newCategory=$view_cat['Category'];
+                $newIcons=$view_cat['Icons'];
                 ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mainCategory" mainID="<?=myEncode($newMainCatID)?>" catID="<?=myEncode($newCatID)?>">
                     <div class="row">
                         <div class="col-lg-12">
+                            <img src="icons/<?=$newIcons?>" class="catIcon" style="width:20%; margin-bottom:10px" />
+                            <br/>
                             <?=$newCategory?>
                         </div>
                     </div>
