@@ -36,11 +36,4 @@ function validRecruiter()
 		myform.txt_dob.focus();
 		return;
 	}
-    
-    if(myform.txt_dec.value == "" || myform.txt_dec.value == " ")
-	{
-		alert("Please Enter Description");
-		myform.txt_dec.focus();
-		return;
-	}
 }

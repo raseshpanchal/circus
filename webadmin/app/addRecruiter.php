@@ -13,6 +13,8 @@ include_once("../../config/connection.php");
     display:none;
 }
 </style>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="app/js/validRecruiter.js"></script>
 <script src="app/js/onlyAlpha.js"></script>
 <script src="app/js/onlyNum.js"></script>
@@ -29,11 +31,10 @@ $(document).ready(function(){
         var myEmail = $("#txt_email").val();
         var myMobile = $("#txt_mobile").val();
         var myDob = $("#txt_dob").val();
-        var myDescription = $("#txt_dec").val();
         var myGender = $("input[name='radio_gender']:checked").val();
         var myStatus = $("input[name='radio_status']:checked").val();
         
-         if(myStatus=='New')
+         if(myStatus=='Valid')
         {
             var myShow = '<img src="images/bullet_gray.png" border="0" />';
         }
@@ -57,7 +58,6 @@ $(document).ready(function(){
             html += '<td align="center">'+myLastName+'</td>';
             html += '<td align="center">'+myEmail+'</td>';
             html += '<td align="center">'+myMobile+'</td>';
-            html += '<td align="center">'+myDescription+'</td>';
             html += '<td align="center">'+myShow+'</td>';
             html += '<td align="center"><img src="images/edit.gif" width="16" height="16" /></td>';
             html += '<td align="center"><img src="images/delete.gif" width="16" height="16" /></td>';
@@ -68,7 +68,6 @@ $(document).ready(function(){
             $(".success_alert").delay(1500).fadeOut(300);
             $('#txt_name').val('');
             $('#txt_dob').val('');
-            $('#txt_dec').val('');
             $('#txt_mobile').val('');
             $('#txt_email').val('');
             $('#btnSave').attr("disabled", false);
@@ -124,16 +123,10 @@ $(document).ready(function(){
 
 <div class="row" style="padding:15px">
     <div class="col-xs-12">
-        <input type="date" class="form-control form-require" id="txt_dob" name="txt_dob" placeholder="Date of Birth*" required />
+        <input type="text" class="form-control form-require" id="txt_dob" name="txt_dob" placeholder="Date of Birth*" required />
     </div>
-</div>  
+</div> 
 
-<div class="row" style="padding:15px">
-    <div class="col-xs-12">
-        <textarea class="form-control form-require" id="txt_dec" name="txt_dec" placeholder="Description*" required></textarea>
-    </div>
-</div>
-   
 <div class="row" style="padding:15px;">
     <div class="col-xs-4">
         <input type="text" class="form-control form-require" id="txt_gender" name="txt_gender"  placeholder="Gender*" Disabled required />
@@ -152,7 +145,7 @@ $(document).ready(function(){
     <div class="col-xs-8">
      
         <label>
-            <input type="radio" id="radio_status" name="radio_status" value="New" checked="checked"> New&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="radio_status" name="radio_status" value="Valid" checked="checked"> Valid&nbsp;&nbsp;&nbsp;
         </label>
         <label>
             <input type="radio" id="radio_status" name="radio_status" value="Active"> Active&nbsp;&nbsp;&nbsp;

@@ -11,7 +11,6 @@ $newEmailID=$view_1['EmailID'];
 $newMobile=$view_1['Mobile'];
 $newDOB=$view_1['DOB'];
 $newGender=$view_1['Gender'];
-$newDescription=$view_1['Description'];
 $newStatus=$view_1['Status'];
 ?>
 <style>
@@ -87,14 +86,9 @@ $(document).ready(function(){
     </div>
 </div>  
 <div class="row" style="padding:15px">
-    <div class="col-xs-12">
-        <textarea class="form-control form-require" id="txt_dec" name="txt_dec" placeholder="Description*" readonly="readonly" ><?php echo $newDescription ?></textarea>
-    </div>
-</div>
-<div class="row" style="padding:15px">
     <div class="col-xs-8">
         <label>
-            <input type="radio" id="radio_status" name="radio_status" value="New" <?php if($newStatus=='New') echo 'checked="checked"' ?> disabled="disabled" > New&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="radio_status" name="radio_status" value="New" <?php if($newStatus=='Validalid') echo 'checked="checked"' ?> disabled="disabled" > Valid&nbsp;&nbsp;&nbsp;
         </label>
         <label>
             <input type="radio" id="radio_status" name="radio_status" value="Active" <?php if($newStatus=='Active') echo 'checked="checked"' ?> disabled="disabled" > Active&nbsp;&nbsp;&nbsp;

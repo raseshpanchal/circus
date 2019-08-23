@@ -11,7 +11,6 @@ $newEmailID=$view_1['EmailID'];
 $newMobile=$view_1['Mobile'];
 $newDOB=$view_1['DOB'];
 $newGender=$view_1['Gender'];
-$newDescription=$view_1['Description'];
 $newStatus=$view_1['Status'];
 ?>
 <style>
@@ -39,10 +38,9 @@ $(document).ready(function(){
         var myEmail = $("#txt_email").val();
         var myMobile = $("#txt_mobile").val();
         var myDob = $("#txt_dob").val();
-        var myDescription = $("#txt_dec").val();
         var myGender = $("input[name='radio_gender']:checked").val();
         var myStatus = $("input[name='radio_status']:checked").val();
-         if(myStatus=='New')
+         if(myStatus=='Valid')
         {
             var myShow = '<img src="images/bullet_gray.png" border="0" />';
         }
@@ -65,9 +63,7 @@ $(document).ready(function(){
             $("#3_<?php echo $newID ?>").html(myLastName);
             $("#4_<?php echo $newID ?>").html(myEmail);
             $("#5_<?php echo $newID ?>").html(myMobile);
-            $("#6_<?php echo $newID ?>").html(myDescription);
-            $("#7_<?php echo $newID ?>").html(myGender);
-            $("#8_<?php echo $newID ?>").html(myShow);
+            $("#6_<?php echo $newID ?>").html(myShow);
             
             //Additional Actions
             $('.success_alert').fadeIn(300);
@@ -116,12 +112,7 @@ $(document).ready(function(){
     <div class="col-xs-12">
         <input type="date" class="form-control form-require" id="txt_dob" name="txt_dob" placeholder="Date of Birth*" value="<?php echo $newDOB ?>" />
     </div>
-</div>  
-<div class="row" style="padding:15px">
-    <div class="col-xs-12">
-        <textarea class="form-control form-require" id="txt_dec" name="txt_dec" placeholder="Description*" ><?php echo $newDescription ?></textarea>
-    </div>
-</div>
+</div> 
 
 <div class="row" style="padding:15px;">
     <div class="col-xs-4">
@@ -140,7 +131,7 @@ $(document).ready(function(){
 <div class="row" style="padding:15px">
     <div class="col-xs-8">
         <label>
-            <input type="radio" id="radio_status" name="radio_status" value="New" <?php if($newStatus=='New') echo 'checked="checked"' ?>> New&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="radio_status" name="radio_status" value="Valid" <?php if($newStatus=='Valid') echo 'checked="checked"' ?>> Valid&nbsp;&nbsp;&nbsp;
         </label>
         <label>
             <input type="radio" id="radio_status" name="radio_status" value="Active" <?php if($newStatus=='Active') echo 'checked="checked"' ?>> Active&nbsp;&nbsp;&nbsp;
