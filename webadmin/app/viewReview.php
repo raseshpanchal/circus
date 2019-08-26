@@ -104,7 +104,7 @@ $(document).ready(function(){
 <div class="row" style="padding:15px; border:dotted 1px #666; width:530px; margin-left:20px; background-color:#FFF; margin-bottom:20px;">
 	<div class="col-xs-12">
     <p>USER DETAILS:</p>
-    <p><strong><?php echo ''.$newFirstName.','.$newFirstName; ?></strong><br/>
+    <p><strong><?php echo ''.$newFirstName.' '.$newLastName; ?></strong><br/>
     <?php echo 'Location : '.$newAddress.', '.$newCity.', '.$newState; ?></p>
     </div>
 </div>
