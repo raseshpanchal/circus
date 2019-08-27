@@ -11,7 +11,7 @@ $newReview=urldecode($view_1['Review']);
 $newRating=$view_1['Rating'];
 $newReviewDate=$view_1['ReviewDate'];
 
-//Fetch Product Name
+//Fetch Freelancer Details
 $query_2=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE ID='$newUserID'");
 $view_2=mysqli_fetch_array($query_2);
 $newFirstName=$view_2['FirstName'];
@@ -21,6 +21,7 @@ $newProfessional=$view_2['Professional'];
 $newAddress=$view_2['Address'];
 $newCity=$view_2['City'];
 $newState=$view_2['State'];
+$newCountry=$view_2['Country'];
 
 
 ?>
@@ -105,7 +106,7 @@ $(document).ready(function(){
 	<div class="col-xs-12">
     <p>USER DETAILS:</p>
     <p><strong><?php echo ''.$newFirstName.' '.$newLastName; ?></strong><br/>
-    <?php echo 'Location : '.$newAddress.', '.$newCity.', '.$newState; ?></p>
+    <?php echo 'Location : '.$newAddress.', '.$newCity.', '.$newCountry; ?></p>
     </div>
 </div>
 
@@ -114,6 +115,4 @@ $(document).ready(function(){
         <button type="button" class="btn btn-primary" style="padding:6px; width:100px;" id="btnCancel">Close</button>
     </div>
 </div>
-
-
 </div>

@@ -39,6 +39,7 @@
     $query_pic=mysqli_query($link, "SELECT * FROM freelancer_upload_images WHERE FreelancerID='$newID'");
     $view_pic=mysqli_fetch_array($query_pic);
     $newProfilePic=$view_pic['FileName'];
+
 ?>
 
 <!DOCTYPE html>
@@ -522,9 +523,6 @@
                     </div>
                     <div class="card-body">
                         <div class="reviewHolder">
-
-
-
                         </div>
                     </div>
                 </div>
@@ -538,7 +536,7 @@
                     </div>
                     <div class="card-body">
                         <form name="myForm" id="myForm" method="POST">
-
+                            <input type="hidden" class="form-control" id="txt_user" name="txt_user" value="<?=$newID?>">
                             <div class="row" style="padding:5px">
                                 <div class="col-lg-6">
                                     <input type="text" class="form-control form-require" id="txt_name" name="txt_name" placeholder="Full Name*" required />

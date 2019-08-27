@@ -31,7 +31,8 @@ $newUID=$view_1['ID'];
                 <th width="250" style="text-align:left">Email</th>
                 <th width="150" style="text-align:left">City</th>
                 <th width="200" style="text-align:left">Contact Prefrence</th>
-                <th width="100" style="text-align:left">Post Date</th>
+                <th width="100" style="text-align:center">Post Date</th>
+                <th width="40" style="text-align:center">View</th>
 <!--                <th width="40" style="text-align:center">Edit</th>-->
 <!--                <th width="40" style="text-align:center">Del</th>-->
             </tr>
@@ -57,8 +58,9 @@ $newUID=$view_1['ID'];
                 <td id="3_<?php echo $newID ?>" width="150" align="left"><?php echo $newNumber; ?></td>
                 <td id="4_<?php echo $newID ?>" width="250" align="left"><?php echo $newEmail; ?></td>
                 <td id="5_<?php echo $newID ?>" width="150" align="left"><?php echo $newCity; ?></td>
-                <td id="5_<?php echo $newID ?>" width="200" align="left"><?php echo $newContactPrefrence; ?></td>
-                <td id="6_<?php echo $newID ?>" width="100" align="center"><?php echo $newPostDate; ?></td>
+                <td id="6_<?php echo $newID ?>" width="200" align="left"><?php echo $newContactPrefrence; ?></td>
+                <td id="7_<?php echo $newID ?>" width="100" align="center"><?php echo $newPostDate; ?></td>
+                <td width="40" align="center"><a href="app/viewServiceRequest?ID=<?php echo $newID; ?>" class="btnView"><img src="images/doc.png" border="0" /></a></td>
                 
                 
 <!--                <td width="40" align="center"><a href="app/editFreelancer?ID=<?php echo $newID; ?>" class="btnEdit"><img src="images/edit.gif" border="0" /></a></td>-->
@@ -86,6 +88,14 @@ $(document).ready(function(){
 		addForm('app/addFreelancer');
 	});
 	
+    //Function for View
+	$('.btnView').click(function(){
+		addForm($(this).attr("href"));
+		$('html, body').animate({scrollTop : 0},800);
+		return false;
+	});
+	
+    
 	//This is Edit function
 	$('.btnEdit').click(function(){
 		addForm($(this).attr("href"));

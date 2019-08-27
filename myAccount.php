@@ -335,76 +335,16 @@
                     </div>
 
                     <div class="col-lg-12 col-md-12" style="margin-top:40px">
-
                         <div class="card">
                             <div class="card-header text-white bg-dark">
                             Reviews
                             </div>
-                            <div class="card-body">
-
-                                <div class="profile__comments">
-                                  <div class="profile-comments__item">
-                                    <div class="profile-comments__controls">
-                                      <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                      <a href="#"><i class="fa fa-edit"></i></a>
-                                      <a href="#"><i class="fa fa-trash-o"></i></a>
-                                    </div>
-                                    <div class="profile-comments__avatar">
-                                      <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="...">
-                                    </div>
-                                    <div class="profile-comments__body">
-                                      <h5 class="profile-comments__sender">
-                                        Leena D'sa <small>2 hours ago</small>
-                                      </h5>
-                                      <div class="profile-comments__content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="profile-comments__item">
-                                    <div class="profile-comments__controls">
-                                      <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                      <a href="#"><i class="fa fa-edit"></i></a>
-                                      <a href="#"><i class="fa fa-trash-o"></i></a>
-                                    </div>
-                                    <div class="profile-comments__avatar">
-                                      <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="...">
-                                    </div>
-                                    <div class="profile-comments__body">
-                                      <h5 class="profile-comments__sender">
-                                        Ashish Yadav <small>5 hours ago</small>
-                                      </h5>
-                                      <div class="profile-comments__content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="profile-comments__item">
-                                    <div class="profile-comments__controls">
-                                      <a href="#"><i class="fa fa-share-square-o"></i></a>
-                                      <a href="#"><i class="fa fa-edit"></i></a>
-                                      <a href="#"><i class="fa fa-trash-o"></i></a>
-                                    </div>
-                                    <div class="profile-comments__avatar">
-                                      <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
-                                    </div>
-                                    <div class="profile-comments__body">
-                                      <h5 class="profile-comments__sender">
-                                        Deepak Nishad <small>1 day ago</small>
-                                      </h5>
-                                      <div class="profile-comments__content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
+                        <div class="card-body">
+                            <div class="reviewHolder">
                             </div>
                         </div>
-
+                        </div>
                     </div>
-
-
                 </div>
 
 
@@ -485,6 +425,9 @@
 
             //Load Social Media
             $('#social').load('socialMediaShow');
+            
+            //Load Reviews
+             $('.reviewHolder').load('reviewPublic');
 
             //Common Class to load multiple views
             $('.nav-link').click(function(){
