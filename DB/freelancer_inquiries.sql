@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 27, 2019 at 12:04 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Host: localhost:3306
+-- Generation Time: Aug 27, 2019 at 08:43 PM
+-- Server version: 5.6.44-cll-lve
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wheresert`
+-- Database: `wheresert-hassan`
 --
 
 -- --------------------------------------------------------
@@ -37,16 +37,16 @@ CREATE TABLE `freelancer_inquiries` (
   `Number` varchar(15) NOT NULL,
   `ContactPrefrence` varchar(50) NOT NULL,
   `Comment` varchar(1000) NOT NULL,
-  `PostDate` date NOT NULL
+  `PostDate` date NOT NULL,
+  `Status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `freelancer_inquiries`
 --
 
-INSERT INTO `freelancer_inquiries` (`ID`, `UserID`, `Name`, `Email`, `City`, `Number`, `ContactPrefrence`, `Comment`, `PostDate`) VALUES
-(1, 1, 'SURAJ YADAV', 'iamsurajyadav57@gmail.com', 'MUMBAI', '07506070225', 'PhoneCall,SMS/Whatsapp,Email', 'Looking+for+you', '2019-08-27'),
-(2, 4, 'Deepak Nishad', 'deepak@gmail.com', 'Dubai', '8898659865', 'PhoneCall,Email', 'looking+for+desgine+my+Building', '2019-08-27');
+INSERT INTO `freelancer_inquiries` (`ID`, `UserID`, `Name`, `Email`, `City`, `Number`, `ContactPrefrence`, `Comment`, `PostDate`, `Status`) VALUES
+(1, 1, 'Rasesh Panchal', 'raseshpanchal@gmail.com', 'Mumbai', '9820937938', 'PhoneCall,SMS/Whatsapp,Email', 'Hello%2C%0D%0AHope+you+are+doing+well.+Need+to+get+your+services+to+expand+my+business+operations+in+India+and+abroad.+Kindly+get+back+to+me+for+more+details.', '2019-08-27', 'New');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +66,7 @@ ALTER TABLE `freelancer_inquiries`
 -- AUTO_INCREMENT for table `freelancer_inquiries`
 --
 ALTER TABLE `freelancer_inquiries`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
