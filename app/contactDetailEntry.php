@@ -12,7 +12,7 @@ $newComment=urlencode($_POST['txt_comment']);
 
 $newContactPrefrence = implode(',',  $_POST['check_userpre']);
 
-$query_1=mysqli_query($link, "INSERT INTO freelancer_inquiries SET UserID='$newUserID', Name='$newContactName', Email='$newContactEmail', City='$newContactLocation', Number='$newContactNumber', Comment='$newComment', PostDate=now(), ContactPrefrence=('" . $newContactPrefrence . "')");
+$query_1=mysqli_query($link, "INSERT INTO freelancer_inquiries SET UserID='$newUserID', Name='$newContactName', Email='$newContactEmail', City='$newContactLocation', Number='$newContactNumber', Comment='$newComment', PostDate=now(), ContactPrefrence=('" . $newContactPrefrence . "'), Status='New'");
 
 if($query_1)
 {
