@@ -333,6 +333,18 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="col-lg-12 col-md-12" style="margin-top:30px">
+                        <div class="card">
+                            <div class="card-header text-white bg-dark">
+                            Message
+                            </div>
+                        <div class="card-body">
+                            <div class="message" id="message">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
 
                     <div class="col-lg-12 col-md-12" style="margin-top:40px">
                         <div class="card">
@@ -426,8 +438,12 @@
             //Load Social Media
             $('#social').load('socialMediaShow');
             
+            //Load Messages
+            $('#message').load('messageShow');
+            
             //Load Reviews
              $('.reviewHolder').load('reviewPublic');
+             
 
             //Common Class to load multiple views
             $('.nav-link').click(function(){
