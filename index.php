@@ -25,6 +25,33 @@
     <meta name="description" content="<?=$newPageDesc?>">
     <meta name="keywords" content="<?=$newPageKeywords?>">
     <?php include_once('scripts/headTags.php') ?>
+
+    <style>
+        #bg-video
+        {
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+            height: 50%;
+            top: 0;
+            left: 0;
+            border: solid 3px red;
+        }
+
+        #overlay
+        {
+            background: rgba(100,100,100,.5);
+            position: absolute;
+            overflow: hidden;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 53%;
+/*            z-index: 100;*/
+            text-align: center;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -33,9 +60,29 @@
     include_once('topMenu.php');
     ?>
     <!--Top Menu Ends-->
+    <!--
+    <div id="overlay">
+        <div class="img-wrap html-video-background">
+            <video src="vids/001.mp4" autoplay loop muted>
+            </video>
+        </div>
+
+        <div style="border:solid 3px blue; z-index:101">
+            This is my message
+        </div>
+    </div>
+    -->
 
 
     <div class="container-fluid homeSlide d-none d-sm-block">
+
+        <div id="overlay">
+            <div class="img-wrap html-video-background">
+                <video src="vids/001.mp4" autoplay loop muted>
+                </video>
+            </div>
+        </div>
+
         <form>
             <div class="container">
                 <div class="row">
@@ -72,7 +119,7 @@
                         <input type="text" name="txt_search" id="txt_search" class="form-control" placeholder="Search for a Talent / Services / Professional">
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="padding:0px; text-align:left">
-                        <button type="button" class="btn btn-info" id="btnFind">CLICK</button>
+                        <button type="button" class="btn btn-info" id="btnFind">SEARCH</button>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -81,6 +128,14 @@
     </div>
 
     <div class="container-fluid homeSlideMobile d-block d-sm-none">
+
+        <div id="overlay" style="height:60%">
+            <div class="img-wrap html-video-background" style="border:solid 3px blue; width:200%">
+                <video src="vids/001.mp4" autoplay loop muted>
+                </video>
+            </div>
+        </div>
+
         <form>
             <div class="container">
                 <div class="row">
@@ -124,14 +179,35 @@
     <div class="container">
         <div class="row" style="padding-top:50px; padding-bottom:50px;">
             <?php
-            $query_mainCat = mysqli_query($link, "SELECT * FROM main_categories WHERE Publish='Yes' ORDER BY ID ASC");
+            $query_mainCat = mysqli_query($link, "SELECT * FROM main_categories ORDER BY ID ASC");
             while($view_mainCat=mysqli_fetch_array($query_mainCat))
             {
                 $newMainCatID=$view_mainCat['ID'];
                 $newMainCategory=$view_mainCat['MainCat'];
-                ?>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mainCategory" style="border:solid 1px #333" mainCatID="<?=myEncode($newMainCatID)?>"><?='<h2>'.$newMainCategory.'</h2>'?></div>
-                <?php
+                $newImgName=$view_mainCat['ImgName'];
+                $disabledImage='disabled_'.$newImgName;
+                $newPublish=$view_mainCat['Publish'];
+
+                if($newPublish=='No')
+                {
+                    ?>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 disabledCategory" style="background-image: url(images/<?=$disabledImage?>);">
+                        <div class="mainSubTitle">
+                            <?='<h2>'.$newMainCategory.'</h2>'?>
+                        </div>
+                    </div>
+                    <?php
+                }
+                else if($newPublish=='Yes')
+                {
+                    ?>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mainCategory" style="background-image: url(images/<?=$newImgName?>); background-position: center top;" mainCatID="<?=myEncode($newMainCatID)?>">
+                        <div class="mainSubTitle">
+                            <?='<h2>'.$newMainCategory.'</h2>'?>
+                        </div>
+                    </div>
+                    <?php
+                }
             }
             ?>
         </div>
@@ -176,6 +252,10 @@
 
     <script>
         $(document).ready(function(){
+
+            //init videoBackground for html video
+            $('.html-video-background').videoBackground();
+
             $('#btnFind').click(function(){
                 var cityName = $("#select_search option:selected").text();
                 var lookingFor = $('#txt_search').val();

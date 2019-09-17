@@ -194,13 +194,19 @@ h3{
 }
 
 .mainCategory{
-    border: dotted 1px #E0E0E0;
+    border-bottom:solid 1px #333;
     width: 100% !important;
-    height: 150px;
+    height: 160px;
     text-align: center;
     padding-top: 30px;
     background-image: url(../images/logoSmallGrey.png);
     background-repeat: no-repeat;
+}
+
+.mainCategory:hover{
+/*    background-color: #FFF;*/
+    cursor: pointer;
+    background-image: url(../images/logoSmallDarkGrey.png);
 }
 
 .mainSubTitle{
@@ -209,12 +215,6 @@ h3{
     text-align: center;
     width: 91%;
     margin-top: 15px;
-}
-
-.mainCategory:hover{
-    background-color: #FFF;
-    cursor: pointer;
-    background-image: url(../images/logoSmallDarkGrey.png);
 }
 
 .whyWheresert{
@@ -328,6 +328,12 @@ h3{
   background: #E74B37;
 }
 
+.btn-info{
+    background-color: #77d6c3 !important;
+    border: solid #129077 1px !important;
+    color: #064337;
+}
+
 /*
 .text{
     color: white;
@@ -343,3 +349,26 @@ h3{
 }
 */
 
+.wizard {
+    display:none;
+}
+.wizard-ok {
+    display:none;
+}
+.wizard-nomodal {
+    box-shadow:none;
+    border:none;
+}
+
+.wizard .modal-header {
+    background-color:#ebebeb;
+}
+
+.wizard-body {
+    overflow:hidden;
+}
+
+.slideOne{
+    height: 400px;
+    border: solid 0px red;
+}

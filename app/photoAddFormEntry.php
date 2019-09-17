@@ -19,24 +19,57 @@ if ((($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "im
     }
     else
     {
-        //Form Values
-        $myTitle=$_POST['txt_photoTitle'];
-        $myFileTitle=str_replace(" ", "", $_POST['txt_photoTitle']);
-        $new_photo_name = time()."_".$myFileTitle.".".$extension;
-
-        if($myFileTitle!='')
+        if($_FILES['file']['size'] / 1024 <= 5120)
         {
-            move_uploaded_file($_FILES["file"]["tmp_name"], $path.$new_photo_name);
-            //Insert Values in DB
-            $query_1=mysqli_query($link, "INSERT INTO freelancer_upload_images SET FreelancerID='$userID', Title='$myTitle', FileName='$new_photo_name', Publish='Yes'");
-        }
+            //Form Values
+            $myTitle=$_POST['txt_photoTitle'];
+            $myFileTitle=str_replace(" ", "", $_POST['txt_photoTitle']);
+            $new_photo_name = time()."_".$myFileTitle.".".$extension;
 
-        echo "1";
+            if($myFileTitle!='')
+            {
+                //move_uploaded_file($_FILES["file"]["tmp_name"], $path.$new_photo_name);
+                //Compress and Upload Image
+                compressImage($_FILES["file"]["tmp_name"], $path.$new_photo_name, 40);
+                //Insert Values in DB
+                $query_1=mysqli_query($link, "INSERT INTO freelancer_upload_images SET FreelancerID='$userID', Title='$myTitle', FileName='$new_photo_name', Publish='Yes'");
+            }
+
+            echo "1";
+        }
+        else
+        {
+            echo "2";
+        }
     }
 }
 else
 {
     echo "0";
+}
+
+
+// Compress image
+function compressImage($source, $destination, $quality)
+{
+
+    $info = getimagesize($source);
+
+    if($info['mime'] == 'image/jpeg')
+    {
+        $image = imagecreatefromjpeg($source);
+    }
+    else if($info['mime'] == 'image/gif')
+    {
+        $image = imagecreatefromgif($source);
+    }
+    else if($info['mime'] == 'image/png')
+    {
+        $image = imagecreatefrompng($source);
+    }
+
+    imagejpeg($image, $destination, $quality);
+
 }
 
 ?>

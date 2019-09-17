@@ -20,8 +20,10 @@ if(!isset($_SESSION))
             $userFirstName=$view_user['FirstName'];
             $userLastName=$view_user['LastName'];
             $userFullName=$userFirstName.' '.$userLastName;
+            $userProfilePic=$view_user['ProfilePic'];
             $userDOB=$view_user['DOB'];
             $userMobile=$view_user['Mobile'];
+            $userEmailID=$view_user['EmailID'];
             $userGender=$view_user['Gender'];
             $userDescription=urldecode($view_user['Description']);
             $userBusinessTitle=$view_user['BusinessTitle'];
@@ -42,8 +44,10 @@ if(!isset($_SESSION))
             $userFirstName=$view_user['FirstName'];
             $userLastName=$view_user['LastName'];
             $userFullName=$userFirstName.' '.$userLastName;
+            $userProfilePic=$view_user['ProfilePic'];
             $userDOB=$view_user['DOB'];
             $userMobile=$view_user['Mobile'];
+            $userEmailID=$view_user['EmailID'];
             $userGender=$view_user['Gender'];
             $userDescription=urldecode($view_user['Description']);
             $userBusinessTitle=$view_user['BusinessTitle'];

@@ -9,7 +9,7 @@
 ?>
 
 <?php
-    $query_review = mysqli_query($link, "SELECT * FROM freelancer_reviews WHERE UserID='$newUserID' AND Status='Approved' ORDER BY ReviewDate DESC");
+    $query_review = mysqli_query($link, "SELECT * FROM freelancer_reviews WHERE UserID='$newUserID' AND Status='Approved' ORDER BY ReviewDateTime DESC");
     while($view_review=mysqli_fetch_array($query_review))
     {
         $newName=$view_review['Name'];
@@ -46,12 +46,19 @@
             <img src="<?=$showImage?>" alt="User Rating">
         </div>
         <div class="profile-comments__body">
-            <h5 class="profile-comments__sender">
-                <?=$newName?> <small><?=$newReviewDate?></small>
-            </h5>
-            <div class="profile-comments__content">
-                <?=$newReview?>
-            </div>
+            <p style="font-size:11pt">
+                <span style="color:#129077"><?=$newName?></span>
+
+                <small style="float:right; color:#d7d7d7">
+                    <i>
+                    <?php
+                        echo date('l, jS F Y', strtotime($newReviewDate));
+                    ?>
+                    </i>
+                </small>
+                <br/>
+                <i><?=$newReview?></i>
+            </p>
         </div>
     </div>
 

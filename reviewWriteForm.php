@@ -9,20 +9,12 @@
 ?>
 
 <div class="card-body">
-    <form name="myForm" id="myForm" method="POST">
+    <form name="myReviewForm" id="myReviewForm" method="POST">
 
-        <input type="hidden" class="form-control" id="txt_user" name="txt_user" value="<?=$newUserID?>">
-        <h5 class="card-title">
-            <div class="row">
-                <div class="col-lg-6">
-                    <input type="text" class="form-control" id="txt_name" name="txt_name" placeholder="Your Name*">
-                </div>
-
-                <div class="col-lg-6">
-                    <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Email ID*">
-                </div>
-            </div>
-        </h5>
+        <input type="hidden" class="form-control" id="txt_user" name="txt_user" value="<?=$newUserID?>" />
+        <input type="hidden" class="form-control" id="txt_name" name="txt_name" value="<?=$userFullName?>" />
+        <input type="hidden" class="form-control" id="txt_email" name="txt_email" value="<?=$userEmailID?>" />
+        <input type="hidden" class="form-control" id="txt_mobile" name="txt_mobile" value="<?=$userMobile?>" />
 
         <div class="row" style="margin-bottom:10px">
             <div class="col-lg-12">
@@ -66,10 +58,10 @@
             var myReview=$('#txt_review').val();
             var myRating = $('#starRating').find(":selected").val();
 
-            if(myName!='' || myEmail!='' || myReview!='')
+            if(myReview!='' || myRating!='')
             {
                 $.post("app/reviewWriteFormEntry?RT="+myRating,
-                $("#myForm").serialize(),
+                $("#myReviewForm").serialize(),
                 function(data){
                     if(data=='1')
                     {

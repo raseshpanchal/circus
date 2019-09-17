@@ -15,33 +15,30 @@
         <form name="myForm" id="myForm" method="POST">
 
             <div class="profile__avatar">
-              <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
+              <img src="profilePics/<?=$userProfilePic?>" alt="...">
             </div>
 
             <h5 class="card-title">
                 <div class="row">
                     <div class="col-lg-6">
-                        <input type="text" class="form-control" value="<?=$userFirstName?>" id="txt_fname" name="txt_fname" placeholder="First Name*">
+                        <input type="text" class="form-control" value="<?=$userFirstName?>" readonly />
                     </div>
 
                     <div class="col-lg-6">
-                        <input type="text" class="form-control" value="<?=$userLastName?>" id="txt_lname" name="txt_lname" placeholder="Last Name*">
+                        <input type="text" class="form-control" value="<?=$userLastName?>" readonly />
                     </div>
                 </div>
             </h5>
 
             <div class="row" style="margin-bottom:10px">
-                <div class="col-lg-6">
-                    <input type="text" class="form-control" value="<?=$userBusinessTitle?>" id="txt_company" name="txt_company" placeholder="Business Title">
-                </div>
-                <div class="col-lg-6">
-                    <input type="text" class="form-control" value="<?=$userProfessional?>" id="txt_profession" name="txt_profession" placeholder="Profession*">
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" value="<?=$userBusinessTitle?>" id="txt_company" name="txt_company" placeholder="Business Title OR Company Name">
                 </div>
             </div>
 
             <div class="row" style="margin-bottom:10px">
                 <div class="col-lg-12">
-                    <textarea class="form-control" rows="10" id="txt_desc" name="txt_desc" style="margin-bottom:10px"><?=$userDescription?></textarea>
+                    <textarea class="form-control" rows="10" id="txt_desc" name="txt_desc" maxlength="250" style="margin-bottom:10px" placeholder="About you within 250 characters..."><?=$userDescription?></textarea>
                 </div>
             </div>
 

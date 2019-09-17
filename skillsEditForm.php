@@ -4,6 +4,12 @@
     include_once("config/connection.php");
     include_once('userInfo.php');
     include_once('pageInfo.php');
+
+    //Find User's Selection
+    $query_select=mysqli_query($link, "SELECT * FROM freelancer_categories WHERE UserID='$userID'");
+    $view_select=mysqli_fetch_array($query_select);
+    $userMainCatID=$view_select['MainCatID'];
+    $userSubCatID=$view_select['SubCatID'];
 ?>
 
 <form name="mySkillForm" id="mySkillForm" method="POST">
@@ -11,7 +17,7 @@
     <!--Skills List Starts-->
     <div class="container" style="margin-bottom:20px;">
         <?php
-        $query_mainCat=mysqli_query($link, "SELECT * FROM categories WHERE Publish='Yes' ORDER BY Category ASC");
+        $query_mainCat=mysqli_query($link, "SELECT * FROM categories WHERE ID='$userSubCatID' ORDER BY Category ASC");
         while($view_mainCat=mysqli_fetch_array($query_mainCat))
         {
             $newCatID=$view_mainCat['ID'];

@@ -47,17 +47,16 @@
 
                     <div class="form-check-inline" style="margin-bottom:10px;">
                         <label class="form-check-label">
-                            Login as &nbsp;&nbsp;
-                            <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Freelancer" checked> Freelancer / Small Business
+                            <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Freelancer" checked> I need help
                         </label>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Recruiter"> Recruiter / Hirer
+                            <input type="radio" class="form-check-input" id="txt_userType" name="txt_userType" value="Recruiter"> I can help
                         </label>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="txt_user" name="txt_user" placeholder="Enter Registered Email ID">
+                        <input type="text" class="form-control" id="txt_user" name="txt_user" placeholder="Enter Email OR Mobile Number">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="txt_pass" name="txt_pass" placeholder="Enter Password">
@@ -75,6 +74,21 @@
                     </div>
 
                 </form>
+
+                <div style="text-align:center; border-top:dotted 1px #333; padding-top:10px">
+                    OR LOGIN USING YOUR SOCIAL ACCOUNT<br/><br/>
+
+                    <button class="loginBtn loginBtn--facebook">
+                        Login with Facebook
+                    </button>
+
+                    <button class="loginBtn loginBtn--google">
+                        Login with Google
+                    </button>
+
+
+                </div>
+
             </div>
 
             <div class="col"></div>
@@ -125,12 +139,12 @@
                 var userType = $("input[name='txt_userType']:checked").val();
                 $('.btnLogin').attr("disabled", true);
                 $('#loginStatus').html('Please wait...').fadeIn(300);
-                var myEmail=$('#txt_user').val();
+                var myUser=$('#txt_user').val();
                 var myPass=$('#txt_pass').val();
 
                 if(userType=='Freelancer')
                 {
-                    if(validateEmail(myEmail)!='')
+                    if(myUser!='')
                     {
                         if(myPass=='')
                         {
@@ -143,6 +157,7 @@
                             $.post("app/freelancerLoginEntry",
                             $("#myFormLogin").serialize(),
                             function(data){
+
                                 if(data=='emailError')
                                 {
                                     $('#loginStatus').html('<span style="color:red">Wrong Email ID</span>').fadeIn(300);
@@ -150,9 +165,16 @@
                                     $('#login_pass').val('');
                                     $('.btnLogin').attr("disabled", false);
                                 }
+                                if(data=='mobileError')
+                                {
+                                    $('#loginStatus').html('<span style="color:red">Wrong Mobile Number</span>').fadeIn(300);
+                                    $('#login_user').val('');
+                                    $('#login_pass').val('');
+                                    $('.btnLogin').attr("disabled", false);
+                                }
                                 else if(data=='validationError')
                                 {
-                                    $('#loginStatus').html('<span style="color:red">Please Validate Your Email ID Before Login</span>').fadeIn(300);
+                                    $('#loginStatus').html('<span style="color:red">Please Validate Your Account Before Login</span>').fadeIn(300);
                                     $('#login_user').val('');
                                     $('#login_pass').val('');
                                     $('.btnLogin').attr("disabled", false);
@@ -164,20 +186,29 @@
                                     $('#login_pass').val('');
                                     $('.btnLogin').attr("disabled", false);
                                 }
+                                else if(data=='validWizard')
+                                {
+                                    $('#loginStatus').html('<span style="color:green">Account Athenticated. Please wait...</span>').fadeIn(300);
+                                    $('#login_user').val('');
+                                    $('#login_pass').val('');
+                                    window.location.href='freelancer-registration-process';
+                                }
                                 else if(data=='validUser')
                                 {
                                     $('#loginStatus').html('<span style="color:green">Account Athenticated. Please wait...</span>').fadeIn(300);
                                     $('#login_user').val('');
                                     $('#login_pass').val('');
-                                    window.location.href='myAccount';
+                                    //window.location.href='myAccount';
+                                    history.back(-1);
                                 }
+
                             });
                             return false;
                         }
                     }
                     else
                     {
-                        $('#regiStatus').text('Please Enter Valid User Name');
+                        $('#regiStatus').html('<span style="color:red">Enter Email OR Mobile Number</span>');
                         $('#txt_user').val('');
                         $('.btnLogin').attr("disabled", false);
                     }

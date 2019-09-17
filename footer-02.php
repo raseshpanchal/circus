@@ -57,7 +57,12 @@
             </div>
 
             <div class="col-lg-2">
-                <img src="images/appStoreLogo.png" style="width:80%" />
+                <img src="images/appStoreLogo.png" style="width:80%; margin-bottom:30px" />
+
+                <span id="siteseal">
+                    <script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=6vyD3muOGzac1dmvogl1LvUVwRjC1QYcsupND535kOnvkoDKDxUV3wW2x7vg"></script>
+                </span>
+
             </div>
 
         </div>
@@ -71,7 +76,13 @@
                 Copyrights &#64; 2019 &nbsp;&nbsp;All Rights Reserved with WhereSert.com
             </div>
             <div class="col-lg-6" style="text-align:right">
-                Privacy Policy &nbsp;&nbsp;&#124;&nbsp;&nbsp; Terms &nbsp; Conditions
+                <a href="wheresert-privacy-policy" style="color:#9C9897">
+                    Privacy Policy
+                </a>
+                &nbsp;&nbsp;&#124;&nbsp;&nbsp;
+                <a href="wheresert-terms-and-conditions" style="color:#9C9897">
+                    Terms &amp; Conditions
+                </a>
             </div>
         </div>
     </div>

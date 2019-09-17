@@ -4,6 +4,11 @@
     include_once("config/connection.php");
     include_once('userInfo.php');
     include_once('pageInfo.php');
+
+    if(!$myEmail)
+    {
+        header("Location: ./");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -250,7 +255,32 @@
             <div class="col-lg-9 col-md-9">
 
                 <div class="row">
-                    <div class="col-lg-12 col-md-12" id="basicInfo">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header text-white bg-dark">
+                            Messages
+                            </div>
+                        <div class="card-body">
+                            <div class="message" id="message">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12" style="margin-top:30px">
+                        <div class="card">
+                            <div class="card-header text-white bg-dark">
+                            Reviews
+                            </div>
+                        <div class="card-body">
+                            <div class="reviewHolder">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-12 col-md-12" id="basicInfo" style="margin-top:30px">
                         Load Basic Information
                     </div>
 
@@ -333,30 +363,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-12 col-md-12" style="margin-top:30px">
-                        <div class="card">
-                            <div class="card-header text-white bg-dark">
-                            Message
-                            </div>
-                        <div class="card-body">
-                            <div class="message" id="message">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-12 col-md-12" style="margin-top:40px">
-                        <div class="card">
-                            <div class="card-header text-white bg-dark">
-                            Reviews
-                            </div>
-                        <div class="card-body">
-                            <div class="reviewHolder">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
                 </div>
 
 
@@ -437,13 +444,13 @@
 
             //Load Social Media
             $('#social').load('socialMediaShow');
-            
+
             //Load Messages
             $('#message').load('messageShow');
-            
+
             //Load Reviews
              $('.reviewHolder').load('reviewPublic');
-             
+
 
             //Common Class to load multiple views
             $('.nav-link').click(function(){

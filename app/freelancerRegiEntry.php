@@ -8,12 +8,12 @@ $newFullName=$newFirstName.' '.$newLastName;
 $newEmail=$_POST['txt_email'];
 $newCode=$_POST['txt_code'];
 $newMobile=$_POST['txt_mobile'];
-$callingNumbar=$newCode.$newMobile;
 $newGender=$_POST['txt_gender'];
 $newDOB=$_POST['txt_dob'];
 $newPass=$_POST['txt_pass'];
-/*
-function randomPassword() {
+
+function randomPassword()
+{
     $alphabet = "abcdefghijklmnpqrstuwxyz!@#$%&ABCDEFGHIJKLMNPQRSTUWXYZ0123456789";
     $pass = array(); //remember to declare $pass as an array
     $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
@@ -24,71 +24,102 @@ function randomPassword() {
     return implode($pass); //turn the array into a string
 }
 
-$newPass = randomPassword();
-*/
+if($newPass=='')
+{
+    $newPass = randomPassword();
+}
+
 //Check Existing Record of Email ID
 $query_1=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE EmailID='$newEmail'");
 $view_email=mysqli_num_rows($query_1);
-if($view_email!=0)
+
+//Check Existing Record of Mobile
+$query_2=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE Mobile='$newMobile'");
+$view_mobile=mysqli_num_rows($query_2);
+
+if($newEmail!='')
 {
-    echo 'emailError';
-}
-else
-{
-    //$newFullName=ucwords(strtolower($newFullName));
-    //Insert Values Into DB
-    $query_2=mysqli_query($link, "INSERT INTO freelancer_registration SET FirstName='$newFirstName', LastName='$newLastName', Mobile='$callingNumbar', EmailID='$newEmail', DOB='$newDOB', Gender='$newGender', Password='$newPass', CreateDate=now(), CreateTime=now(), PaidPhoto='No', PaidBanners='No', PaidListing='No', Status='Valid'");
-    if($query_2)
+    if($view_email!=0)
     {
-        if($newEmail!='')
+        echo 'emailError';
+    }
+    else
+    {
+        //Get Register and Send Email
+        //Insert Values Into DB
+        $query_2=mysqli_query($link, "INSERT INTO freelancer_registration SET FirstName='$newFirstName', LastName='$newLastName', Code='$newCode', Mobile='$newMobile', EmailID='$newEmail', DOB='$newDOB', Gender='$newGender', Password='$newPass', CreateDate=now(), CreateTime=now(), PaidPhoto='No', PaidBanners='No', PaidListing='No', Status='Wizard'");
+        if($query_2)
         {
-            //Code for Sending e-mail to User
-            $to=$newEmail;
-            $from = "WhereSert";
-            $subject="WhereSert Freelancer Registration";
-            $header = "From:WhereSert <noreply@wheresert.com>"."\r\n";
-            $header .= "Reply-To:noreply@wheresert.com";
-            $header .= "MIME-Version: 1.0\r\n";
-            $header .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-            $message = '<html><body>';
-            $message .= '<p>Dear <b>'.$newFullName.'</b>,<p>';
-            $message .= '<p>';
-            $message .= 'Thank you for registering at wheresert.com!<br/><br/>In order to prevent unauthorized sign-ups,<br/>Please click the link below to confirm your registration request and verify your e-mail address:';
-            $message .= '<br/><br/>';
-            $message .= '<a href="http://www.wheresert.com/validateFreelancer?ID='.myEncode($newEmail).'">';
-            $message .= 'http://www.wheresert.com/validateFreelancer?ID='.myEncode($newEmail);
-            $message .= '</a><br/><br/>Note: If you have problems with the provided link, simply copy and paste the link above into your browser address bar.';
-            $message .= '<br/><br/>After your account is activated, you will enjoy the following services:<br/>';
-            $message .= '<ol><li>You can create your profile in details</li><li>Add your list of services with prices</li></ol>';
-            $message .= '<br/>Your login details are as follows:<br/><br/>';
-            $message .= 'UserName: '.$newEmail.'<br/>';
-            $message .= 'Password: '.$newPass.'<br/><br/>';
-            $message .= 'You can change your password after your first login.<br/><br/>';
-            $message .= 'Please do not reply this message, as no recipient has been designated.<br/>';
-            $message .= 'Replying this message will not confirm your registration.<br/><br/>';
-            $message .= 'Yours Sincerely,<br/>WhereSert Team<br/><br/>';
-            $message .= '</p>';
-            $message .= '</body></html>';
-
-            $sentmail_1=mail($to, $subject, $message, $header, "noreply@wheresert.com");
-            /////////////////////////////////////////
-
-            if($sentmail_1)
+            if($newEmail!='')
             {
-                //Alert for Front End Page
+                //Code for Sending e-mail to User
+                $to=$newEmail;
+                $from = "WhereSert";
+                $subject="WhereSert Freelancer Registration";
+                $header = "From:WhereSert <noreply@wheresert.com>"."\r\n";
+                $header .= "Reply-To:noreply@wheresert.com";
+                $header .= "MIME-Version: 1.0\r\n";
+                $header .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                $message = '<html><body>';
+                $message .= '<p>Dear <b>'.$newFullName.'</b>,<p>';
+                $message .= '<p>';
+                $message .= 'Thank you for registering at wheresert.com!<br/><br/>In order to prevent unauthorized sign-ups,<br/>Please click the link below to confirm your registration request and verify your e-mail address:';
+                $message .= '<br/><br/>';
+                $message .= '<a href="http://www.wheresert.com/validateFreelancer?ID='.myEncode($newEmail).'">';
+                $message .= 'http://www.wheresert.com/validateFreelancer?ID='.myEncode($newEmail);
+                $message .= '</a><br/><br/>Note: If you have problems with the provided link, simply copy and paste the link above into your browser address bar.';
+                $message .= '<br/><br/>After your account is activated, you will enjoy the following services:<br/>';
+                $message .= '<ol><li>You can create your profile in details</li><li>Add your list of services with prices</li></ol>';
+                $message .= '<br/>Your login details are as follows:<br/><br/>';
+                $message .= 'UserName: '.$newEmail.'<br/>';
+                $message .= 'Password: '.$newPass.'<br/><br/>';
+                $message .= 'You can change your password after your first login.<br/><br/>';
+                $message .= 'Please do not reply this message, as no recipient has been designated.<br/>';
+                $message .= 'Replying this message will not confirm your registration.<br/><br/>';
+                $message .= 'Yours Sincerely,<br/>WhereSert Team<br/><br/>';
+                $message .= '</p>';
+                $message .= '</body></html>';
+
+                $sentmail_1=mail($to, $subject, $message, $header, "noreply@wheresert.com");
+                /////////////////////////////////////////
+
+                if($sentmail_1)
+                {
+                    //Alert for Front End Page
+                    echo 'regiSuccess';
+                }
+                //////////////////
+            }
+            else
+            {
                 echo 'regiSuccess';
             }
-            //////////////////
         }
-        else
+    /////////////////////////////////
+    }
+
+///////////////////
+}
+else if($newMobile!='')
+{
+    //Check Existing Record of Mobile
+    $query_3=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE Mobile='$newMobile'");
+    $check_mobile=mysqli_num_rows($query_3);
+
+    if($check_mobile!=0)
+    {
+        echo 'mobileError';
+    }
+    else if($check_mobile==0)
+    {
+        //Get Register and Send SMS
+        //Insert Values Into DB
+        $query_2=mysqli_query($link, "INSERT INTO freelancer_registration SET FirstName='$newFirstName', LastName='$newLastName', Code='$newCode', Mobile='$newMobile', EmailID='$newEmail', DOB='$newDOB', Gender='$newGender', Password='$newPass', CreateDate=now(), CreateTime=now(), PaidPhoto='No', PaidBanners='No', PaidListing='No', Status='Wizard'");
+        if($query_2)
         {
+            /*SMS CODE TO BE INTEGRATED*/
             echo 'regiSuccess';
         }
-        
-        //
-        
-        
-        
     }
 }
 ?>

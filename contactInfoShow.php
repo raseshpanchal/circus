@@ -11,7 +11,7 @@
     </div>
     <div class="card-body">
         <h6 class="card-title">Registered Email ID</h6>
-        <p class="card-text"><?=$myEmail?></p>
+        <p class="card-text"><?=$userEmailID?></p>
         <h6 class="card-title">Date of Birth</h6>
         <p class="card-text"><?=$userDOB?></p>
         <h6 class="card-title">Gender</h6>

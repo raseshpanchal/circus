@@ -7,8 +7,16 @@
 
     $newCN=$_GET['CN'];
     $newLF=$_GET['LF'];
-    $query_find=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE City='$newCN' AND Professional='$newLF'");
+
+    //Find Skill ID
+    $query_skill=mysqli_query($link, "SELECT * FROM subcategories WHERE SubCategory='$newLF'");
+    $view_skill=mysqli_fetch_array($query_skill);
+    $newSkillID=$view_skill['ID'];
+
+    $query_find=mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillID='$newSkillID'");
     $num_profile=mysqli_num_rows($query_find);
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,35 +49,38 @@
 
         <div class="row" style="padding-bottom:5px; margin-top:10px; margin-bottom:5px; border-bottom:dotted 1px #333">
             <div class="col-lg-12">
-                Total <?=$num_profile?> result found
+                Total <?=$num_profile?> result(s) found
             </div>
         </div>
 
         <div class="row" style="padding-top:5px; padding-bottom:50px; margin-bottom:50px">
             <?php
             //Find Profile Details
-            $query_user=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE City='$newCN' AND Professional='$newLF'");
-            while($view_user=mysqli_fetch_array($query_user))
+            //$query_find=mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillID='$newSkillID'");
+            $query_find=mysqli_query($link, "SELECT * FROM freelancer_skills WHERE SkillName LIKE '$newLF%'");
+            while($view_find=mysqli_fetch_array($query_find))
             {
+                $newFreelancerID=$view_find['FreelancerID'];
+                //Find Profile Details
+                $query_user=mysqli_query($link, "SELECT * FROM freelancer_registration WHERE ID='$newFreelancerID'");
+                $view_user=mysqli_fetch_array($query_user);
                 $newUserID=$view_user['ID'];
                 $newFirstName=$view_user['FirstName'];
                 $newLastName=$view_user['LastName'];
-                $newProfession=$view_user['Professional'];
+                $newProfilePic=$view_user['ProfilePic'];
                 $newCity=$view_user['City'];
                 $newState=$view_user['State'];
                 $newCountry=$view_user['Country'];
 
                 ?>
                 <div class="col-lg-3">
-                    <div class="card" style="width:100%; height:200px; background-image:url('userPhotos/1563278377_RajeshPanchal.jpg'); background-size:cover; background-position:center center; margin-bottom:150px;">
-
-                      <div class="card-body" style="margin-top:200px; background-color:#FFF">
+                    <div class="card" style="width:100%; height:80px; background-image:url('profilePics/<?=$newProfilePic?>'); background-position:center center; background-repeat:no-repeat; margin-bottom:150px; text-align:center; padding-top:160px">
+                      <div class="card-body" style="margin-top:-30px; background-color:#FFF">
                         <h5 class="card-title"><?=$newFirstName.' '.$newLastName?></h5>
-                        <p class="card-text"><?=$newProfession?></p>
-                        <p style="font-size:9pt; border-top:dotted 1px #898989; padding-top:7px">
+                        <p style="font-size:9pt; border-top:dotted 1px #898989; padding-top:7px; text-align:left">
                             <img src="images/mapLocation.png"/> <?=$newCity.' / '.$newState.' / '.$newCountry?>
                         </p>
-                        <a href="#" class="btn btn-default btn-sm btnProfile" style="float:right" myID="<?=myEncode($newUserID)?>">See Profile</a>
+                        <a href="#" class="btn btn-default btn-sm btnProfile" style="float:right" myID="<?=myEncode($newUserID)?>">View Profile</a>
                       </div>
                     </div>
                 </div>
@@ -118,14 +129,6 @@
 
         });
     </script>
-
-    <script type="text/javascript">
-        function googleTranslateElementInit()
-        {
-            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,ar,hi'}, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>

@@ -49,6 +49,10 @@ function profilePhoto()
             {
                 $('#fileStatus').html('File uploaded successfully!');
             }
+            else if(response.responseText=='2')
+            {
+                $('#fileStatus').html('File size should be less than 2MB');
+            }
         }
      });
 }
