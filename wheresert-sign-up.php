@@ -21,7 +21,11 @@
         .row{
             margin-bottom: 10px;
         }
+        .ui-datepicker{
+            margin-top: -100px;
+        }
     </style>
+
 </head>
 <body>
 
@@ -46,7 +50,7 @@
             <div class="col"></div>
 
             <div class="col-lg-6">
-                <form name="myFormReg" id="myFormReg" method="POST" autocomplete="off">
+                <form name="myFormReg" id="myFormReg" method="POST" autocomplete="on">
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -71,23 +75,17 @@
                     <div class="row">
 
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="txt_fname" name="txt_fname" placeholder="First Name*">
+                            <input type="text" class="form-control" id="txt_fname" name="txt_fname" placeholder="First Name*" required autocomplete="off">
                         </div>
 
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="txt_lname" name="txt_lname" placeholder="Last Name*">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Email ID (Optional)">
+                            <input type="text" class="form-control" id="txt_lname" name="txt_lname" placeholder="Last Name*" required autocomplete="off">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-6">
-                        <input type="text" class="form-control" id="txt_dob" name="txt_dob" placeholder="Date of Birth*" required>
+                            <input type="text" class="form-control" id="txt_dob" name="txt_dob" placeholder="Date of Birth*" required autocomplete="off">
                         </div>
 
                         <div class="col-lg-6">
@@ -129,13 +127,19 @@
                                 </div>
 
                                 <div class="col-lg-8" style="padding-left:2px">
-                                    <input type="text" class="form-control" id="txt_mobile" name="txt_mobile" placeholder="Mobile Number*">
+                                    <input type="text" class="form-control" id="txt_mobile" name="txt_mobile" placeholder="Mobile Number*" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
-                            <input type="password" class="form-control" id="txt_pass" name="txt_pass" placeholder="Enter New Password">
+                            <input type="password" class="form-control" id="txt_pass" name="txt_pass" placeholder="Set Password*" required autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:-10px">
+                        <div class="col-lg-12">
+                            <input type="text" class="form-control" id="txt_email" name="txt_email" placeholder="Email ID (Optional)" autocomplete="off" />
                         </div>
                     </div>
 
@@ -163,9 +167,18 @@
 
 
                 </form>
-                <div style="text-align:center">
-                    <h3>------------------------------------------------------------------------------------</h3>
-                    <img src="images/btnSocial.png" />
+                <div style="text-align:center; border-top:dotted 1px #333; padding-top:10px">
+                    OR LOGIN USING YOUR SOCIAL ACCOUNT<br/><br/>
+
+                    <button class="loginBtn loginBtn--facebook">
+                        Login with Facebook
+                    </button>
+
+                    <button class="loginBtn loginBtn--google">
+                        Login with Google
+                    </button>
+
+
                 </div>
 
             </div>
@@ -211,58 +224,114 @@
 
     <?php include_once('scripts/bottomScripts.php') ?>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script>
         $(document).ready(function(){
             $('.btnRegi').click(function(){
                 var userType = $("input[name='txt_userType']:checked").val();
                 $('.btnRegi').attr("disabled", true);
-                var myName=$('#txt_fname').val();
+                var myFName=$('#txt_fname').val();
+                var myLName=$('#txt_lname').val();
+                var myDOB=$('#txt_dob').val();
                 var myEmail=$('#txt_email').val();
+                var myCode=$('#txt_code').val();
                 var myMobile=$('#txt_mobile').val();
                 var myPass=$('#txt_pass').val();
 
                 if(userType=='Freelancer')
                 {
-                    if(validateEmail(myEmail)!='')
+                    if(myFName=='')
                     {
-                        if(myMobile.length<10)
-                        {
-                            $('#regiStatus').text('Incorrect Mobile Number');
-                            $('#txt_mobile').val('');
-                            $('.btnRegi').attr("disabled", false);
-                        }
-                        else
-                        {
-                            $.post("app/freelancerRegiEntry",
-                            $("#myFormReg").serialize(),
-                            function(data){
-
-                                if(data=='emailError')
-                                {
-                                    $('#regiStatus').text('This Email ID is already registered!');
-                                    $('#txt_email').val('');
-                                    $('.btnRegi').attr("disabled", false);
-                                }
-                                if(data=='regiSuccess')
-                                {
-                                    $('#txt_name').val('');
-                                    $('#txt_email').val('');
-                                    $('#txt_mobile').val('');
-                                    $('#txt_dob').val('');
-                                    $('#txt_pass').val('');
-                                    $('#regiStatus').html('<br/><br/>Registration has been submitted successfully!<br/>Please visit your email inbox to activate your registration.');
-                                }
-                            });
-                            return false;
-                        }
+                        $('#txt_fname').css('border','solid 1px red');
+                        $('.btnRegi').attr("disabled", false);
                     }
                     else
                     {
-                        $('#regiStatus').text('Please Enter Valid Email ID!');
-                        $('#txt_email').val('');
+                        $('#txt_fname').css('border','solid 1px #ced4da');
+                    }
+
+                    if(myLName=='')
+                    {
+                        $('#txt_lname').css('border','solid 1px red');
                         $('.btnRegi').attr("disabled", false);
+                    }
+                    else
+                    {
+                        $('#txt_lname').css('border','solid 1px #ced4da');
+                    }
+
+                    if(myDOB=='')
+                    {
+                        $('#txt_dob').css('border','solid 1px red');
+                        $('.btnRegi').attr("disabled", false);
+                    }
+                    else
+                    {
+                        $('#txt_dob').css('border','solid 1px #ced4da');
+                    }
+
+                    if(myCode=='')
+                    {
+                        $('#txt_code').css('border','solid 1px red');
+                        $('.btnRegi').attr("disabled", false);
+                    }
+                    else
+                    {
+                        $('#txt_code').css('border','solid 1px #ced4da');
+                    }
+
+                    if(myMobile=='')
+                    {
+                        $('#txt_mobile').css('border','solid 1px red');
+                        $('.btnRegi').attr("disabled", false);
+                    }
+                    else
+                    {
+                        $('#txt_mobile').css('border','solid 1px #ced4da');
+                    }
+
+                    if(myPass=='')
+                    {
+                        $('#txt_pass').css('border','solid 1px red');
+                        $('.btnRegi').attr("disabled", false);
+                    }
+                    else
+                    {
+                        $('#txt_pass').css('border','solid 1px #ced4da');
+                    }
+
+                    if( myFName!='' && myLName!='' && myDOB!='' && myCode!='' && myMobile!='' && myPass!='' )
+                    {
+                        $.post("app/freelancerRegiEntry",
+                        $("#myFormReg").serialize(),
+                        function(data){
+
+                            if(data=='mobileError')
+                            {
+                                $('#regiStatus').html('<span style="color:red">This Mobile is already registered!</span>');
+                                $('#txt_mobile').val('');
+                                $('#txt_mobile').css('border','solid 1px red');
+                                $('.btnRegi').attr("disabled", false);
+                            }
+                            if(data=='emailError')
+                            {
+                                $('#regiStatus').html('<span style="color:red">This Email ID is already registered!</span>');
+                                $('#txt_email').val('');
+                                $('#txt_email').css('border','solid 1px red');
+                                $('.btnRegi').attr("disabled", false);
+                            }
+                            if(data=='regiSuccess')
+                            {
+                                $('#txt_fname').val('');
+                                $('#txt_lname').val('');
+                                $('#txt_dob').val('');
+                                $('#txt_mobile').val('');
+                                $('#txt_pass').val('');
+                                $('#txt_email').val('');
+                                $('#regiStatus').html('<span style="color:green">Registration has been submitted successfully!</span>');
+                            }
+                        });
+                        return false;
                     }
                 }
                 else if(userType=='Recruiter')
@@ -309,7 +378,19 @@
                 return false;
             });
 
-        $("#txt_dob").datepicker({dateFormat: 'dd/mm/yy'});
+        //$("#txt_dob").datepicker({dateFormat: 'dd/mm/yy'});
+
+
+            /*New DOB Picker*/
+            $(function() {
+                $( "#txt_dob" ).datepicker({
+                    dateFormat : 'mm/dd/yy',
+                    changeMonth : true,
+                    changeYear : true,
+                    yearRange: '-100y:c+nn',
+                    maxDate: '-5844d'
+                });
+            });
 
         //MAIN DOC ENDS
         });
