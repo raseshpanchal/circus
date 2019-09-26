@@ -1,4 +1,4 @@
-<div class="block" style="padding-top: 130px;">
+<div class="block" style="padding-top: 120px;">
     <section class="hero" style="background-color: #ebebeb; height: 185px;">
         <div class="hero-body">
             <div class="container">

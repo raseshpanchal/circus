@@ -23,14 +23,19 @@
     width: 256px;
 }
 
-.tag {
-    border: 1px solid red;
+
+img {
+    vertical-align: middle;
 }
 
-.hero {
-/*    margin-top: 30px;*/
-/*
-    background-color: #ebebeb;
-    height: 185px;
-*/
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+
+p {
+    
+    display: inline-block;
 }
