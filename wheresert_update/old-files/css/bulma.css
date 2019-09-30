@@ -2150,13 +2150,13 @@ fieldset[disabled] .button.is-primary.is-inverted {
 
 .button.is-primary.is-outlined {
   background-color: transparent;
-  border-color: #167395;
-  color: #167395;
+  border-color: #00d1b2;
+  color: #00d1b2;
 }
 
 .button.is-primary.is-outlined:hover, .button.is-primary.is-outlined.is-hovered, .button.is-primary.is-outlined:focus, .button.is-primary.is-outlined.is-focused {
-  background-color: #167395;
-  border-color: #167395;
+  background-color: #00d1b2;
+  border-color: #00d1b2;
   color: #fff;
 }
 
